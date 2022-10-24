@@ -4,8 +4,9 @@
 
 package play.api
 
-import org.specs2.mutable.Specification
 import play.api.libs.logback.LogbackCapturingAppender
+
+import org.specs2.mutable.Specification
 
 class ModeSpecificLoggerSpec extends Specification {
   sequential

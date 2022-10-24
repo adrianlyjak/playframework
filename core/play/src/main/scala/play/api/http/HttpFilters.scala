@@ -4,19 +4,18 @@
 
 package play.api.http
 
-import javax.inject.Inject
-import javax.inject.Singleton
-
-import com.typesafe.config.ConfigException
-import play.api.inject.Binding
-import play.api.inject.BindingKey
-import play.api.inject.Injector
 import play.api.Configuration
 import play.api.Environment
 import play.api.Logger
+import play.api.inject.Binding
+import play.api.inject.BindingKey
+import play.api.inject.Injector
 import play.api.mvc.EssentialFilter
-import play.utils.Reflect
 
+import com.typesafe.config.ConfigException
+import javax.inject.Inject
+import javax.inject.Singleton
+import play.utils.Reflect
 import scala.jdk.CollectionConverters._
 
 /**

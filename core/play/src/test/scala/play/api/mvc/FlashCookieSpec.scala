@@ -4,11 +4,11 @@
 
 package play.api.mvc
 
-import java.net.URLEncoder
-
 import play.api.http.FlashConfiguration
 import play.api.http.SecretConfiguration
 import play.api.libs.crypto.CookieSignerProvider
+
+import java.net.URLEncoder
 
 class FlashCookieSpec extends org.specs2.mutable.Specification {
   "Flash cookies" should {

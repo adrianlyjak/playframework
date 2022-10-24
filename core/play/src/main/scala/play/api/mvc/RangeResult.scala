@@ -4,7 +4,10 @@
 
 package play.api.mvc
 
-import java.nio.file.Files
+import play.api.http.ContentTypes
+import play.api.http.HeaderNames._
+import play.api.http.HttpEntity
+import play.api.http.Status._
 
 import akka.NotUsed
 import akka.annotation.ApiMayChange
@@ -18,10 +21,7 @@ import akka.stream.scaladsl.Source
 import akka.stream.scaladsl.StreamConverters
 import akka.stream.stage._
 import akka.util.ByteString
-import play.api.http.ContentTypes
-import play.api.http.HeaderNames._
-import play.api.http.HttpEntity
-import play.api.http.Status._
+import java.nio.file.Files
 
 // Long should be good enough to represent even very large files
 // considering that Long.MAX_VALUE is 9223372036854775807 which

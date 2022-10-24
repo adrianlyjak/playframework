@@ -4,19 +4,19 @@
 
 package play.api.db.evolutions
 
-import java.io.File
-import java.nio.charset.Charset
-import java.nio.file._
-
-import play.api.db.DBApi
-import play.api.db.Database
-import play.api.inject.ApplicationLifecycle
-import play.api.inject.DefaultApplicationLifecycle
-import play.api.libs.Codecs.sha1
 import play.api.Configuration
 import play.api.Environment
 import play.api.Logger
 import play.api.Mode
+import play.api.db.Database
+import play.api.db.DBApi
+import play.api.inject.ApplicationLifecycle
+import play.api.inject.DefaultApplicationLifecycle
+import play.api.libs.Codecs.sha1
+
+import java.io.File
+import java.nio.charset.Charset
+import java.nio.file._
 import play.core.DefaultWebCommands
 import play.utils.PlayIO
 import scala.collection.immutable.ArraySeq
@@ -178,7 +178,6 @@ object Evolutions {
   }
 
   /**
-   *
    * Compare two evolution sequences.
    *
    * @param downs the seq of downs

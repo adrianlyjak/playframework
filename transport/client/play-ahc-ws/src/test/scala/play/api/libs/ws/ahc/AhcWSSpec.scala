@@ -4,16 +4,6 @@
 
 package play.api.libs.ws.ahc
 
-import java.util
-import java.nio.charset.StandardCharsets
-
-import akka.stream.Materializer
-import akka.util.ByteString
-import akka.util.Timeout
-import org.specs2.concurrent.ExecutionEnv
-import org.specs2.matcher.FutureMatchers
-import org.specs2.mock.Mockito
-import org.specs2.mutable.Specification
 import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.oauth.ConsumerKey
@@ -25,14 +15,23 @@ import play.api.test.DefaultAwaitTimeout
 import play.api.test.FutureAwaits
 import play.api.test.Helpers
 import play.api.test.WithServer
+
+import akka.stream.Materializer
+import akka.util.ByteString
+import akka.util.Timeout
+import java.nio.charset.StandardCharsets
+import java.util
+import org.specs2.concurrent.ExecutionEnv
+import org.specs2.matcher.FutureMatchers
+import org.specs2.mock.Mockito
+import org.specs2.mutable.Specification
 import play.shaded.ahc.io.netty.handler.codec.http.DefaultHttpHeaders
-import play.shaded.ahc.org.asynchttpclient.Realm.AuthScheme
 import play.shaded.ahc.io.netty.handler.codec.http.cookie.{ Cookie => NettyCookie }
 import play.shaded.ahc.io.netty.handler.codec.http.cookie.{ DefaultCookie => NettyDefaultCookie }
-import play.shaded.ahc.org.asynchttpclient.Param
 import play.shaded.ahc.org.asynchttpclient.{ Request => AHCRequest }
 import play.shaded.ahc.org.asynchttpclient.{ Response => AHCResponse }
-
+import play.shaded.ahc.org.asynchttpclient.Param
+import play.shaded.ahc.org.asynchttpclient.Realm.AuthScheme
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.language.implicitConversions
@@ -95,7 +94,7 @@ class AhcWSSpec(implicit ee: ExecutionEnv)
       .asInstanceOf[AhcWSRequest]
       .underlying
       .buildRequest()
-    new String(req.getByteData, StandardCharsets.UTF_8) must_== ("param1=value1")
+    new String(req.getByteData, StandardCharsets.UTF_8) must_== "param1=value1"
   }
 
   "Have form body on POST of content type text/plain" in {
@@ -172,7 +171,7 @@ class AhcWSSpec(implicit ee: ExecutionEnv)
     new String(req.getByteData, StandardCharsets.UTF_8) must be_==("param1=value1") // should result in byte data.
 
     val headers = req.getHeaders
-    headers.get("Content-Length") must_== ("9001")
+    headers.get("Content-Length") must_== "9001"
   }
 
   "Remove a user defined content length header if we are parsing body explicitly when signed" in {

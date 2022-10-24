@@ -4,11 +4,6 @@
 
 package play.api
 
-import java.io.File
-
-import akka.actor.ActorSystem
-import akka.actor.CoordinatedShutdown
-import akka.stream.Materializer
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.HttpErrorHandler
 import play.api.http.HttpRequestHandler
@@ -17,6 +12,10 @@ import play.api.libs.concurrent.ActorSystemProvider
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RequestFactory
 
+import akka.actor.ActorSystem
+import akka.actor.CoordinatedShutdown
+import akka.stream.Materializer
+import java.io.File
 import scala.concurrent.Future
 
 /**

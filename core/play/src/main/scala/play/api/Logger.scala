@@ -6,14 +6,12 @@ package play.api
 
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
-
 import org.slf4j.{ Logger => Slf4jLogger }
 import org.slf4j.LoggerFactory
 import org.slf4j.Marker
-
 import scala.collection.mutable
-import scala.language.implicitConversions
 import scala.jdk.CollectionConverters._
+import scala.language.implicitConversions
 
 /**
  * Typical logger interface.
@@ -327,7 +325,6 @@ object Logger {
  *   implicit val markerContext: MarkerContext = org.slf4j.MarkerFactory.getMarker("EXAMPLEMARKER")
  *   log.error("This message will be logged with the EXAMPLEMARKER marker")
  * }}}
- *
  */
 trait MarkerContext {
 

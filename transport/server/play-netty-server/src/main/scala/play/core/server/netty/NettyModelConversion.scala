@@ -4,13 +4,17 @@
 
 package play.core.server.netty
 
-import java.net.InetAddress
-import java.net.InetSocketAddress
-import java.net.URI
-import java.security.cert.X509Certificate
-import java.time.Instant
+import play.api.Logger
+import play.api.http.HeaderNames._
+import play.api.http.HttpChunk
+import play.api.http.HttpEntity
+import play.api.http.HttpErrorHandler
+import play.api.libs.typedmap.TypedMap
+import play.api.mvc._
+import play.api.mvc.request.RemoteConnection
+import play.api.mvc.request.RequestAttrKey
+import play.api.mvc.request.RequestTarget
 
-import javax.net.ssl.SSLPeerUnverifiedException
 import akka.stream.Materializer
 import akka.stream.scaladsl.Sink
 import akka.stream.scaladsl.Source
@@ -23,25 +27,20 @@ import io.netty.channel.Channel
 import io.netty.handler.codec.http._
 import io.netty.handler.ssl.SslHandler
 import io.netty.util.ReferenceCountUtil
-import play.api.Logger
-import play.api.http.HeaderNames._
-import play.api.http.HttpChunk
-import play.api.http.HttpEntity
-import play.api.http.HttpErrorHandler
-import play.api.libs.typedmap.TypedMap
-import play.api.mvc._
-import play.api.mvc.request.RemoteConnection
-import play.api.mvc.request.RequestAttrKey
-import play.api.mvc.request.RequestTarget
+import java.net.InetAddress
+import java.net.InetSocketAddress
+import java.net.URI
+import java.security.cert.X509Certificate
+import java.time.Instant
+import javax.net.ssl.SSLPeerUnverifiedException
 import play.core.server.common.ForwardedHeaderHandler
 import play.core.server.common.PathAndQueryParser
 import play.core.server.common.ServerResultUtils
-
-import scala.jdk.CollectionConverters._
 import scala.concurrent.Future
-import scala.util.control.NonFatal
+import scala.jdk.CollectionConverters._
 import scala.util.Failure
 import scala.util.Try
+import scala.util.control.NonFatal
 
 private[server] class NettyModelConversion(
     resultUtils: ServerResultUtils,
@@ -309,7 +308,8 @@ private[server] class NettyModelConversion(
     val publisher = chunks.runWith(Sink.asPublisher(false))
 
     val httpContentPublisher = SynchronousMappedStreams.map[HttpChunk, HttpContent](
-      publisher, {
+      publisher,
+      {
         case HttpChunk.Chunk(bytes) =>
           new DefaultHttpContent(byteStringToByteBuf(bytes))
         case HttpChunk.LastChunk(trailers) =>

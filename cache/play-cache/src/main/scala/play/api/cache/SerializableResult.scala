@@ -4,10 +4,11 @@
 
 package play.api.cache
 
-import java.io._
-import akka.util.ByteString
 import play.api.http.HttpEntity
 import play.api.mvc._
+
+import akka.util.ByteString
+import java.io._
 import scala.annotation.tailrec
 
 /**

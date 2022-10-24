@@ -4,6 +4,19 @@
 
 package play.api.mvc
 
+import play.api.Application
+import play.api.Play
+import play.api.http._
+import play.api.http.HeaderNames._
+import play.api.http.Status._
+import play.api.i18n._
+import play.api.libs.typedmap.TypedEntry
+import play.api.libs.typedmap.TypedKey
+import play.api.libs.typedmap.TypedMap
+
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import akka.stream.scaladsl.Sink
 import java.io.File
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
@@ -12,29 +25,15 @@ import java.nio.file.Paths
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.concurrent.atomic.AtomicInteger
-
-import akka.actor.ActorSystem
-import akka.stream.Materializer
-import akka.stream.scaladsl.Sink
 import org.specs2.mutable._
-import play.api.http.HeaderNames._
-import play.api.http._
-import play.api.http.Status._
-import play.api.i18n._
-import play.api.Application
-import play.api.Play
-import play.api.libs.typedmap.TypedEntry
-import play.api.libs.typedmap.TypedKey
-import play.api.libs.typedmap.TypedMap
 import play.core.test._
-
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
 class ResultsSpec extends Specification {
-  import scala.concurrent.ExecutionContext.Implicits.global
-
   import play.api.mvc.Results._
+
+  import scala.concurrent.ExecutionContext.Implicits.global
 
   implicit val fileMimeTypes: FileMimeTypes = new DefaultFileMimeTypesProvider(FileMimeTypesConfiguration()).get
 
@@ -86,7 +85,7 @@ class ResultsSpec extends Specification {
 
       headers.size must_== 2
       headers must havePair("Set-Cookie" -> "yes")
-      headers must havePair("X-YOP"      -> "2")
+      headers must havePair("X-YOP" -> "2")
     }
 
     "support date headers manipulation" in {
@@ -310,9 +309,12 @@ class ResultsSpec extends Specification {
       implicit val mat: Materializer   = Materializer.matFromSystem
       try {
         var fileSent = false
-        val res = Results.Ok.sendFile(file, onClose = () => {
-          fileSent = true
-        })
+        val res = Results.Ok.sendFile(
+          file,
+          onClose = () => {
+            fileSent = true
+          }
+        )
 
         // Actually we need to wait until the Stream completes
         Await.ready(res.body.dataStream.runWith(Sink.ignore), 60.seconds)
@@ -330,9 +332,12 @@ class ResultsSpec extends Specification {
       implicit val mat: Materializer   = Materializer.matFromSystem
       try {
         var fileSent = false
-        val res = Results.Ok.sendPath(file.toPath, onClose = () => {
-          fileSent = true
-        })
+        val res = Results.Ok.sendPath(
+          file.toPath,
+          onClose = () => {
+            fileSent = true
+          }
+        )
 
         // Actually we need to wait until the Stream completes
         Await.ready(res.body.dataStream.runWith(Sink.ignore), 60.seconds)
@@ -350,9 +355,12 @@ class ResultsSpec extends Specification {
       implicit val mat: Materializer   = Materializer.matFromSystem
       try {
         var fileSent = false
-        val res = Results.Ok.sendResource("multipart-form-data-file.txt", onClose = () => {
-          fileSent = true
-        })
+        val res = Results.Ok.sendResource(
+          "multipart-form-data-file.txt",
+          onClose = () => {
+            fileSent = true
+          }
+        )
 
         // Actually we need to wait until the Stream completes
         Await.ready(res.body.dataStream.runWith(Sink.ignore), 60.seconds)

@@ -4,10 +4,11 @@
 
 package play.core
 
+import play.api.mvc.RequestHeader
+import play.api.mvc.Result
+
 import java.io.File
 import javax.inject.Singleton
-import play.api.mvc.Result
-import play.api.mvc.RequestHeader
 import scala.collection.mutable.ArrayBuffer
 
 /**

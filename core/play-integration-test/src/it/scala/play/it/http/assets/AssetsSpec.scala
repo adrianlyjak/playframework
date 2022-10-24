@@ -4,17 +4,17 @@
 
 package play.it.http.assets
 
-import controllers.AssetsComponents
 import play.api._
 import play.api.libs.ws.WSClient
+import play.api.routing.Router
 import play.api.test._
-import java.io.ByteArrayInputStream
-import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 
 import com.google.common.io.CharStreams
 import com.typesafe.config.ConfigFactory
-import play.api.routing.Router
+import controllers.AssetsComponents
+import java.io.ByteArrayInputStream
+import java.io.InputStreamReader
+import java.nio.charset.StandardCharsets
 import play.core.server.Server
 import play.core.server.ServerConfig
 import play.filters.HttpFiltersComponents
@@ -277,7 +277,7 @@ trait AssetsSpec extends PlaySpecification with WsTestClient with ServerIntegrat
       )
 
       result.header(VARY) must beSome(ACCEPT_ENCODING)
-      //result.header(CONTENT_ENCODING) must beSome("gzip")
+      // result.header(CONTENT_ENCODING) must beSome("gzip")
       val ahcResult: play.shaded.ahc.org.asynchttpclient.Response =
         result.underlying.asInstanceOf[play.shaded.ahc.org.asynchttpclient.Response]
       val is = new ByteArrayInputStream(ahcResult.getResponseBodyAsBytes)

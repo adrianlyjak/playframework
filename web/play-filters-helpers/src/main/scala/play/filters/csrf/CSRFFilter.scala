@@ -4,13 +4,13 @@
 
 package play.filters.csrf
 
-import javax.inject.Inject
-import javax.inject.Provider
-
-import akka.stream.Materializer
 import play.api.http.SessionConfiguration
 import play.api.libs.crypto.CSRFTokenSigner
 import play.api.mvc._
+
+import akka.stream.Materializer
+import javax.inject.Inject
+import javax.inject.Provider
 import play.core.j.JavaContextComponents
 import play.filters.csrf.CSRF._
 

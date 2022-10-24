@@ -4,9 +4,10 @@
 
 package play.api.data
 
-import org.specs2.mutable.Specification
 import play.api.libs.json.JsNull
 import play.api.libs.json.Json
+
+import org.specs2.mutable.Specification
 
 class FormUtilsSpec extends Specification {
 

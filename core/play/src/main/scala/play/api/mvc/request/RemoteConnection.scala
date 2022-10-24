@@ -4,10 +4,9 @@
 
 package play.api.mvc.request
 
+import com.google.common.net.InetAddresses
 import java.net.InetAddress
 import java.security.cert.X509Certificate
-
-import com.google.common.net.InetAddresses
 
 /**
  * Contains information about the connection from the remote client to the server.
@@ -41,8 +40,8 @@ trait RemoteConnection {
   override def equals(obj: scala.Any): Boolean = obj match {
     case that: RemoteConnection =>
       (this.remoteAddress == that.remoteAddress) &&
-        (this.secure == that.secure) &&
-        (this.clientCertificateChain == that.clientCertificateChain)
+      (this.secure == that.secure) &&
+      (this.clientCertificateChain == that.clientCertificateChain)
     case _ => false
   }
 }

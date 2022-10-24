@@ -4,11 +4,11 @@
 
 package play.docs
 
-import java.io.Closeable
-
-import akka.stream.scaladsl.StreamConverters
 import play.api.http._
 import play.api.mvc._
+
+import akka.stream.scaladsl.StreamConverters
+import java.io.Closeable
 import play.core.BuildDocHandler
 import play.core.PlayVersion
 import play.doc._
@@ -54,8 +54,8 @@ class DocumentationHandler(repo: FileRepository, apiRepo: FileRepository, toClos
     )
   }
 
-  val locator: String => String = new Memoise(
-    name => repo.findFileWithName(name).orElse(apiRepo.findFileWithName(name)).getOrElse(name)
+  val locator: String => String = new Memoise(name =>
+    repo.findFileWithName(name).orElse(apiRepo.findFileWithName(name)).getOrElse(name)
   )
 
   // Method without Scala types. Required by BuildDocHandler to allow communication

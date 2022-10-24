@@ -4,9 +4,6 @@
 
 package play.api.mvc
 
-import java.util.Locale
-import java.util.Optional
-
 import play.api.i18n.Lang
 import play.api.i18n.Messages
 import play.api.libs.typedmap.TypedEntry
@@ -14,8 +11,10 @@ import play.api.libs.typedmap.TypedKey
 import play.api.libs.typedmap.TypedMap
 import play.api.mvc.request.RemoteConnection
 import play.api.mvc.request.RequestTarget
-import play.mvc.Http
 
+import java.util.Locale
+import java.util.Optional
+import play.mvc.Http
 import scala.annotation.implicitNotFound
 import scala.annotation.tailrec
 

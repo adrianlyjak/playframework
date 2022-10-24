@@ -4,28 +4,28 @@
 
 package play.data
 
-import java.nio.file.Files
-import java.util
-import java.util.Date
-import java.util.Optional
-import java.time.LocalDate
-import java.time.ZoneId
-
-import javax.validation.Valid
-import javax.validation.Validation
-import javax.validation.ValidatorFactory
-import javax.validation.{ Configuration => vConfiguration }
-import javax.validation.groups.Default
+import play.api.Application
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.test.WithApplication
 
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
+import java.nio.file.Files
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util
+import java.util.Date
+import java.util.Optional
+import javax.validation.{ Configuration => vConfiguration }
+import javax.validation.Valid
+import javax.validation.Validation
+import javax.validation.ValidatorFactory
+import javax.validation.constraints.Size
+import javax.validation.groups.Default
 import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator
 import org.specs2.mutable.Specification
 import play.ApplicationLoader
 import play.BuiltInComponentsFromContext
-import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.test.WithApplication
-import play.api.Application
 import play.components.TemporaryFileComponents
 import play.data.validation.Constraints
 import play.data.validation.ValidationError
@@ -36,14 +36,12 @@ import play.libs.Files.TemporaryFileCreator
 import play.libs.typedmap.TypedMap
 import play.mvc.EssentialFilter
 import play.mvc.Http
+import play.mvc.Http.MultipartFormData.FilePart
 import play.mvc.Http.Request
 import play.mvc.Http.RequestBuilder
-import play.mvc.Http.MultipartFormData.FilePart
 import play.routing.Router
 import play.test.Helpers
 import play.twirl.api.Html
-
-import javax.validation.constraints.Size
 import scala.beans.BeanProperty
 import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
@@ -649,11 +647,11 @@ trait FormSpec extends CommonFormSpec {
             Map(
               "entry.name"                  -> Array("Bill"),
               "entry.value"                 -> Array("3"),
-              "entries[].name"              -> Array("Calvin", "John", "Edward"), //   -> entries[0|1|2].name
-              "entries[].value"             -> Array("14", "26", "76"), //             -> entries[0|1|2].value
-              "entries[].entries[].name"    -> Array("Robin Hood", "Donald Duck"), //  -> entries[0].entries[0|1].name
+              "entries[].name"              -> Array("Calvin", "John", "Edward"),   //   -> entries[0|1|2].name
+              "entries[].value"             -> Array("14", "26", "76"),             //             -> entries[0|1|2].value
+              "entries[].entries[].name"    -> Array("Robin Hood", "Donald Duck"),  //  -> entries[0].entries[0|1].name
               "entries[].entries[].street"  -> Array("Wall Street", "Main Street"), // -> entries[0].entries[0|1].street
-              "entries[].entries[].value"   -> Array("143", "196"), //                 -> entries[0].entries[0|1].value
+              "entries[].entries[].value"   -> Array("143", "196"),                 //                 -> entries[0].entries[0|1].value
               "entries[].entries[].notes[]" -> Array("Note 1", "Note 2", "Note 3"), // -> entries[0].entries[0].notes[0|1|2]
               // Now with some indices
               "entries[].entries[1].notes[]"  -> Array("Note 4", "Note 5", "Note x", "Note y"),          // -> entries[0].entries[1].notes[0|1|2|3]
@@ -1488,11 +1486,11 @@ trait FormSpec extends CommonFormSpec {
             TypedMap.empty(),
             Map(
               "entry.name" -> "Bill",
-              //"entry.value" -> "...",  -> Missing but required by validate method of sub form
-              //"entries[0].name"  -> "...", -> Missing but required by @Constraints.Required
+              // "entry.value" -> "...",  -> Missing but required by validate method of sub form
+              // "entries[0].name"  -> "...", -> Missing but required by @Constraints.Required
               "entries[0].value" -> "14",
               "entries[1].name"  -> "John",
-              //"entries[1].value" -> "...",  -> Missing but required by validate method of sub form
+              // "entries[1].value" -> "...",  -> Missing but required by validate method of sub form
               "entries[0].entries[0].name"   -> "Robin Hood",
               "entries[0].entries[1].street" -> "Wall Street",
             ).asJava

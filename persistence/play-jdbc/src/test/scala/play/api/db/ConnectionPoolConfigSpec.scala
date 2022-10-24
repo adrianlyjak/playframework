@@ -4,9 +4,10 @@
 
 package play.api.db
 
-import javax.inject._
 import play.api.Environment
 import play.api.test._
+
+import javax.inject._
 
 class ConnectionPoolConfigSpec extends PlaySpecification {
   "DBModule bindings" should {
@@ -72,7 +73,7 @@ class ConnectionPoolConfigSpec extends PlaySpecification {
       )
     ) {
       val db = app.injector.instanceOf[DBApi]
-      db.database("default").dataSource.getClass.getName must not contain ("ConnectionPoolDataSourceProxy")
+      db.database("default").dataSource.getClass.getName must not contain "ConnectionPoolDataSourceProxy"
     }
 
     "use ConnectionPoolDataSourceProxy when logSql is true" in new WithApplication(

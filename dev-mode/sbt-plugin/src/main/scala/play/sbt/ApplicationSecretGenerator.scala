@@ -4,11 +4,11 @@
 
 package play.sbt
 
-import java.security.SecureRandom
-import com.typesafe.config.ConfigValue
-import com.typesafe.config.ConfigOrigin
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
+import com.typesafe.config.ConfigOrigin
+import com.typesafe.config.ConfigValue
+import java.security.SecureRandom
 import sbt._
 
 /**

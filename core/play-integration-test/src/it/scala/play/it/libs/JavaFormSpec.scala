@@ -5,8 +5,8 @@
 package play.it.libs
 
 import play.api.test._
-import play.data.validation.Constraints.Required
 
+import play.data.validation.Constraints.Required
 import scala.annotation.meta.field
 import scala.beans.BeanProperty
 import scala.jdk.CollectionConverters._

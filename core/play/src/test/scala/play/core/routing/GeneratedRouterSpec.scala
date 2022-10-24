@@ -4,12 +4,13 @@
 
 package play.core.routing
 
-import org.specs2.mutable.Specification
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.HttpErrorHandler
 import play.api.mvc._
 import play.api.routing.HandlerDef
 import play.api.routing.Router
+
+import org.specs2.mutable.Specification
 import play.core.j.JavaHandler
 import play.core.test.FakeRequest
 

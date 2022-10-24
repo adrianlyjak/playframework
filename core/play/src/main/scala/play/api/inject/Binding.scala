@@ -4,15 +4,14 @@
 
 package play.api.inject
 
-import java.lang.annotation.Annotation
-import java.lang.reflect.Modifier
-
-import javax.inject.Provider
 import play.api.PlayException
 
+import java.lang.annotation.Annotation
+import java.lang.reflect.Modifier
+import javax.inject.Provider
+import play.inject.SourceProvider
 import scala.language.existentials
 import scala.reflect.ClassTag
-import play.inject.SourceProvider
 
 /**
  * A binding.
@@ -262,8 +261,8 @@ final case class BindingKey[T](clazz: Class[T], qualifier: Option[QualifierAnnot
       throw new PlayException(
         "Cannot bind abstract target",
         s"""You have attempted to bind $target as a construction target for $this, however, $target is abstract. If you wish to bind this as an alias, bind it to a ${classOf[
-          BindingKey[_]
-        ]} instead."""
+            BindingKey[_]
+          ]} instead."""
       )
     }
     target

@@ -4,22 +4,22 @@
 
 package play.filters.csp
 
-import com.typesafe.config.ConfigFactory
-import javax.inject.Inject
+import play.api.Application
+import play.api.Configuration
+import play.api.http.Status
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json.JsArray
 import play.api.libs.json.JsNumber
 import play.api.libs.json.JsObject
-import play.api.libs.json.JsString
 import play.api.libs.json.Json
+import play.api.libs.json.JsString
 import play.api.mvc.AbstractController
 import play.api.mvc.ControllerComponents
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
-import play.api.Application
-import play.api.Configuration
-import play.api.http.Status
 
+import com.typesafe.config.ConfigFactory
+import javax.inject.Inject
 import scala.reflect.ClassTag
 
 class ScalaCSPReportSpec extends PlaySpecification {
@@ -126,14 +126,14 @@ class ScalaCSPReportSpec extends PlaySpecification {
       val inlineScriptJson = Json.parse(
         """{
           |"csp-report": {
-		      |    "blocked-uri": "inline",
-		      |    "column-number": 153,
-		      |    "document-uri": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
-		      |    "line-number": 1,
-		      |    "original-policy": "script-src 'self'; report-uri http://45.55.25.245:8123/csp/report-to;",
-		      |    "referrer": "",
-		      |    "source-file": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
-		      |    "violated-directive": "script-src"
+          |    "blocked-uri": "inline",
+          |    "column-number": 153,
+          |    "document-uri": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
+          |    "line-number": 1,
+          |    "original-policy": "script-src 'self'; report-uri http://45.55.25.245:8123/csp/report-to;",
+          |    "referrer": "",
+          |    "source-file": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
+          |    "violated-directive": "script-src"
           |  }
           |}
         """.stripMargin
@@ -151,14 +151,14 @@ class ScalaCSPReportSpec extends PlaySpecification {
       val inlineScriptJson = Json.parse(
         """{
           |"csp-report": {
-		      |    "blocked-uri": "inline",
-		      |    "column-number": "153",
-		      |    "document-uri": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
-		      |    "line-number": "1",
-		      |    "original-policy": "script-src 'self'; report-uri http://45.55.25.245:8123/csp/report-to;",
-		      |    "referrer": "",
-		      |    "source-file": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
-		      |    "violated-directive": "script-src"
+          |    "blocked-uri": "inline",
+          |    "column-number": "153",
+          |    "document-uri": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
+          |    "line-number": "1",
+          |    "original-policy": "script-src 'self'; report-uri http://45.55.25.245:8123/csp/report-to;",
+          |    "referrer": "",
+          |    "source-file": "http://45.55.25.245:8123/csp?os=OS%20X&device=&browser_version=37.0&browser=firefox&os_version=Yosemite",
+          |    "violated-directive": "script-src"
           |  }
           |}
         """.stripMargin

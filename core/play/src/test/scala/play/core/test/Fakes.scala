@@ -4,10 +4,6 @@
 
 package play.core.test
 
-import java.net.URI
-import java.security.cert.X509Certificate
-
-import akka.util.ByteString
 import play.api.http.HttpConfiguration
 import play.api.libs.Files.SingletonTemporaryFileCreator
 import play.api.libs.Files.TemporaryFile
@@ -17,8 +13,11 @@ import play.api.libs.typedmap.TypedKey
 import play.api.libs.typedmap.TypedMap
 import play.api.mvc._
 import play.api.mvc.request._
-import play.core.parsers.FormUrlEncodedParser
 
+import akka.util.ByteString
+import java.net.URI
+import java.security.cert.X509Certificate
+import play.core.parsers.FormUrlEncodedParser
 import scala.concurrent.Future
 import scala.xml.NodeSeq
 

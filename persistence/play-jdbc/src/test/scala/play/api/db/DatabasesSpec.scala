@@ -5,7 +5,6 @@
 package play.api.db
 
 import java.sql.SQLException
-
 import org.jdbcdslog.ConnectionPoolDataSourceProxy
 import org.specs2.mutable.After
 import org.specs2.mutable.Specification
@@ -154,6 +153,6 @@ class DatabasesSpec extends Specification {
 
   trait WithDatabase extends After {
     def db: Database
-    def after = () //db.shutdown()
+    def after = () // db.shutdown()
   }
 }

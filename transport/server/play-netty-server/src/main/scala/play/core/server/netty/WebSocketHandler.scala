@@ -4,18 +4,18 @@
 
 package play.core.server.netty
 
+import play.api.http.websocket._
+import play.api.http.websocket.Message
+
 import akka.stream.Materializer
 import akka.stream.scaladsl.Flow
 import akka.util.ByteString
-import io.netty.buffer.Unpooled
 import io.netty.buffer.ByteBuf
+import io.netty.buffer.Unpooled
 import io.netty.handler.codec.http.websocketx._
 import io.netty.util.ReferenceCountUtil
 import org.reactivestreams.Processor
-import play.api.http.websocket.Message
 import play.core.server.common.WebSocketFlowHandler
-
-import play.api.http.websocket._
 import play.core.server.common.WebSocketFlowHandler.MessageType
 import play.core.server.common.WebSocketFlowHandler.RawMessage
 

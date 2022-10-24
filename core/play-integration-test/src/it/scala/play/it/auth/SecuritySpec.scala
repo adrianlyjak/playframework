@@ -4,15 +4,14 @@
 
 package play.it.auth
 
-import javax.inject.Inject
-
 import play.api.Application
 import play.api.i18n.MessagesApi
+import play.api.mvc._
 import play.api.mvc.Security.AuthenticatedBuilder
 import play.api.mvc.Security.AuthenticatedRequest
-import play.api.mvc._
 import play.api.test._
 
+import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
@@ -68,11 +67,14 @@ class SecuritySpec extends PlaySpecification {
     lazy val parser           = app.injector.instanceOf[PlayBodyParsers].default
     def invokeBlock[A](request: Request[A], block: (AuthenticatedDbRequest[A]) => Future[Result]) = {
       val builder = AuthenticatedBuilder(req => getUserFromRequest(req), parser)(executionContext)
-      builder.authenticate(request, { (authRequest: AuthenticatedRequest[A, User]) =>
-        fakedb.withConnection { conn =>
-          block(new AuthenticatedDbRequest[A](authRequest.user, conn, request))
+      builder.authenticate(
+        request,
+        { (authRequest: AuthenticatedRequest[A, User]) =>
+          fakedb.withConnection { conn =>
+            block(new AuthenticatedDbRequest[A](authRequest.user, conn, request))
+          }
         }
-      })
+      )
     }
   }
 
@@ -97,9 +99,12 @@ class AuthMessagesRequest[A](val user: User, messagesApi: MessagesApi, request: 
     extends MessagesRequest[A](request, messagesApi)
 
 class UserAuthenticatedBuilder(parser: BodyParser[AnyContent])(implicit ec: ExecutionContext)
-    extends AuthenticatedBuilder[User]({ (req: RequestHeader) =>
-      req.session.get("user").map(User)
-    }, parser) {
+    extends AuthenticatedBuilder[User](
+      { (req: RequestHeader) =>
+        req.session.get("user").map(User)
+      },
+      parser
+    ) {
   @Inject()
   def this(parser: BodyParsers.Default)(implicit ec: ExecutionContext) = {
     this(parser: BodyParser[AnyContent])
@@ -122,8 +127,11 @@ class AuthenticatedActionBuilder(
   }
 
   def invokeBlock[A](request: Request[A], block: ResultBlock[A]): Future[Result] = {
-    builder.authenticate(request, { (authRequest: AuthenticatedRequest[A, User]) =>
-      block(new AuthMessagesRequest[A](authRequest.user, messagesApi, request))
-    })
+    builder.authenticate(
+      request,
+      { (authRequest: AuthenticatedRequest[A, User]) =>
+        block(new AuthMessagesRequest[A](authRequest.user, messagesApi, request))
+      }
+    )
   }
 }

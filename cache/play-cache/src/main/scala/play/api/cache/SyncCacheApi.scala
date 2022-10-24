@@ -5,11 +5,10 @@
 package play.api.cache
 
 import javax.inject.Inject
-
-import scala.concurrent.duration.Duration
-import scala.concurrent.duration._
 import scala.concurrent.Await
 import scala.concurrent.Future
+import scala.concurrent.duration._
+import scala.concurrent.duration.Duration
 import scala.reflect.ClassTag
 
 /**

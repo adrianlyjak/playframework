@@ -4,21 +4,20 @@
 
 package play.data
 
-import com.typesafe.config.ConfigFactory
+import play.api.data.FormJsonExpansionTooLarge
+import play.api.i18n.DefaultMessagesApi
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.TextNode
-import play.api.data.FormJsonExpansionTooLarge
-import play.api.i18n.DefaultMessagesApi
+import com.typesafe.config.ConfigFactory
 import play.core.j.PlayFormsMagicForJava.javaFieldtoScalaField
 import play.data.format.Formatters
 import play.libs.Files.SingletonTemporaryFileCreator
 import play.mvc.Http.RequestBuilder
-import views.html.helper.FieldConstructor.defaultField
-import views.html.helper.inputText
-
 import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
+import views.html.helper.FieldConstructor.defaultField
+import views.html.helper.inputText
 
 /**
  * Specs for Java dynamic forms
@@ -262,9 +261,11 @@ class DynamicFormSpec extends CommonFormSpec {
     }
 
     "fail with exception when the json paylod is bigger than default maxBufferSize" in {
-      val cfg  = ConfigFactory.parseString("""
-                                            |play.http.parser.maxMemoryBuffer = 32
-                                            |""".stripMargin).withFallback(config)
+      val cfg = ConfigFactory
+        .parseString("""
+                       |play.http.parser.maxMemoryBuffer = 32
+                       |""".stripMargin)
+        .withFallback(config)
       val form = new DynamicForm(jMessagesApi, new Formatters(jMessagesApi), validatorFactory, cfg)
       val longString =
         "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"

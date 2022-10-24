@@ -4,17 +4,18 @@
 
 package play.it.routing
 
+import play.api.Mode
+import play.api.routing.Router
+
 import org.specs2.mutable.Specification
 import org.specs2.specification.BeforeAll
 import play.{ BuiltInComponents => JBuiltInComponents }
-import play.api.Mode
-import play.api.routing.Router
+import play.{ Mode => JavaMode }
 import play.it.http.BasicHttpClient
 import play.it.http.BasicRequest
 import play.mvc.Results
 import play.routing.RoutingDsl
 import play.server.Server
-import play.{ Mode => JavaMode }
 
 class AkkaHTTPServerSpec extends ServerSpec {
   override def serverProvider: String = "play.core.server.AkkaHttpServerProvider"
@@ -72,7 +73,8 @@ trait ServerSpec extends Specification with BeforeAll {
       "with the given router" in {
         withServer(
           Server.forRouter(
-            JavaMode.DEV, { (components: JBuiltInComponents) =>
+            JavaMode.DEV,
+            { (components: JBuiltInComponents) =>
               RoutingDsl
                 .fromComponents(components)
                 .GET("/something")

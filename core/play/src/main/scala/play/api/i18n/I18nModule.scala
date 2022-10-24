@@ -4,9 +4,9 @@
 
 package play.api.i18n
 
-import play.api.http.HttpConfiguration
 import play.api.Configuration
 import play.api.Environment
+import play.api.http.HttpConfiguration
 import play.api.inject.Module
 
 class I18nModule extends Module {

@@ -5,6 +5,7 @@
 package play.core.server.akkahttp
 
 import play.api.Configuration
+
 import akka.http.scaladsl.model.headers.Host
 
 private[server] final class AkkaServerConfigReader(akkaServerConfig: Configuration) {

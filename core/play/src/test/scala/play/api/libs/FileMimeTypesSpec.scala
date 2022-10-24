@@ -4,9 +4,10 @@
 
 package play.api.libs
 
-import org.specs2.mutable._
 import play.api.http.DefaultFileMimeTypesProvider
 import play.api.http.FileMimeTypesConfiguration
+
+import org.specs2.mutable._
 
 class FileMimeTypesSpec extends Specification {
   "Mime types" should {

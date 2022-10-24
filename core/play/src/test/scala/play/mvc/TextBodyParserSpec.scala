@@ -4,20 +4,20 @@
 
 package play.mvc
 
-import java.nio.charset.StandardCharsets.UTF_8
-import java.nio.charset.Charset
-import java.nio.charset.StandardCharsets
-import java.util.concurrent.CompletionStage
+import play.api.http.HttpConfiguration
+import play.api.http.ParserConfiguration
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.javadsl.Source
 import akka.util.ByteString
+import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
+import java.nio.charset.StandardCharsets.UTF_8
+import java.util.concurrent.CompletionStage
 import org.specs2.matcher.MustMatchers
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
-import play.api.http.HttpConfiguration
-import play.api.http.ParserConfiguration
 import play.http.HttpErrorHandler
 import play.libs.F
 import play.mvc.Http.RequestBody

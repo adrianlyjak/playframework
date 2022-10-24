@@ -5,7 +5,6 @@
 package play.sbt
 
 import org.specs2.mutable._
-
 import scala.collection.mutable.HashMap
 
 class PlayRunHookSpec extends Specification {
@@ -59,7 +58,7 @@ class PlayRunHookSpec extends Specification {
         case e: Throwable =>
           e.getMessage must contain("HookFirstMockException")
           e.getMessage must contain("HookSecondMockException")
-          e.getMessage must not contain ("HookThirdMockException")
+          e.getMessage must not contain "HookThirdMockException"
       }
 
       (executedHooks.size must be).equalTo(3)

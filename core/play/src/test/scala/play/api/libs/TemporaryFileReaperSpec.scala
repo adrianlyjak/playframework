@@ -4,20 +4,20 @@
 
 package play.api.libs
 
-import java.nio.charset.Charset
-import java.nio.file.Path
-import java.nio.file.{ Files => JFiles }
-import java.time.Clock
-import java.time.Instant
-import java.time.ZoneId
+import play.api.libs.Files.DefaultTemporaryFileReaper
+import play.api.libs.Files.TemporaryFileReaperConfiguration
 
 import akka.actor.ActorSystem
 import com.typesafe.config.ConfigFactory
+import java.nio.charset.Charset
+import java.nio.file.{ Files => JFiles }
+import java.nio.file.Path
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneId
 import org.specs2.concurrent.ExecutionEnv
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
-import play.api.libs.Files.DefaultTemporaryFileReaper
-import play.api.libs.Files.TemporaryFileReaperConfiguration
 
 class TemporaryFileReaperSpec(implicit ee: ExecutionEnv) extends Specification with AfterAll {
   sequential

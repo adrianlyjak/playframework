@@ -4,17 +4,16 @@
 
 package play.core.server.common
 
-import java.net.InetAddress
-import java.security.cert.X509Certificate
-
 import play.api.Configuration
 import play.api.Logger
 import play.api.mvc.Headers
-import play.core.server.common.NodeIdentifierParser.Ip
-
-import scala.annotation.tailrec
-import ForwardedHeaderHandler._
 import play.api.mvc.request.RemoteConnection
+
+import ForwardedHeaderHandler._
+import java.net.InetAddress
+import java.security.cert.X509Certificate
+import play.core.server.common.NodeIdentifierParser.Ip
+import scala.annotation.tailrec
 
 /**
  * The ForwardedHeaderHandler class works out the remote address and protocol
@@ -166,10 +165,10 @@ private[server] object ForwardedHeaderHandler {
      */
     def forwardedHeaders(headers: Headers): Seq[ForwardedEntry] = version match {
       case Rfc7239 => {
-        val params = (for {
+        val params = for {
           fhs <- headers.getAll("Forwarded")
           fh  <- fhs.split(",\\s*")
-        } yield (fh
+        } yield fh
           .split(";")
           .iterator
           .flatMap {
@@ -185,7 +184,7 @@ private[server] object ForwardedHeaderHandler {
               }
             }
           }
-          .toMap))
+          .toMap
 
         params.map { (paramMap: Map[String, String]) =>
           ForwardedEntry(paramMap.get("for"), paramMap.get("proto"))

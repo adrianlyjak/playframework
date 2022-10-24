@@ -4,9 +4,8 @@
 
 package play.core.server.common
 
-import java.net.InetAddress
-
 import com.google.common.net.InetAddresses
+import java.net.InetAddress
 
 private[common] case class Subnet(ip: InetAddress, cidr: Option[Int] = None) {
   private def remainderOfMask =

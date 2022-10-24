@@ -4,11 +4,6 @@
 
 package play.api.inject.guice
 
-import akka.actor.ActorSystem
-import akka.actor.ClassicActorSystemProvider
-import com.google.inject.AbstractModule
-import com.typesafe.config.Config
-import org.specs2.mutable.Specification
 import play.api.ApplicationLoader
 import play.api.Configuration
 import play.api.Environment
@@ -16,8 +11,13 @@ import play.api.i18n.I18nModule
 import play.api.inject.BuiltinModule
 import play.api.inject.DefaultApplicationLifecycle
 import play.api.mvc.CookiesModule
-import play.{ Environment => JavaEnvironment }
 
+import akka.actor.ActorSystem
+import akka.actor.ClassicActorSystemProvider
+import com.google.inject.AbstractModule
+import com.typesafe.config.Config
+import org.specs2.mutable.Specification
+import play.{ Environment => JavaEnvironment }
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration._

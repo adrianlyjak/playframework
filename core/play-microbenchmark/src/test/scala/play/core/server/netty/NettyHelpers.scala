@@ -4,10 +4,11 @@
 
 package play.core.server.netty
 
-import java.net.InetSocketAddress
-import java.net.SocketAddress
-import javax.net.ssl.SSLContext
-import javax.net.ssl.SSLEngine
+import play.api.http.HttpConfiguration
+import play.api.libs.crypto.CookieSignerProvider
+import play.api.mvc.DefaultCookieHeaderEncoding
+import play.api.mvc.DefaultFlashCookieBaker
+import play.api.mvc.DefaultSessionCookieBaker
 
 import io.netty.channel._
 import io.netty.handler.codec.http.DefaultHttpRequest
@@ -15,11 +16,10 @@ import io.netty.handler.codec.http.HttpMethod
 import io.netty.handler.codec.http.HttpRequest
 import io.netty.handler.codec.http.HttpVersion
 import io.netty.handler.ssl.SslHandler
-import play.api.http.HttpConfiguration
-import play.api.libs.crypto.CookieSignerProvider
-import play.api.mvc.DefaultCookieHeaderEncoding
-import play.api.mvc.DefaultFlashCookieBaker
-import play.api.mvc.DefaultSessionCookieBaker
+import java.net.InetSocketAddress
+import java.net.SocketAddress
+import javax.net.ssl.SSLContext
+import javax.net.ssl.SSLEngine
 import play.core.server.common.ForwardedHeaderHandler
 import play.core.server.common.ServerResultUtils
 

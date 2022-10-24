@@ -4,20 +4,19 @@
 
 package play.core.formatters
 
+import play.api.mvc.MultipartFormData
+
+import akka.NotUsed
+import akka.stream._
+import akka.stream.scaladsl.Flow
+import akka.stream.scaladsl.Source
+import akka.stream.stage._
+import akka.util.ByteString
+import akka.util.ByteStringBuilder
 import java.nio.CharBuffer
 import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets._
 import java.util.concurrent.ThreadLocalRandom
-
-import akka.NotUsed
-import akka.stream.scaladsl.Flow
-import akka.stream.scaladsl.Source
-import akka.stream.stage._
-import akka.stream._
-import akka.util.ByteString
-import akka.util.ByteStringBuilder
-import play.api.mvc.MultipartFormData
-
 import scala.annotation.tailrec
 
 object Multipart {
@@ -144,7 +143,7 @@ object Multipart {
             val bodyPart = grab(in)
 
             def bodyPartChunks(data: Source[ByteString, Any]): Source[ByteString, Any] = {
-              (Source.single(f.get) ++ data).mapMaterializedValue((_) => ())
+              (Source.single(f.get) ++ data).mapMaterializedValue(_ => ())
             }
 
             def completePartFormatting(): Source[ByteString, Any] = bodyPart match {

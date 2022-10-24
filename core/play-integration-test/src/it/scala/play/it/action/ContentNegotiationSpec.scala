@@ -4,12 +4,12 @@
 
 package play.it.action
 
-import akka.actor.ActorSystem
-import akka.stream.Materializer
 import play.api.mvc._
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
 
+import akka.actor.ActorSystem
+import akka.stream.Materializer
 import scala.concurrent.Future
 
 class ContentNegotiationSpec extends PlaySpecification with ControllerHelpers {

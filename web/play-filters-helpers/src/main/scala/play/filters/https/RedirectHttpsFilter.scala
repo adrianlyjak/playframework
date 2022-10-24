@@ -4,20 +4,20 @@
 
 package play.filters.https
 
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
-
+import play.api.Configuration
+import play.api.Environment
+import play.api.Logger
+import play.api.Mode
+import play.api.http.HeaderNames
 import play.api.http.HeaderNames._
 import play.api.http.Status._
 import play.api.inject.SimpleModule
 import play.api.inject.bind
 import play.api.mvc._
-import play.api.Configuration
-import play.api.Environment
-import play.api.Mode
-import play.api.Logger
-import play.api.http.HeaderNames
+
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * A filter that redirects HTTP requests to https requests.

@@ -4,12 +4,11 @@
 
 package play.api.inject
 
-import java.lang.reflect.Constructor
-
-import play.{ Environment => JavaEnvironment }
 import play.api._
-import play.libs.reflect.ConstructorUtils
 
+import java.lang.reflect.Constructor
+import play.{ Environment => JavaEnvironment }
+import play.libs.reflect.ConstructorUtils
 import scala.annotation.varargs
 import scala.reflect.ClassTag
 
@@ -164,21 +163,19 @@ object Modules {
       {
         tryConstruct(environment, configuration)
       }.orElse {
-          tryConstruct(new JavaEnvironment(environment), configuration.underlying)
-        }
-        .orElse {
-          tryConstruct()
-        }
-        .getOrElse {
-          throw new PlayException(
-            "No valid constructors",
-            "Module [" + className + "] cannot be instantiated. " +
-              "Expected one of:\n" +
-              "()\n" +
-              "(play.api.Environment, play.api.Configuration)\n" +
-              "(play.Environment, com.typesafe.config.Config)"
-          )
-        }
+        tryConstruct(new JavaEnvironment(environment), configuration.underlying)
+      }.orElse {
+        tryConstruct()
+      }.getOrElse {
+        throw new PlayException(
+          "No valid constructors",
+          "Module [" + className + "] cannot be instantiated. " +
+            "Expected one of:\n" +
+            "()\n" +
+            "(play.api.Environment, play.api.Configuration)\n" +
+            "(play.Environment, com.typesafe.config.Config)"
+        )
+      }
     } catch {
       case e: PlayException       => throw e
       case e: VirtualMachineError => throw e

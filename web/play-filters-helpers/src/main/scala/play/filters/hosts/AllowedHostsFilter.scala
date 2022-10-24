@@ -4,13 +4,9 @@
 
 package play.filters.hosts
 
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
-
-import play.api.MarkerContexts.SecurityMarkerContext
 import play.api.Configuration
 import play.api.Logger
+import play.api.MarkerContexts.SecurityMarkerContext
 import play.api.http.HttpErrorHandler
 import play.api.http.HttpErrorInfo
 import play.api.http.Status
@@ -19,6 +15,10 @@ import play.api.libs.streams.Accumulator
 import play.api.mvc.EssentialAction
 import play.api.mvc.EssentialFilter
 import play.api.mvc.RequestHeader
+
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 import play.core.j.JavaContextComponents
 import play.core.j.JavaHttpErrorHandlerAdapter
 
@@ -91,8 +91,8 @@ private[hosts] case class HostMatcher(pattern: String) {
 }
 
 case class AllowedHostsConfig(allowed: Seq[String], shouldProtect: RequestHeader => Boolean = _ => true) {
-  import scala.jdk.CollectionConverters._
   import play.mvc.Http.{ RequestHeader => JRequestHeader }
+  import scala.jdk.CollectionConverters._
   import scala.jdk.FunctionConverters._
 
   def withHostPatterns(hosts: java.util.List[String]): AllowedHostsConfig = copy(allowed = hosts.asScala.toSeq)

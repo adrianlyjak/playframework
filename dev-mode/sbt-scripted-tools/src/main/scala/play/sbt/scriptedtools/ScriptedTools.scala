@@ -4,26 +4,21 @@
 
 package play.sbt.scriptedtools
 
+import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport._
 import java.nio.file.Files
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
-
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
-
+import play.sbt.routes.RoutesCompiler.autoImport._
+import play.sbt.run.PlayRun
+import sbt._
+import sbt.Keys._
 import scala.annotation.tailrec
 import scala.collection.mutable.ListBuffer
 import scala.sys.process.Process
-
-import sbt._
-import sbt.Keys._
-
-import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport._
-
-import play.sbt.routes.RoutesCompiler.autoImport._
-import play.sbt.run.PlayRun
 
 object ScriptedTools extends AutoPlugin {
   override def trigger = allRequirements

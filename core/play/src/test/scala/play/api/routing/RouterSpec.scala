@@ -4,10 +4,11 @@
 
 package play.api.routing
 
-import org.specs2.mutable.Specification
 import play.api.mvc.Handler
 import play.api.routing.Router.Routes
 import play.api.routing.sird._
+
+import org.specs2.mutable.Specification
 import play.core.test.FakeRequest
 
 class RouterSpec extends Specification {

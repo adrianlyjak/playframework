@@ -4,8 +4,8 @@
 
 package play.runsupport
 
-import org.specs2.mutable._
 import org.specs2.execute.Result
+import org.specs2.mutable._
 
 class FilterArgsSpec extends Specification {
   val defaultHttpPort    = 9000
@@ -52,7 +52,7 @@ class FilterArgsSpec extends Specification {
     "support overriding port property from dev setting by the one from command line" in {
       check("-Dhttp.port=9876")(
         devSettings = Seq("play.server.http.port" -> "1234"),
-        properties = Seq("http.port"              -> "9876"),
+        properties = Seq("http.port" -> "9876"),
         httpPort = Some(9876)
       )
     }
@@ -67,7 +67,7 @@ class FilterArgsSpec extends Specification {
     "support port property long version from command line that overrides everything else" in {
       check("1234", "-Dplay.server.http.port=5555", "-Dhttp.port=9876")(
         devSettings = Seq("play.server.http.port" -> "5678"),
-        properties = Seq("play.server.http.port"  -> "5555", "http.port" -> "9876"),
+        properties = Seq("play.server.http.port" -> "5555", "http.port" -> "9876"),
         httpPort = Some(5555)
       )
     }

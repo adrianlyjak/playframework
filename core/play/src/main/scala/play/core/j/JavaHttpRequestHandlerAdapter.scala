@@ -4,10 +4,10 @@
 
 package play.core.j
 
-import javax.inject.Inject
-
 import play.api.http.HttpRequestHandler
 import play.api.mvc.RequestHeader
+
+import javax.inject.Inject
 import play.http.{ HttpRequestHandler => JHttpRequestHandler }
 import play.http.HandlerForRequest
 import play.mvc.Http.{ RequestHeader => JRequestHeader }

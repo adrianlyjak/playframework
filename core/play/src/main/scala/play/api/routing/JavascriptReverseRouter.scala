@@ -5,6 +5,7 @@
 package play.api.routing
 
 import play.api.mvc.RequestHeader
+
 import play.twirl.api.JavaScript
 
 /**
@@ -59,8 +60,8 @@ object JavaScriptReverseRouter {
          |var _qS = function(items){var qs = ''; for(var i=0;i<items.length;i++) {if(items[i]) qs += (qs ? '&' : '') + items[i]}; return qs ? ('?' + qs) : ''}
          |var _s = function(p,s){return p+((s===true||(s&&s.secure))?'s':'')+'://'}
          |var _wA = function(r){return {$ajaxField method:r.method,type:r.method,url:r.url,absoluteURL: function(s){return _s('http',s)+'${esc(
-           host
-         )}'+r.url},webSocketURL: function(s){return _s('ws',s)+'${esc(host)}'+r.url}}}
+          host
+        )}'+r.url},webSocketURL: function(s){return _s('ws',s)+'${esc(host)}'+r.url}}}
          |$routesStr
          |})($name)
     """.stripMargin.trim

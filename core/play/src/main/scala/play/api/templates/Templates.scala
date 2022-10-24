@@ -5,9 +5,7 @@
 package play.api.templates
 
 import java.util.Optional
-
 import play.twirl.api.Html
-
 import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
 
@@ -25,10 +23,10 @@ object PlayMagic {
   def toHtmlArgs(args: Map[Symbol, Any]) =
     Html(
       args
-        .map({
+        .map {
           case (s, None) => s.name
           case (s, v)    => s.name + "=\"" + play.twirl.api.HtmlFormat.escape(v.toString).body + "\""
-        })
+        }
         .mkString(" ")
     )
 

@@ -4,10 +4,9 @@
 
 package play.api
 
+import com.typesafe.config.ConfigValueType
 import java.net.URL
 import java.util.Properties
-
-import com.typesafe.config.ConfigValueType
 import org.slf4j.ILoggerFactory
 
 /**

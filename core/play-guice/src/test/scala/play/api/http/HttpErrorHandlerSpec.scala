@@ -4,13 +4,10 @@
 
 package play.api.http
 
-import java.util.concurrent.CompletableFuture
-
-import akka.actor.ActorSystem
-import akka.stream.Materializer
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigFactory
-import org.specs2.mutable.Specification
+import play.api.Configuration
+import play.api.Environment
+import play.api.Mode
+import play.api.OptionalSourceMapper
 import play.api.http.HttpConfiguration.FileMimeTypesConfigurationProvider
 import play.api.i18n._
 import play.api.inject.ApplicationLifecycle
@@ -21,19 +18,21 @@ import play.api.mvc.RequestHeader
 import play.api.mvc.Result
 import play.api.mvc.Results
 import play.api.routing._
-import play.api.Configuration
-import play.api.Environment
-import play.api.Mode
-import play.api.OptionalSourceMapper
+
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
+import java.util.concurrent.CompletableFuture
+import org.specs2.mutable.Specification
 import play.core.test.FakeRequest
 import play.core.test.Fakes
 import play.http
 import play.i18n.Langs
 import play.i18n.MessagesApi
-
-import scala.concurrent.duration.Duration
 import scala.concurrent.Await
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
 import scala.jdk.CollectionConverters._
 import scala.util.control.NoStackTrace
 

@@ -4,7 +4,11 @@
 
 package play.api.libs.concurrent
 
-import java.util.concurrent.atomic.AtomicBoolean
+import play.api.Configuration
+import play.api.Environment
+import play.api.PlayException
+import play.api.inject.DefaultApplicationLifecycle
+import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
 
 import akka.Done
 import akka.actor.ActorSystem
@@ -13,13 +17,8 @@ import akka.actor.CoordinatedShutdown._
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import com.typesafe.config.ConfigValueFactory
+import java.util.concurrent.atomic.AtomicBoolean
 import org.specs2.mutable.Specification
-import play.api.inject.DefaultApplicationLifecycle
-import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
-import play.api.Configuration
-import play.api.Environment
-import play.api.PlayException
-
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration._

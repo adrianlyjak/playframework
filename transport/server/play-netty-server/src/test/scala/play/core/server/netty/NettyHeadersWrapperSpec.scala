@@ -4,9 +4,10 @@
 
 package play.core.server.netty
 
+import play.api.mvc._
+
 import io.netty.handler.codec.http.DefaultHttpHeaders
 import org.specs2.mutable._
-import play.api.mvc._
 
 class NettyHeadersWrapperSpec extends Specification {
   val headers: Headers = {

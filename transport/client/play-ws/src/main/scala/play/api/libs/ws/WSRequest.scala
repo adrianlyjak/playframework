@@ -4,14 +4,13 @@
 
 package play.api.libs.ws
 
-import java.io.File
+import play.api.mvc.MultipartFormData
 
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.mvc.MultipartFormData
-
-import scala.concurrent.duration.Duration
+import java.io.File
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
 
 /**
  * A WS Request builder.
@@ -195,18 +194,18 @@ trait WSRequest extends StandaloneWSRequest with WSBodyWritables {
    */
   override def withMethod(method: String): Self
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // GET
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * performs a get
    */
   override def get(): Future[Response]
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // POST
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * Performs a POST request.
@@ -227,9 +226,9 @@ trait WSRequest extends StandaloneWSRequest with WSBodyWritables {
    */
   def post(body: Source[MultipartFormData.Part[Source[ByteString, _]], _]): Future[Response]
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // PATCH
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * Performs a PATCH request.
@@ -250,9 +249,9 @@ trait WSRequest extends StandaloneWSRequest with WSBodyWritables {
    */
   def patch(body: Source[MultipartFormData.Part[Source[ByteString, _]], _]): Future[Response]
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // PUT
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * Performs a PUT request.
@@ -273,9 +272,9 @@ trait WSRequest extends StandaloneWSRequest with WSBodyWritables {
    */
   def put(body: Source[MultipartFormData.Part[Source[ByteString, _]], _]): Future[Response]
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // DELETE, HEAD, OPTIONS
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * Perform a DELETE on the request asynchronously.
@@ -292,9 +291,9 @@ trait WSRequest extends StandaloneWSRequest with WSBodyWritables {
    */
   override def options(): Future[Response]
 
-  //------------------------------------------------
+  // ------------------------------------------------
   // Generic execution
-  //------------------------------------------------
+  // ------------------------------------------------
 
   /**
    * Executes the given HTTP method.

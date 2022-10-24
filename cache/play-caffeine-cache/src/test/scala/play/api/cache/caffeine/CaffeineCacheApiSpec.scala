@@ -4,24 +4,23 @@
 
 package play.api.cache.caffeine
 
-import java.util.concurrent.Executors
-
-import javax.inject.Inject
-import javax.inject.Provider
-import org.specs2.mock.Mockito
-import org.mockito.Mockito.verify
-import org.mockito.Mockito.never
 import play.api.cache.AsyncCacheApi
 import play.api.cache.SyncCacheApi
 import play.api.inject._
 import play.api.test.PlaySpecification
 import play.api.test.WithApplication
-import play.cache.NamedCache
 
-import scala.concurrent.duration._
+import java.util.concurrent.Executors
+import javax.inject.Inject
+import javax.inject.Provider
+import org.mockito.Mockito.never
+import org.mockito.Mockito.verify
+import org.specs2.mock.Mockito
+import play.cache.NamedCache
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration._
 
 class CaffeineCacheApiSpec extends PlaySpecification {
   sequential
@@ -79,12 +78,12 @@ class CaffeineCacheApiSpec extends PlaySpecification {
       caffeineCacheManager.getCache("random")
 
       val caches = caffeineCacheManager.cacheNames
-      caches must have size (3)
+      caches must have size 3
       caches must contain(exactly("custom", "custom-two", "random"))
 
       caffeineCacheManager.getCache("new-cache")
       val cacheNames = caffeineCacheManager.getCacheNames()
-      cacheNames.asScala must have size (4)
+      cacheNames.asScala must have size 4
       cacheNames.asScala must contain(exactly("custom", "custom-two", "random", "new-cache"))
     }
 

@@ -4,12 +4,12 @@
 
 package play
 
-import akka.http.scaladsl.model._
-import play.core.server._
-import play.api.routing.sird._
 import play.api.mvc._
 import play.api.mvc.akkahttp.AkkaHttpHandler
+import play.api.routing.sird._
 
+import akka.http.scaladsl.model._
+import play.core.server._
 import scala.concurrent.Future
 
 object AkkaTestServer extends App {

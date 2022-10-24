@@ -4,17 +4,17 @@
 
 package play.it.action
 
-import org.specs2.matcher.MatchResult
 import play.api.Environment
 import play.api.mvc.AnyContent
 import play.api.mvc.AnyContentAsEmpty
 import play.api.mvc.BodyParsers
-import play.api.mvc.Results._
 import play.api.mvc.DefaultActionBuilder
 import play.api.mvc.EssentialAction
+import play.api.mvc.Results._
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
 
+import org.specs2.matcher.MatchResult
 import scala.concurrent.Promise
 
 class EssentialActionSpec extends PlaySpecification {

@@ -5,10 +5,8 @@
 package play.core.j
 
 import javax.inject.Inject
-
 import play.mvc.Http.RequestHeader
 import play.routing.Router.RouteDocumentation
-
 import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
 

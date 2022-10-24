@@ -4,13 +4,13 @@
 
 package play.api.mvc
 
-import javax.inject.Inject
 import play.api.data.FormBinding
 import play.api.http._
 import play.api.i18n.Langs
 import play.api.i18n.MessagesApi
-import play.twirl.api.Html
 
+import javax.inject.Inject
+import play.twirl.api.Html
 import scala.concurrent.ExecutionContext
 
 /**
@@ -149,7 +149,6 @@ trait RequestImplicits {
  *
  * }
  * }}}
- *
  *
  * This is intended to provide the idiomatic Play API for actions, allowing you to use "Action" for the default
  * action builder and "parse" to access Play's default body parsers. You may want to extend this to provide your own

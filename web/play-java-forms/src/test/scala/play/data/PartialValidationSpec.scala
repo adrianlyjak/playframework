@@ -4,14 +4,14 @@
 
 package play.data
 
+import play.api.i18n._
+
 import com.typesafe.config.ConfigFactory
 import org.specs2.mutable.Specification
-import play.api.i18n._
 import play.data.format.Formatters
 import play.data.validation.Constraints.MaxLength
 import play.data.validation.Constraints.Required
 import play.libs.typedmap.TypedMap
-
 import scala.beans.BeanProperty
 import scala.jdk.CollectionConverters._
 

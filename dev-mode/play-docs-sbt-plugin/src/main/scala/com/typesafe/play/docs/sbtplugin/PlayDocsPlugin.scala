@@ -4,17 +4,16 @@
 
 package com.typesafe.play.docs.sbtplugin
 
-import java.io.Closeable
-import java.util.concurrent.Callable
-
-import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.ValidationConfig
 import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.CodeSamplesReport
 import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.MarkdownRefReport
+import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.ValidationConfig
+import java.io.Closeable
+import java.util.concurrent.Callable
+import play.TemplateImports
 import play.core.BuildDocHandler
 import play.core.PlayVersion
 import play.core.server.ReloadableServer
 import play.routes.compiler.RoutesCompiler.RoutesCompilerTask
-import play.TemplateImports
 import play.sbt.Colors
 import play.sbt.routes.RoutesCompiler
 import play.sbt.routes.RoutesKeys._
@@ -118,43 +117,43 @@ object PlayDocsPlugin extends AutoPlugin with PlayDocsPluginCompat {
   override def projectSettings = docsRunSettings ++ docsReportSettings ++ docsTestSettings
 
   def docsRunSettings = Seq(
-    playDocsValidationConfig := ValidationConfig(),
-    manualPath := baseDirectory.value,
-    run := docsRunSetting.evaluated,
+    playDocsValidationConfig  := ValidationConfig(),
+    manualPath                := baseDirectory.value,
+    run                       := docsRunSetting.evaluated,
     generateMarkdownRefReport := PlayDocsValidation.generateMarkdownRefReportTask.value,
-    validateDocs := PlayDocsValidation.validateDocsTask.value,
-    validateExternalLinks := PlayDocsValidation.validateExternalLinksTask.value,
-    docsVersion := PlayVersion.current,
-    docsName := "play-docs",
-    docsJarFile := docsJarFileSetting.value,
+    validateDocs              := PlayDocsValidation.validateDocsTask.value,
+    validateExternalLinks     := PlayDocsValidation.validateExternalLinksTask.value,
+    docsVersion               := PlayVersion.current,
+    docsName                  := "play-docs",
+    docsJarFile               := docsJarFileSetting.value,
     PlayDocsKeys.resources := Seq(PlayDocsDirectoryResource(manualPath.value)) ++
       docsJarFile.value.map(jar => PlayDocsJarFileResource(jar, Some("play/docs/content"))).toSeq,
     docsJarScalaBinaryVersion := scalaBinaryVersion.value,
     libraryDependencies ++= Seq(
-      "com.typesafe.play" %% docsName.value % PlayVersion.current,
+      "com.typesafe.play" %% docsName.value                                          % PlayVersion.current,
       ("com.typesafe.play" % s"${docsName.value}_${docsJarScalaBinaryVersion.value}" % docsVersion.value % "docs")
         .notTransitive()
     )
   )
 
   def docsReportSettings = Seq(
-    generateMarkdownCodeSamplesReport := PlayDocsValidation.generateMarkdownCodeSamplesTask.value,
-    generateUpstreamCodeSamplesReport := PlayDocsValidation.generateUpstreamCodeSamplesTask.value,
-    translationCodeSamplesReportFile := target.value / "report.html",
-    translationCodeSamplesReport := PlayDocsValidation.translationCodeSamplesReportTask.value,
+    generateMarkdownCodeSamplesReport  := PlayDocsValidation.generateMarkdownCodeSamplesTask.value,
+    generateUpstreamCodeSamplesReport  := PlayDocsValidation.generateUpstreamCodeSamplesTask.value,
+    translationCodeSamplesReportFile   := target.value / "report.html",
+    translationCodeSamplesReport       := PlayDocsValidation.translationCodeSamplesReportTask.value,
     cachedTranslationCodeSamplesReport := PlayDocsValidation.cachedTranslationCodeSamplesReportTask.value
   )
 
   def docsTestSettings = Seq(
-    migrationManualSources := Nil,
-    javaManualSourceDirectories := Nil,
-    scalaManualSourceDirectories := Nil,
+    migrationManualSources        := Nil,
+    javaManualSourceDirectories   := Nil,
+    scalaManualSourceDirectories  := Nil,
     commonManualSourceDirectories := Nil,
     Test / unmanagedSourceDirectories ++= javaManualSourceDirectories.value ++ scalaManualSourceDirectories.value ++
       commonManualSourceDirectories.value ++ migrationManualSources.value,
     Test / unmanagedResourceDirectories ++= javaManualSourceDirectories.value ++ scalaManualSourceDirectories.value ++
       commonManualSourceDirectories.value ++ migrationManualSources.value,
-    javaTwirlSourceManaged := target.value / "twirl" / "java",
+    javaTwirlSourceManaged  := target.value / "twirl" / "java",
     scalaTwirlSourceManaged := target.value / "twirl" / "scala",
     Test / managedSourceDirectories ++= Seq(
       javaTwirlSourceManaged.value,

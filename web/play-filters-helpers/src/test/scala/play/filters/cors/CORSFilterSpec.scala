@@ -4,16 +4,16 @@
 
 package play.filters.cors
 
-import javax.inject.Inject
-
 import play.api.Application
 import play.api.http.HttpFilters
 import play.api.inject.bind
 import play.api.mvc.DefaultActionBuilder
 import play.api.mvc.Results
-import play.api.routing.sird._
 import play.api.routing.Router
 import play.api.routing.SimpleRouterImpl
+import play.api.routing.sird._
+
+import javax.inject.Inject
 import play.filters.cors.CORSFilterSpec._
 import play.mvc.Http.HeaderNames._
 

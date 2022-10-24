@@ -4,13 +4,19 @@
 
 package play.api.mvc
 
-import java.io._
-import java.nio.charset.StandardCharsets._
-import java.nio.charset._
-import java.nio.file.Files
-import java.util.Locale
+import play.api._
+import play.api.data.DefaultFormBinding
+import play.api.data.Form
+import play.api.data.FormBinding
+import play.api.http._
+import play.api.http.Status._
+import play.api.libs.Files.SingletonTemporaryFileCreator
+import play.api.libs.Files.TemporaryFile
+import play.api.libs.Files.TemporaryFileCreator
+import play.api.libs.json._
+import play.api.libs.streams.Accumulator
+import play.api.mvc.MultipartFormData._
 
-import javax.inject.Inject
 import akka.actor.ActorSystem
 import akka.stream._
 import akka.stream.scaladsl.Flow
@@ -18,22 +24,15 @@ import akka.stream.scaladsl.Sink
 import akka.stream.scaladsl.StreamConverters
 import akka.stream.stage._
 import akka.util.ByteString
-import play.api._
-import play.api.data.DefaultFormBinding
-import play.api.data.Form
-import play.api.data.FormBinding
-import play.api.http.Status._
-import play.api.http._
-import play.api.libs.Files.SingletonTemporaryFileCreator
-import play.api.libs.Files.TemporaryFile
-import play.api.libs.Files.TemporaryFileCreator
-import play.api.libs.json._
-import play.api.libs.streams.Accumulator
-import play.api.mvc.MultipartFormData._
+import java.io._
+import java.nio.charset._
+import java.nio.charset.StandardCharsets._
+import java.nio.file.Files
+import java.util.Locale
+import javax.inject.Inject
 import play.core.Execution
 import play.core.parsers.Multipart
 import play.utils.PlayIO
-
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 import scala.concurrent.Promise
@@ -1142,15 +1141,18 @@ object BodyParsers {
       var pushedBytes: Long = 0
 
       val logic = new GraphStageLogic(shape) {
-        setHandler(out, new OutHandler {
-          override def onPull(): Unit = {
-            pull(in)
+        setHandler(
+          out,
+          new OutHandler {
+            override def onPull(): Unit = {
+              pull(in)
+            }
+            override def onDownstreamFinish(): Unit = {
+              status.success(MaxSizeNotExceeded)
+              completeStage()
+            }
           }
-          override def onDownstreamFinish(): Unit = {
-            status.success(MaxSizeNotExceeded)
-            completeStage()
-          }
-        })
+        )
         setHandler(
           in,
           new InHandler {

@@ -4,10 +4,10 @@
 
 package play.api.routing.sird
 
+import play.api.mvc.RequestHeader
+
 import java.net.URI
 import java.net.URL
-
-import play.api.mvc.RequestHeader
 
 class RequiredQueryStringParameter(paramName: String) extends QueryStringParameterExtractor[String] {
   def unapply(qs: QueryString): Option[String] = qs.get(paramName).flatMap(_.headOption)

@@ -4,23 +4,22 @@
 
 package play.core.server
 
+import play.api.Mode
+import play.api.Play
+
+import com.google.common.io.{ Files => GFiles }
 import java.io.File
 import java.net.InetSocketAddress
 import java.nio.charset.Charset
 import java.nio.file.Files
 import java.util.Properties
 import java.util.concurrent._
-
-import com.google.common.io.{ Files => GFiles }
 import org.specs2.mutable.Specification
-import play.api.Mode
-import play.api.Play
 import play.core.ApplicationProvider
-
-import scala.concurrent.duration.Duration
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try

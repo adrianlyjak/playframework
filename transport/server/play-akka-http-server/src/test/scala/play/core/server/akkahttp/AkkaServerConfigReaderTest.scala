@@ -4,9 +4,10 @@
 
 package play.core.server.akkahttp
 
-import org.specs2.mutable.Specification
-import akka.http.scaladsl.model.headers.Host
 import play.api.Configuration
+
+import akka.http.scaladsl.model.headers.Host
+import org.specs2.mutable.Specification
 
 class AkkaServerConfigReaderTest extends Specification {
   "AkkaServerConfigReader.getHostHeader" should {

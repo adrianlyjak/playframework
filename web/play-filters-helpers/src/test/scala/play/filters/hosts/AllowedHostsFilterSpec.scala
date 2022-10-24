@@ -4,32 +4,32 @@
 
 package play.filters.hosts
 
-import javax.inject.Inject
-import com.typesafe.config.ConfigFactory
-import org.specs2.matcher.MatchResult
+import play.api.Application
+import play.api.Configuration
+import play.api.Environment
 import play.api.http.HeaderNames
 import play.api.http.HttpErrorHandler
 import play.api.http.HttpFilters
 import play.api.inject._
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.ws.WSClient
-import play.api.mvc.Results._
 import play.api.mvc._
 import play.api.mvc.Handler.Stage
+import play.api.mvc.Results._
 import play.api.routing.HandlerDef
 import play.api.routing.Router
 import play.api.routing.SimpleRouterImpl
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
 import play.api.test.TestServer
-import play.api.Application
-import play.api.Configuration
-import play.api.Environment
 
-import scala.jdk.CollectionConverters._
+import com.typesafe.config.ConfigFactory
+import javax.inject.Inject
+import org.specs2.matcher.MatchResult
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration._
+import scala.jdk.CollectionConverters._
 import scala.reflect.ClassTag
 
 object AllowedHostsFilterSpec {
@@ -194,9 +194,12 @@ class AllowedHostsFilterSpec extends PlaySpecification {
       status(request(app, "example.com:8080")) must_== OK
     }
 
-    "support matching all hosts" in withApplication(okWithHost, """
-                                                                  |play.filters.hosts.allowed = ["."]
-      """.stripMargin) { app =>
+    "support matching all hosts" in withApplication(
+      okWithHost,
+      """
+        |play.filters.hosts.allowed = ["."]
+      """.stripMargin
+    ) { app =>
       status(request(app, "example.net")) must_== OK
       status(request(app, "amazon.com")) must_== OK
       status(request(app, "")) must_== OK
@@ -204,9 +207,12 @@ class AllowedHostsFilterSpec extends PlaySpecification {
 
     // See http://www.skeletonscribe.net/2013/05/practical-http-host-header-attacks.html
 
-    "not allow malformed ports" in withApplication(okWithHost, """
-                                                                 |play.filters.hosts.allowed = [".mozilla.org"]
-      """.stripMargin) { app =>
+    "not allow malformed ports" in withApplication(
+      okWithHost,
+      """
+        |play.filters.hosts.allowed = [".mozilla.org"]
+      """.stripMargin
+    ) { app =>
       statusBadRequest(app, "addons.mozilla.org:@passwordreset.net")
       statusBadRequest(app, "addons.mozilla.org: www.securepasswordreset.com")
     }
@@ -217,7 +223,9 @@ class AllowedHostsFilterSpec extends PlaySpecification {
         |play.filters.hosts.allowed = [".mozilla.org"]
       """.stripMargin
     ) { app =>
-      status(request(app, "www.securepasswordreset.com", "https://addons.mozilla.org/en-US/firefox/users/pwreset")) must_== OK
+      status(
+        request(app, "www.securepasswordreset.com", "https://addons.mozilla.org/en-US/firefox/users/pwreset")
+      ) must_== OK
       statusBadRequest(app, "addons.mozilla.org", "https://www.securepasswordreset.com/en-US/firefox/users/pwreset")
     }
 

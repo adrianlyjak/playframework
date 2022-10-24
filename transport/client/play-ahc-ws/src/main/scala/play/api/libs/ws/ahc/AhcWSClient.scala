@@ -4,10 +4,11 @@
 
 package play.api.libs.ws.ahc
 
-import akka.stream.Materializer
-import play.api.libs.ws.ahc.cache.AhcHttpCache
 import play.api.libs.ws.WSClient
 import play.api.libs.ws.WSRequest
+import play.api.libs.ws.ahc.cache.AhcHttpCache
+
+import akka.stream.Materializer
 
 /**
  * Async WS Client backed by AsyncHttpClient.

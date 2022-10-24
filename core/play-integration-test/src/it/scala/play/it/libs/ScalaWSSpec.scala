@@ -4,12 +4,13 @@
 
 package play.it.libs
 
-import org.specs2.matcher.MatchResult
 import play.api.http.HeaderNames
+import play.api.libs.oauth._
 import play.api.libs.ws.WSBodyReadables
 import play.api.libs.ws.WSBodyWritables
-import play.api.libs.oauth._
 import play.api.test.PlaySpecification
+
+import org.specs2.matcher.MatchResult
 import play.it.AkkaHttpIntegrationSpecification
 import play.it.NettyIntegrationSpecification
 import play.it.ServerIntegrationSpecification
@@ -23,30 +24,29 @@ trait ScalaWSSpec
     with ServerIntegrationSpecification
     with WSBodyWritables
     with WSBodyReadables {
-  import java.io.File
-  import java.nio.ByteBuffer
-  import java.nio.charset.Charset
-  import java.nio.charset.StandardCharsets
+  import play.api.libs.json.JsString
+  import play.api.libs.streams.Accumulator
+  import play.api.libs.ws._
+  import play.api.mvc._
+  import play.api.mvc.Results.Ok
+  import play.api.test._
 
   import akka.stream.scaladsl.FileIO
   import akka.stream.scaladsl.Sink
   import akka.stream.scaladsl.Source
   import akka.util.ByteString
-  import play.api.libs.json.JsString
-  import play.api.libs.streams.Accumulator
-  import play.api.libs.ws._
-  import play.api.mvc.Results.Ok
-  import play.api.mvc._
-  import play.api.test._
+  import java.io.File
+  import java.nio.ByteBuffer
+  import java.nio.charset.Charset
+  import java.nio.charset.StandardCharsets
   import play.core.server.Server
   import play.it.tools.HttpBinApplication
   import play.shaded.ahc.org.asynchttpclient.RequestBuilderBase
   import play.shaded.ahc.org.asynchttpclient.SignatureCalculator
-
-  import scala.concurrent.ExecutionContext.Implicits.global
-  import scala.concurrent.duration._
   import scala.concurrent.Await
+  import scala.concurrent.ExecutionContext.Implicits.global
   import scala.concurrent.Future
+  import scala.concurrent.duration._
 
   "Web service client" title
 
@@ -165,7 +165,7 @@ trait ScalaWSSpec
         }
         "expect title-case header with signed request" in withAuthorizationCheck { ws =>
           val body = await(ws.url("/").sign(customCalc).execute()).body
-          body must_== ("Authorization")
+          body must_== "Authorization"
         }
       }
 
@@ -173,11 +173,11 @@ trait ScalaWSSpec
       "when sending an explicit header" in {
         "preserve a title-case 'Authorization' header" in withAuthorizationCheck { ws =>
           val body = await(ws.url("/").withHttpHeaders("Authorization" -> "some value").execute()).body
-          body must_== ("Authorization")
+          body must_== "Authorization"
         }
         "preserve a lower-case 'authorization' header" in withAuthorizationCheck { ws =>
           val body = await(ws.url("/").withHttpHeaders("authorization" -> "some value").execute()).body
-          body must_== ("authorization")
+          body must_== "authorization"
         }
       }
     }

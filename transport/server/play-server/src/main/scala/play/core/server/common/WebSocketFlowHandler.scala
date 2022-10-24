@@ -4,13 +4,14 @@
 
 package play.core.server.common
 
+import play.api.Logger
+import play.api.http.websocket._
+
 import akka.NotUsed
 import akka.stream._
 import akka.stream.scaladsl._
 import akka.stream.stage._
 import akka.util.ByteString
-import play.api.Logger
-import play.api.http.websocket._
 
 object WebSocketFlowHandler {
 

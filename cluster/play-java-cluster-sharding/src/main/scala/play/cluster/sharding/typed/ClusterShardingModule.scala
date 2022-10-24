@@ -4,14 +4,15 @@
 
 package play.cluster.sharding.typed
 
-import akka.cluster.sharding.typed.javadsl.ClusterSharding
 import play.api.inject._
+
+import akka.actor.ActorSystem
+import akka.actor.typed.javadsl.Adapter
+import akka.annotation.InternalApi
+import akka.cluster.sharding.typed.javadsl.ClusterSharding
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
-import akka.actor.typed.javadsl.Adapter
-import akka.actor.ActorSystem
-import akka.annotation.InternalApi
 
 @InternalApi
 final class ClusterShardingModule extends SimpleModule(bind[ClusterSharding].toProvider[ClusterShardingProvider])

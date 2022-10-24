@@ -4,15 +4,13 @@
 
 package play.api.mvc
 
-import java.util.Locale
-
 import play.api.http.HeaderNames
+
+import java.util.Locale
 import play.core.utils.CaseInsensitiveOrdered
-
-import scala.jdk.CollectionConverters._
-
 import scala.collection.immutable.TreeMap
 import scala.collection.immutable.TreeSet
+import scala.jdk.CollectionConverters._
 
 /**
  * The HTTP headers set.

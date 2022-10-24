@@ -4,13 +4,13 @@
 
 package play.api
 
-import java.io.File
-import java.net.URLClassLoader
-
-import org.specs2.mutable.Specification
 import play.api.inject.DefaultApplicationLifecycle
 import play.api.mvc.EssentialFilter
 import play.api.routing.Router
+
+import java.io.File
+import java.net.URLClassLoader
+import org.specs2.mutable.Specification
 
 class BuiltInComponentsSpec extends Specification {
   "BuiltinComponents" should {

@@ -4,14 +4,13 @@
 
 package play.api.libs.ws.ahc
 
-import java.net.URI
-
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
-import play.shaded.ahc.org.asynchttpclient.{ Response => AHCResponse }
 import play.api.libs.json.JsValue
 import play.api.libs.ws._
 
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
+import java.net.URI
+import play.shaded.ahc.org.asynchttpclient.{ Response => AHCResponse }
 import scala.xml.Elem
 
 /**

@@ -4,12 +4,12 @@
 
 package play.api.db.evolutions
 
-import java.io.File
-
-import org.specs2.mutable.Specification
 import play.api.Environment
 import play.api.Logger
 import play.api.Mode
+
+import java.io.File
+import org.specs2.mutable.Specification
 
 object EvolutionsReaderSpec {
   initLogback()

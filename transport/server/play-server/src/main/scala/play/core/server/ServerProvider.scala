@@ -4,10 +4,11 @@
 
 package play.core.server
 
-import akka.actor.ActorSystem
-import akka.stream.Materializer
 import play.api.Application
 import play.api.Configuration
+
+import akka.actor.ActorSystem
+import akka.stream.Materializer
 import play.core.ApplicationProvider
 import scala.concurrent.Future
 

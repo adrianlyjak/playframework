@@ -4,8 +4,8 @@
 
 package play.filters.cors
 
-import akka.stream.Materializer
-import akka.util.ByteString
+import play.api.Configuration
+import play.api.Logger
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.HttpErrorHandler
 import play.api.http.ParserConfiguration
@@ -13,9 +13,9 @@ import play.api.libs.Files.SingletonTemporaryFileCreator
 import play.api.libs.Files.TemporaryFileCreator
 import play.api.libs.streams.Accumulator
 import play.api.mvc._
-import play.api.Configuration
-import play.api.Logger
 
+import akka.stream.Materializer
+import akka.util.ByteString
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 

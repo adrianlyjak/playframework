@@ -4,14 +4,13 @@
 
 package play.api.mvc
 
-import javax.inject.Inject
-
-import akka.util.ByteString
 import play.api._
 import play.api.libs.streams.Accumulator
+
+import akka.util.ByteString
+import javax.inject.Inject
 import play.core.Execution
 import play.utils.ExecCtxUtils
-
 import scala.concurrent._
 
 /**

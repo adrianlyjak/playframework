@@ -4,14 +4,15 @@
 
 package play.it.http
 
-import org.specs2.execute.AsResult
-import org.specs2.specification.core.Fragment
 import play.api.BuiltInComponents
 import play.api.mvc._
 import play.api.routing.Router
 import play.api.routing.sird
 import play.api.test.ApplicationFactories
 import play.api.test.PlaySpecification
+
+import org.specs2.execute.AsResult
+import org.specs2.specification.core.Fragment
 import play.core.server.ServerEndpoint
 import play.it.test._
 
@@ -100,6 +101,6 @@ class UriHandlingSpec
         response.body.string must_=== """/pat"""
       }
     }
-   */
+     */
   }
 }

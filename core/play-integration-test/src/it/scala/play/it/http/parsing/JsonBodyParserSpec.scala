@@ -4,17 +4,18 @@
 
 package play.it.http.parsing
 
+import play.api.Application
+import play.api.libs.json.JsError
+import play.api.libs.json.Json
+import play.api.libs.json.JsValue
+import play.api.mvc.BodyParser
+import play.api.mvc.PlayBodyParsers
+import play.api.mvc.Results.BadRequest
+import play.api.test._
+
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.Application
-import play.api.libs.json.JsError
-import play.api.libs.json.JsValue
-import play.api.libs.json.Json
-import play.api.mvc.Results.BadRequest
-import play.api.mvc.BodyParser
-import play.api.mvc.PlayBodyParsers
-import play.api.test._
 
 class JsonBodyParserSpec extends PlaySpecification {
   private case class Foo(a: Int, b: String)

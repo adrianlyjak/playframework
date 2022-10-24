@@ -4,17 +4,17 @@
 
 package play.api.i18n
 
-import java.io.File
-
-import org.specs2.mutable._
-import play.api.http.HttpConfiguration
-import play.api.i18n.Messages.MessageSource
-import play.api.mvc.Cookie
-import play.api.mvc.Results
 import play.api.Configuration
 import play.api.Environment
 import play.api.Mode
 import play.api.PlayException
+import play.api.http.HttpConfiguration
+import play.api.i18n.Messages.MessageSource
+import play.api.mvc.Cookie
+import play.api.mvc.Results
+
+import java.io.File
+import org.specs2.mutable._
 import play.core.test.FakeRequest
 
 class MessagesSpec extends Specification {

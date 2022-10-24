@@ -4,11 +4,12 @@
 
 package play.api.test
 
-import com.google.inject.AbstractModule
-import org.specs2.mutable._
+import play.api.Application
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.inject.guice.GuiceApplicationLoader
-import play.api.Application
+
+import com.google.inject.AbstractModule
+import org.specs2.mutable._
 
 class SpecsSpec extends Specification {
   def getConfig(key: String)(implicit app: Application) = app.configuration.getOptional[String](key)

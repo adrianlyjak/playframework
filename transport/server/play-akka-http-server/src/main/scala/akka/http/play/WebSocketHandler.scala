@@ -4,18 +4,19 @@
 
 package akka.http.play
 
+import play.api.http.websocket._
+import play.api.libs.streams.AkkaStreams
+
 import akka.http.impl.engine.ws._
 import akka.http.scaladsl.model.HttpResponse
 import akka.http.scaladsl.model.ws.UpgradeToWebSocket
-import akka.stream.scaladsl._
-import akka.stream.stage._
 import akka.stream.Attributes
 import akka.stream.FlowShape
 import akka.stream.Inlet
 import akka.stream.Outlet
+import akka.stream.scaladsl._
+import akka.stream.stage._
 import akka.util.ByteString
-import play.api.http.websocket._
-import play.api.libs.streams.AkkaStreams
 import play.core.server.common.WebSocketFlowHandler
 import play.core.server.common.WebSocketFlowHandler.MessageType
 import play.core.server.common.WebSocketFlowHandler.RawMessage

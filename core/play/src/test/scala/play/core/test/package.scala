@@ -4,11 +4,12 @@
 
 package play.core
 
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigFactory
 import play.api._
 import play.api.inject.DefaultApplicationLifecycle
 import play.api.routing.Router
+
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 
 package object test {
 

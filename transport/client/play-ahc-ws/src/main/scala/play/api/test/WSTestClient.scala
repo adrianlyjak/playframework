@@ -4,9 +4,10 @@
 
 package play.api.test
 
-import akka.stream.Materializer
 import play.api.libs.ws._
 import play.api.mvc.Call
+
+import akka.stream.Materializer
 
 /**
  * A standalone test client that is useful for running standalone integration tests.
@@ -115,15 +116,14 @@ object WsTestClient extends WsTestClient {
    * it is needed.
    */
   private class SingletonWSClient extends WSClient {
-    import java.util.concurrent._
-    import java.util.concurrent.atomic._
+    import play.api.libs.ws.ahc.AhcWSClient
+    import play.api.libs.ws.ahc.AhcWSClientConfig
 
     import akka.actor.ActorSystem
     import akka.actor.Cancellable
     import akka.actor.Terminated
-    import play.api.libs.ws.ahc.AhcWSClient
-    import play.api.libs.ws.ahc.AhcWSClientConfig
-
+    import java.util.concurrent._
+    import java.util.concurrent.atomic._
     import scala.annotation.tailrec
     import scala.concurrent.Future
     import scala.concurrent.duration._

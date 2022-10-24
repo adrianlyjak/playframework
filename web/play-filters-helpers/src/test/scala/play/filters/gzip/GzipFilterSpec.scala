@@ -4,10 +4,6 @@
 
 package play.filters.gzip
 
-import javax.inject.Inject
-import akka.stream.Materializer
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
 import play.api.Application
 import play.api.http.HttpChunk
 import play.api.http.HttpEntity
@@ -15,25 +11,28 @@ import play.api.http.HttpFilters
 import play.api.http.HttpProtocol
 import play.api.inject._
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.routing.Router
-import play.api.routing.SimpleRouterImpl
-import play.api.test._
 import play.api.mvc.AnyContentAsEmpty
 import play.api.mvc.Cookie
 import play.api.mvc.DefaultActionBuilder
 import play.api.mvc.Result
 import play.api.mvc.Results._
-import java.util.zip.Deflater
-import java.util.zip.GZIPInputStream
+import play.api.routing.Router
+import play.api.routing.SimpleRouterImpl
+import play.api.test._
+
+import akka.stream.Materializer
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
+import com.google.common.io.CharStreams
 import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
-
-import com.google.common.io.CharStreams
-
-import scala.concurrent.Future
-import scala.util.Random
+import java.util.zip.Deflater
+import java.util.zip.GZIPInputStream
+import javax.inject.Inject
 import org.specs2.matcher.DataTables
 import org.specs2.matcher.MatchResult
+import scala.concurrent.Future
+import scala.util.Random
 
 object GzipFilterSpec {
   class ResultRouter @Inject() (action: DefaultActionBuilder, result: Result)
@@ -64,7 +63,7 @@ class GzipFilterSpec extends PlaySpecification with DataTables {
       val (plain, gzipped) = (None, Some("gzip"))
 
       "Accept-Encoding of request" || "Response" |
-        //------------------------------------++------------+
+        // ------------------------------------++------------+
         "gzip" !! gzipped |
         "compress,gzip" !! gzipped |
         "compress, gzip" !! gzipped |
@@ -92,8 +91,8 @@ class GzipFilterSpec extends PlaySpecification with DataTables {
         "gzip;q=0.6, identity;q=0.5" !! gzipped |
         "*;q=0.7, gzip;q=0.6, identity;q=0.4" !! gzipped |
         "" !! plain |> { (codings, expectedEncoding) =>
-        (header(CONTENT_ENCODING, requestAccepting(app, codings)) must be).equalTo(expectedEncoding)
-      }
+          (header(CONTENT_ENCODING, requestAccepting(app, codings)) must be).equalTo(expectedEncoding)
+        }
     }
 
     "not gzip empty responses" in withApplication(Ok) { implicit app =>
@@ -271,11 +270,13 @@ class GzipFilterSpec extends PlaySpecification with DataTables {
       val entity =
         HttpEntity.Streamed(Source.single(ByteString(body)), Some(1000), None)
 
-      "not buffer more than the configured threshold" in withApplication(Ok.sendEntity(entity), chunkedThreshold = 512) {
-        implicit app =>
-          val result = makeGzipRequest(app)
-          checkGzippedBody(result, body)(app.materializer)
-          await(result).body must beAnInstanceOf[HttpEntity.Chunked]
+      "not buffer more than the configured threshold" in withApplication(
+        Ok.sendEntity(entity),
+        chunkedThreshold = 512
+      ) { implicit app =>
+        val result = makeGzipRequest(app)
+        checkGzippedBody(result, body)(app.materializer)
+        await(result).body must beAnInstanceOf[HttpEntity.Chunked]
       }
 
       "preserve original headers, cookies, flash and session values" in {
@@ -489,8 +490,7 @@ class GzipFilterSpec extends PlaySpecification with DataTables {
   }
 
   def checkGzippedBody(result: Future[Result], body: String)(
-      implicit
-      mat: Materializer
+      implicit mat: Materializer
   ): MatchResult[Any] = {
     checkGzipped(result)
     val resultBody = contentAsBytes(result)
@@ -501,8 +501,7 @@ class GzipFilterSpec extends PlaySpecification with DataTables {
   }
 
   def checkNotGzipped(result: Future[Result], body: String)(
-      implicit
-      mat: Materializer
+      implicit mat: Materializer
   ): MatchResult[Any] = {
     header(CONTENT_ENCODING, result) must beNone
     contentAsString(result) must_== body

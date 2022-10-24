@@ -11,6 +11,7 @@ import play.api.libs.crypto.CSRFTokenSignerProvider
 import play.api.libs.crypto.DefaultCookieSigner
 import play.api.mvc.Request
 import play.api.mvc.RequestHeader
+
 import play.filters.csrf.CSRFActionHelper
 import play.filters.csrf.CSRFConfig
 

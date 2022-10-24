@@ -4,17 +4,11 @@
 
 package play.sbt.run
 
-import java.util.Optional
-
-import scala.util.control.NonFatal
-
-import sbt._
-import sbt.Keys._
-import sbt.internal.Output
-import sbt.internal.inc.Analysis
-import sbt.util.InterfaceUtil.o2jo
-
 import play.api.PlayException
+
+import java.net.URI
+import java.nio.file.Paths
+import java.util.Optional
 import play.runsupport.Reloader.CompileFailure
 import play.runsupport.Reloader.CompileResult
 import play.runsupport.Reloader.CompileSuccess
@@ -22,14 +16,16 @@ import play.runsupport.Reloader.Source
 import play.sbt.PlayExceptions.CompilationException
 import play.sbt.PlayExceptions.UnexpectedException
 import play.twirl.compiler.MaybeGeneratedSource
-
+import sbt._
+import sbt.Keys._
+import sbt.internal.Output
+import sbt.internal.inc.Analysis
+import sbt.util.InterfaceUtil.o2jo
+import scala.util.control.NonFatal
 import xsbti.CompileFailed
 import xsbti.Position
 import xsbti.Problem
 import xsbti.Severity
-
-import java.net.URI
-import java.nio.file.Paths
 
 object PlayReload {
   def taskFailureHandler(
@@ -82,9 +78,9 @@ object PlayReload {
     // Stolen from https://github.com/sbt/sbt/blob/v1.4.8/main/src/main/scala/sbt/Defaults.scala#L2299-L2316
     // Slightly modified because reportAbsolutePath and fileConverter settings do not exist pre sbt 1.4 yet
     def foldMappers(mappers: Seq[Position => Option[Position]]) =
-      mappers.foldRight({ (p: Position) =>
+      mappers.foldRight { (p: Position) =>
         toAbsoluteSource(p) // Fallback if sourcePositionMappers is empty
-      }) {
+      } {
         (mapper, previousPosition) =>
           { (p: Position) =>
             // To each mapper we pass the position with the absolute source
@@ -162,7 +158,7 @@ object PlayReload {
     def unapply(value: Option[Any]): Option[Any] =
       value.filter { vf =>
         val name = vf.getClass.getSimpleName
-        (name == "BasicVirtualFileRef" || name == "MappedVirtualFile")
+        name == "BasicVirtualFileRef" || name == "MappedVirtualFile"
       }
   }
 

@@ -4,9 +4,10 @@
 
 package play.it.test
 
-import okhttp3.Response
 import play.api.mvc._
 import play.api.test.PlaySpecification
+
+import okhttp3.Response
 
 /**
  * Tests that [[OkHttpEndpointSupport]] works properly.

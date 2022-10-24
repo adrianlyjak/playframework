@@ -4,20 +4,20 @@
 
 package play.it.libs.json
 
-import java.io.ByteArrayInputStream
-import java.time.Instant
-import java.util.Optional
-import java.util.OptionalInt
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.mvc.Request
 
 import com.fasterxml.jackson.annotation.JsonRawValue
 import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
+import java.io.ByteArrayInputStream
+import java.time.Instant
+import java.util.Optional
+import java.util.OptionalInt
 import org.specs2.mutable.Specification
 import org.specs2.specification.Scope
-import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Request
 import play.core.test.FakeRequest
 import play.libs.Json
 import play.mvc.Http
@@ -26,8 +26,8 @@ import play.mvc.Http.RequestBody
 // Use an `ObjectMapper` which overrides some defaults
 class PlayBindingNameJavaJsonSpec extends JavaJsonSpec {
   override val createObjectMapper: ObjectMapper = GuiceApplicationBuilder()
-  // should be able to use `.play.` namespace to override configurations
-  // for this `ObjectMapper`.
+    // should be able to use `.play.` namespace to override configurations
+    // for this `ObjectMapper`.
     .configure("akka.serialization.jackson.play.serialization-features.WRITE_DURATIONS_AS_TIMESTAMPS" -> true)
     .build()
     .injector
@@ -280,8 +280,8 @@ class Address(var city: String, var street: String) {
   override def equals(other: Any): Boolean = other match {
     case that: Address =>
       (that.canEqual(this)) &&
-        city == that.city &&
-        street == that.street
+      city == that.city &&
+      street == that.street
     case _ => false
   }
   override def hashCode(): Int = {
@@ -297,8 +297,8 @@ class Customer(var code: String) {
   override def equals(other: Any): Boolean = other match {
     case that: Customer =>
       (that.canEqual(this)) &&
-        code == that.code &&
-        address == that.address
+      code == that.code &&
+      address == that.address
     case _ => false
   }
   override def hashCode(): Int = {
@@ -315,8 +315,8 @@ class ShoppingCart(var id: String, @JsonRawValue var contents: String) {
   override def equals(other: Any): Boolean = other match {
     case that: ShoppingCart =>
       (that.canEqual(this)) &&
-        id == that.id &&
-        contents == that.contents
+      id == that.id &&
+      contents == that.contents
     case _ => false
   }
   override def hashCode(): Int = {

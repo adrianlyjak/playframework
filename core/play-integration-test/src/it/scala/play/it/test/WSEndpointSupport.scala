@@ -4,32 +4,31 @@
 
 package play.it.test
 
-import java.io.Closeable
-import java.util.concurrent.TimeUnit
+import play.api.Configuration
+import play.api.libs.ws.WSClient
+import play.api.libs.ws.WSClientConfig
+import play.api.libs.ws.WSRequest
+import play.api.libs.ws.WSResponse
+import play.api.libs.ws.ahc.AhcWSClient
+import play.api.libs.ws.ahc.AhcWSClientConfig
+import play.api.test.ApplicationFactory
+import play.api.test.DefaultAwaitTimeout
+import play.api.test.FutureAwaits
 
 import akka.actor.ActorSystem
 import akka.actor.Terminated
 import akka.stream.Materializer
 import com.typesafe.sslconfig.ssl.SSLConfigSettings
 import com.typesafe.sslconfig.ssl.SSLLooseConfig
+import java.io.Closeable
+import java.util.concurrent.TimeUnit
 import org.specs2.execute.AsResult
 import org.specs2.specification.core.Fragment
-import play.api.Configuration
-import play.api.libs.ws.ahc.AhcWSClient
-import play.api.libs.ws.ahc.AhcWSClientConfig
-import play.api.libs.ws.WSClient
-import play.api.libs.ws.WSClientConfig
-import play.api.libs.ws.WSRequest
-import play.api.libs.ws.WSResponse
-import play.api.test.ApplicationFactory
-import play.api.test.DefaultAwaitTimeout
-import play.api.test.FutureAwaits
 import play.core.server.ServerEndpoint
-
 import scala.annotation.implicitNotFound
-import scala.concurrent.duration.Duration
 import scala.concurrent.Await
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
 
 /**
  * Provides a similar interface to [[play.api.test.WsTestClient]], but

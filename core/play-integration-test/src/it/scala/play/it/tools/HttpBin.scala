@@ -4,22 +4,22 @@
 
 package play.it.tools
 
-import java.nio.charset.StandardCharsets
+import play.api._
+import play.api.http.HttpEntity
+import play.api.libs.Files
+import play.api.libs.json._
+import play.api.libs.json.JsObject
+import play.api.libs.ws.ahc.AhcWSComponents
+import play.api.mvc._
+import play.api.mvc.Results._
+import play.api.routing.Router.Routes
+import play.api.routing.SimpleRouter
+import play.api.routing.sird._
 
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.http.HttpEntity
-import play.api.libs.Files
-import play.api.libs.json.JsObject
-import play.api.libs.json._
-import play.api.libs.ws.ahc.AhcWSComponents
-import play.api.mvc.Results._
-import play.api.mvc._
-import play.api.routing.Router.Routes
-import play.api.routing.SimpleRouter
-import play.api.routing.sird._
-import play.api._
+import java.nio.charset.StandardCharsets
 import play.filters.gzip.GzipFilter
 
 /**
@@ -49,21 +49,21 @@ object HttpBinApplication {
           "data" -> "",
           "form" -> JsObject(Nil)
         ) ++ (r.body match {
-        // Json Body
-        case e: JsValue =>
-          Json.obj("json" -> e)
-        // X-WWW-Form-Encoded
-        case f: Map[String, Seq[String]] @unchecked =>
-          Json.obj("form" -> JsObject(f.view.mapValues(x => JsString(x.mkString(", "))).toSeq))
-        // Anything else
-        case m: play.api.mvc.AnyContentAsMultipartFormData @unchecked =>
-          Json.obj(
-            "form" -> JsObject(m.mfd.dataParts.map { case (k, v) => k -> JsString(v.mkString) }),
-            "file" -> JsString(m.mfd.file("upload").map(v => readFileToString(v.ref)).getOrElse(""))
-          )
-        case b =>
-          Json.obj("data" -> JsString(b.toString))
-      })
+          // Json Body
+          case e: JsValue =>
+            Json.obj("json" -> e)
+          // X-WWW-Form-Encoded
+          case f: Map[String, Seq[String]] @unchecked =>
+            Json.obj("form" -> JsObject(f.view.mapValues(x => JsString(x.mkString(", "))).toSeq))
+          // Anything else
+          case m: play.api.mvc.AnyContentAsMultipartFormData @unchecked =>
+            Json.obj(
+              "form" -> JsObject(m.mfd.dataParts.map { case (k, v) => k -> JsString(v.mkString) }),
+              "file" -> JsString(m.mfd.file("upload").map(v => readFileToString(v.ref)).getOrElse(""))
+            )
+          case b =>
+            Json.obj("data" -> JsString(b.toString))
+        })
   }
 
   def getIp(implicit Action: DefaultActionBuilder): Routes = {

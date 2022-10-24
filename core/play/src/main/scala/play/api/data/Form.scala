@@ -4,11 +4,6 @@
 
 package play.api.data
 
-import akka.annotation.InternalApi
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
-import scala.language.existentials
 import play.api.data.format._
 import play.api.data.validation._
 import play.api.http.HttpVerbs
@@ -16,6 +11,11 @@ import play.api.i18n._
 import play.api.libs.json._
 import play.api.mvc._
 import play.api.templates.PlayMagic.translate
+
+import akka.annotation.InternalApi
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import scala.language.existentials
 import scala.util.control.NoStackTrace
 
 /**

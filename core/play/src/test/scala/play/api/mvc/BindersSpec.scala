@@ -92,7 +92,7 @@ class BindersSpec extends Specification {
         )
       }
       val brokenSeqBinder = implicitly[QueryStringBindable[Seq[String]]]
-      val err             = s"""failed to parse q: failed: once
+      val err = s"""failed to parse q: failed: once
                    |failed to parse q: failed: knew
                    |failed to parse q: failed: a
                    |failed to parse q: failed: man

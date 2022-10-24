@@ -6,7 +6,6 @@ package play.api.data.format
 
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-
 import org.specs2.mutable.Specification
 
 class PlayDateSpec extends Specification {

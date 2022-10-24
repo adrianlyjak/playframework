@@ -4,20 +4,19 @@
 
 package play.filters.csp
 
-import java.util.concurrent.CompletableFuture
-
 import play.api.Application
 import play.api.http.HeaderNames
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.mvc.BodyParser
 import play.api.test._
+
+import java.util.concurrent.CompletableFuture
 import play.core.j._
 import play.core.routing.HandlerInvokerFactory
 import play.mvc.Controller
 import play.mvc.Http
 import play.mvc.Result
 import play.mvc.Results
-
 import scala.reflect.ClassTag
 
 /**

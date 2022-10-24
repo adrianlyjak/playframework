@@ -4,18 +4,17 @@
 
 package play.core.routing
 
-import java.util.Optional
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.CompletionStage
-
-import akka.stream.scaladsl.Flow
 import play.api.http.ActionCompositionConfiguration
 import play.api.mvc._
 import play.api.routing.HandlerDef
+
+import akka.stream.scaladsl.Flow
+import java.util.Optional
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.CompletionStage
 import play.core.j._
 import play.libs.reflect.MethodUtils
 import play.mvc.Http.RequestBody
-
 import scala.jdk.FutureConverters._
 import scala.jdk.OptionConverters._
 import scala.util.control.NonFatal
@@ -166,6 +165,7 @@ object HandlerInvokerFactory {
 
   implicit def javaWebSocket: HandlerInvokerFactory[JWebSocket] = new HandlerInvokerFactory[JWebSocket] {
     import play.api.http.websocket._
+
     import play.core.Execution.Implicits.trampoline
     import play.http.websocket.{ Message => JMessage }
 

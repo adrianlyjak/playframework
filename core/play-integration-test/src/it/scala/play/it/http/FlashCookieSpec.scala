@@ -4,20 +4,19 @@
 
 package play.it.http
 
-import java.util
+import play.api.mvc._
+import play.api.mvc.Results._
+import play.api.routing.Router
+import play.api.test._
 
+import java.util
 import okhttp3.CookieJar
 import okhttp3.HttpUrl
 import org.specs2.execute.AsResult
 import org.specs2.specification.core.Fragment
-import play.api.mvc.Results._
-import play.api.mvc._
-import play.api.routing.Router
-import play.api.test._
 import play.core.server.ServerEndpoint
 import play.it.test.EndpointIntegrationSpecification
 import play.it.test.OkHttpEndpointSupport
-
 import scala.jdk.CollectionConverters
 
 class FlashCookieSpec
@@ -146,7 +145,7 @@ class FlashCookieSpec
         .withAllCookieEndpoints { (fcep: CookieEndpoint) =>
           val (response, cookies) = fcep.call("/flash", Nil)
           response.code must equalTo(SEE_OTHER)
-          response.header(SET_COOKIE) must not contain ("SameSite")
+          response.header(SET_COOKIE) must not contain "SameSite"
         }
 
       "by sending SameSite=Lax when configured with 'lax'" in withFlashCookieApp(

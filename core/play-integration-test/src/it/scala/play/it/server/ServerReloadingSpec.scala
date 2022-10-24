@@ -4,9 +4,8 @@
 
 package play.it.server
 
-import akka.stream.Materializer
-import javax.inject.Inject
-import javax.inject.Provider
+import play.api.Application
+import play.api.Configuration
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.concurrent.ActorSystemProvider
@@ -18,16 +17,17 @@ import play.api.routing.Router
 import play.api.routing.sird._
 import play.api.test.PlaySpecification
 import play.api.test.WsTestClient
-import play.api.Application
-import play.api.Configuration
+
+import akka.stream.Materializer
+import javax.inject.Inject
+import javax.inject.Provider
 import play.core.ApplicationProvider
-import play.core.server.common.ServerDebugInfo
 import play.core.server.ServerConfig
 import play.core.server.ServerProvider
+import play.core.server.common.ServerDebugInfo
 import play.it.AkkaHttpIntegrationSpecification
 import play.it.NettyIntegrationSpecification
 import play.it.ServerIntegrationSpecification
-
 import scala.concurrent.Future
 import scala.util.Failure
 import scala.util.Success
@@ -110,84 +110,84 @@ trait ServerReloadingSpec extends PlaySpecification with WsTestClient with Serve
     "update its forwarding configuration on reloading" in {
       val testAppProvider = new TestApplicationProvider
       withApplicationProvider(testAppProvider) { implicit port: Port => // First we make a request to the server when the application
-      // cannot be loaded. This may cause the server to load the configuration.
+        // cannot be loaded. This may cause the server to load the configuration.
 
-      {
-        testAppProvider.provide(Failure(new Exception))
-        val response = await(wsUrl("/getremoteaddress").get())
-        response.status must_== 500
-      }
+        {
+          testAppProvider.provide(Failure(new Exception))
+          val response = await(wsUrl("/getremoteaddress").get())
+          response.status must_== 500
+        }
 
-      // Now we update the TestApplicationProvider with a working Application.
-      // We check that the server uses the default forwarding configuration.
+        // Now we update the TestApplicationProvider with a working Application.
+        // We check that the server uses the default forwarding configuration.
 
-      {
-        testAppProvider.provide(
-          Success(
-            GuiceApplicationBuilder()
-              .overrides(bind[Router].toProvider[ServerReloadingSpec.TestRouterProvider])
-              .build()
+        {
+          testAppProvider.provide(
+            Success(
+              GuiceApplicationBuilder()
+                .overrides(bind[Router].toProvider[ServerReloadingSpec.TestRouterProvider])
+                .build()
+            )
           )
-        )
 
-        val noHeaderResponse = await {
-          wsUrl("/getremoteaddress").get()
+          val noHeaderResponse = await {
+            wsUrl("/getremoteaddress").get()
+          }
+          noHeaderResponse.status must_== 200
+          noHeaderResponse.body must_== "127.0.0.1"
+
+          val xForwardedHeaderResponse = await {
+            wsUrl("/getremoteaddress")
+              .withHttpHeaders("X-Forwarded-For" -> "192.0.2.43, ::1, 127.0.0.1, [::1]")
+              .get()
+          }
+          xForwardedHeaderResponse.status must_== 200
+          xForwardedHeaderResponse.body must_== "192.0.2.43"
+
+          val forwardedHeaderResponse = await {
+            wsUrl("/getremoteaddress")
+              .withHttpHeaders("Forwarded" -> "for=192.0.2.43;proto=https, for=\"[::1]\"")
+              .get()
+          }
+          forwardedHeaderResponse.status must_== 200
+          forwardedHeaderResponse.body must_== "127.0.0.1"
         }
-        noHeaderResponse.status must_== 200
-        noHeaderResponse.body must_== "127.0.0.1"
 
-        val xForwardedHeaderResponse = await {
-          wsUrl("/getremoteaddress")
-            .withHttpHeaders("X-Forwarded-For" -> "192.0.2.43, ::1, 127.0.0.1, [::1]")
-            .get()
-        }
-        xForwardedHeaderResponse.status must_== 200
-        xForwardedHeaderResponse.body must_== "192.0.2.43"
+        // Now we update the TestApplicationProvider with a second working Application,
+        // this time with different forwarding configuration.
 
-        val forwardedHeaderResponse = await {
-          wsUrl("/getremoteaddress")
-            .withHttpHeaders("Forwarded" -> "for=192.0.2.43;proto=https, for=\"[::1]\"")
-            .get()
-        }
-        forwardedHeaderResponse.status must_== 200
-        forwardedHeaderResponse.body must_== "127.0.0.1"
-      }
-
-      // Now we update the TestApplicationProvider with a second working Application,
-      // this time with different forwarding configuration.
-
-      {
-        testAppProvider.provide(
-          Success(
-            GuiceApplicationBuilder()
-              .configure("play.http.forwarded.version" -> "rfc7239")
-              .overrides(bind[Router].toProvider[ServerReloadingSpec.TestRouterProvider])
-              .build()
+        {
+          testAppProvider.provide(
+            Success(
+              GuiceApplicationBuilder()
+                .configure("play.http.forwarded.version" -> "rfc7239")
+                .overrides(bind[Router].toProvider[ServerReloadingSpec.TestRouterProvider])
+                .build()
+            )
           )
-        )
 
-        val noHeaderResponse = await {
-          wsUrl("/getremoteaddress").get()
-        }
-        noHeaderResponse.status must_== 200
-        noHeaderResponse.body must_== "127.0.0.1"
+          val noHeaderResponse = await {
+            wsUrl("/getremoteaddress").get()
+          }
+          noHeaderResponse.status must_== 200
+          noHeaderResponse.body must_== "127.0.0.1"
 
-        val xForwardedHeaderResponse = await {
-          wsUrl("/getremoteaddress")
-            .withHttpHeaders("X-Forwarded-For" -> "192.0.2.43, ::1, 127.0.0.1, [::1]")
-            .get()
-        }
-        xForwardedHeaderResponse.status must_== 200
-        xForwardedHeaderResponse.body must_== "127.0.0.1"
+          val xForwardedHeaderResponse = await {
+            wsUrl("/getremoteaddress")
+              .withHttpHeaders("X-Forwarded-For" -> "192.0.2.43, ::1, 127.0.0.1, [::1]")
+              .get()
+          }
+          xForwardedHeaderResponse.status must_== 200
+          xForwardedHeaderResponse.body must_== "127.0.0.1"
 
-        val forwardedHeaderResponse = await {
-          wsUrl("/getremoteaddress")
-            .withHttpHeaders("Forwarded" -> "for=192.0.2.43;proto=https, for=\"[::1]\"")
-            .get()
+          val forwardedHeaderResponse = await {
+            wsUrl("/getremoteaddress")
+              .withHttpHeaders("Forwarded" -> "for=192.0.2.43;proto=https, for=\"[::1]\"")
+              .get()
+          }
+          forwardedHeaderResponse.status must_== 200
+          forwardedHeaderResponse.body must_== "192.0.2.43"
         }
-        forwardedHeaderResponse.status must_== 200
-        forwardedHeaderResponse.body must_== "192.0.2.43"
-      }
       }
     }
 

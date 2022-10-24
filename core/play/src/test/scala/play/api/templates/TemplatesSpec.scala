@@ -4,10 +4,6 @@
 
 package play.api.templates
 
-import java.util.Optional
-
-import akka.util.ByteString
-import org.specs2.mutable._
 import play.api.Configuration
 import play.api.Environment
 import play.api.http.HttpConfiguration
@@ -17,9 +13,12 @@ import play.api.i18n.DefaultLangsProvider
 import play.api.i18n.DefaultMessagesApiProvider
 import play.api.i18n.Messages
 import play.api.mvc.Results
+
+import akka.util.ByteString
+import java.util.Optional
+import org.specs2.mutable._
 import play.mvc.{ Results => JResults }
 import play.twirl.api.Html
-
 import scala.jdk.CollectionConverters._
 
 class TemplatesSpec extends Specification {

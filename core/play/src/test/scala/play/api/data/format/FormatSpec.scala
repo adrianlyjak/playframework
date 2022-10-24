@@ -4,17 +4,16 @@
 
 package play.api.data.format
 
+import play.api.data._
+import play.api.data.Forms._
+
 import java.sql.Timestamp
 import java.time.LocalDate
 import java.time.LocalDateTime
-
-import org.specs2.mutable.Specification
 import java.util.Date
 import java.util.TimeZone
 import java.util.UUID
-
-import play.api.data._
-import play.api.data.Forms._
+import org.specs2.mutable.Specification
 
 class FormatSpec extends Specification {
   "A java.sql.Date format" should {
@@ -160,7 +159,8 @@ class FormatSpec extends Specification {
       Form("value" -> bigDecimal)
         .bind(Map("value" -> "10.23"))
         .fold(
-          formWithErrors => { "The mapping should not fail." must equalTo("Error") }, { number =>
+          formWithErrors => { "The mapping should not fail." must equalTo("Error") },
+          { number =>
             number must equalTo(BigDecimal("10.23"))
           }
         )
@@ -172,7 +172,8 @@ class FormatSpec extends Specification {
       Form("value" -> bigDecimal(10, 2))
         .bind(Map("value" -> "10.23"))
         .fold(
-          formWithErrors => { "The mapping should not fail." must equalTo("Error") }, { number =>
+          formWithErrors => { "The mapping should not fail." must equalTo("Error") },
+          { number =>
             number must equalTo(BigDecimal("10.23"))
           }
         )
@@ -182,7 +183,8 @@ class FormatSpec extends Specification {
       Form("value" -> bigDecimal(10, 1))
         .bind(Map("value" -> "10.23"))
         .fold(
-          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.real.precision") }, { number =>
+          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.real.precision") },
+          { number =>
             "The mapping should fail." must equalTo("Error")
           }
         )
@@ -192,7 +194,8 @@ class FormatSpec extends Specification {
       Form("value" -> bigDecimal(5, 2))
         .bind(Map("value" -> "12111.23"))
         .fold(
-          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.real.precision") }, { number =>
+          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.real.precision") },
+          { number =>
             "The mapping should fail." must equalTo("Error")
           }
         )
@@ -206,7 +209,8 @@ class FormatSpec extends Specification {
       Form("value" -> uuid)
         .bind(Map("value" -> testUUID.toString))
         .fold(
-          formWithErrors => { "The mapping should not fail." must equalTo("Error") }, { uuid =>
+          formWithErrors => { "The mapping should not fail." must equalTo("Error") },
+          { uuid =>
             uuid must equalTo(testUUID)
           }
         )
@@ -216,7 +220,8 @@ class FormatSpec extends Specification {
       Form("value" -> uuid)
         .bind(Map("value" -> "Joe"))
         .fold(
-          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.uuid") }, { uuid =>
+          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.uuid") },
+          { uuid =>
             uuid must equalTo(UUID.randomUUID())
           }
         )
@@ -230,7 +235,8 @@ class FormatSpec extends Specification {
       Form("value" -> char)
         .bind(Map("value" -> testChar.toString))
         .fold(
-          formWithErrors => { "The mapping should not fail." must equalTo("Error") }, { char =>
+          formWithErrors => { "The mapping should not fail." must equalTo("Error") },
+          { char =>
             char must equalTo(testChar)
           }
         )
@@ -240,7 +246,8 @@ class FormatSpec extends Specification {
       Form("value" -> char)
         .bind(Map("value" -> " "))
         .fold(
-          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.required") }, { char =>
+          formWithErrors => { formWithErrors.errors.head.message must equalTo("error.required") },
+          { char =>
             char must equalTo('X')
           }
         )

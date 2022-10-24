@@ -4,25 +4,23 @@
 
 package play.api
 
-import java.util.concurrent.atomic.AtomicReference
+import play.api.i18n.MessagesApi
 
 import akka.Done
 import akka.actor.CoordinatedShutdown
 import akka.stream.Materializer
-import play.api.i18n.MessagesApi
+import java.util.concurrent.atomic.AtomicReference
+import javax.xml.XMLConstants
+import javax.xml.parsers.SAXParserFactory
+import play.libs.XML.Constants
 import play.utils.Threads
-
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
-import scala.util.control.NonFatal
-import javax.xml.parsers.SAXParserFactory
-import play.libs.XML.Constants
-import javax.xml.XMLConstants
-
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try
+import scala.util.control.NonFatal
 
 /**
  * High-level API to access Play global features.
@@ -97,10 +95,12 @@ object Play {
     // Set the current app if the global application is enabled
     // Also set it if the current app is null, in order to display more useful errors if we try to use the app
     if (globalApp) {
-      logger.warn(s"""
-                     |You are using the deprecated global state to set and access the current running application. If you
-                     |need an instance of Application, set $GlobalAppConfigKey = false and use Dependency Injection instead.
-        """.stripMargin)
+      logger.warn(
+        s"""
+           |You are using the deprecated global state to set and access the current running application. If you
+           |need an instance of Application, set $GlobalAppConfigKey = false and use Dependency Injection instead.
+        """.stripMargin
+      )
       _currentApp.set(app)
 
       // It's possible to stop the Application using Coordinated Shutdown, when that happens the Application

@@ -4,18 +4,18 @@
 
 package play.it.http.parsing
 
-import java.util.concurrent.TimeUnit
+import play.api.Application
+import play.api.Configuration
+import play.api.test._
 
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import java.util.concurrent.TimeUnit
 import org.specs2.execute.Failure
 import org.specs2.matcher.Matchers
-import play.api.Application
-import play.api.Configuration
-import play.api.test._
 import play.libs.F
 import play.mvc.BodyParser
 import play.mvc.Http
@@ -49,11 +49,10 @@ class JacksonJsonBodyParserSpec extends PlaySpecification with Matchers {
       mapper.getRegisteredModuleIds.contains("play.utils.JacksonJsonNodeModule") must_== true
     }
 
-    "parse a simple JSON body with custom Jackson json-read-features" in new WithApplication(
-      guiceBuilder =>
-        guiceBuilder.configure(
-          "akka.serialization.jackson.play.json-read-features.ALLOW_SINGLE_QUOTES" -> "true"
-        )
+    "parse a simple JSON body with custom Jackson json-read-features" in new WithApplication(guiceBuilder =>
+      guiceBuilder.configure(
+        "akka.serialization.jackson.play.json-read-features.ALLOW_SINGLE_QUOTES" -> "true"
+      )
     ) {
 
       val configuration: Configuration = implicitly[Application].configuration

@@ -5,20 +5,18 @@
 package play.sbt.routes
 
 import play.api.PlayException
+
+import com.typesafe.sbt.web.incremental._
+import java.util.Optional
 import play.core.PlayVersion
-import play.routes.compiler.RoutesGenerator
 import play.routes.compiler.RoutesCompilationError
 import play.routes.compiler.RoutesCompiler.GeneratedSource
 import play.routes.compiler.RoutesCompiler.RoutesCompilerTask
-
+import play.routes.compiler.RoutesGenerator
 import sbt._
 import sbt.Keys._
-
-import xsbti.Position
-
-import java.util.Optional
 import scala.collection.mutable
-import com.typesafe.sbt.web.incremental._
+import xsbti.Position
 
 object RoutesKeys {
   val routesCompilerTasks = TaskKey[Seq[RoutesCompilerTask]]("playRoutesTasks", "The routes files to compile")
@@ -79,39 +77,38 @@ object RoutesCompiler extends AutoPlugin {
       // Aggregate all the routes file tasks that we want to compile the reverse routers for.
       aggregateReverseRoutes.value
         .map { agg =>
-          (agg.project / configuration.value / routesCompilerTasks)
+          agg.project / configuration.value / routesCompilerTasks
         }
         .join
-        .map {
-          (aggTasks: Seq[Seq[RoutesCompilerTask]]) =>
-            // Aggregated tasks need to have forwards router compilation disabled and reverse router compilation enabled.
-            val reverseRouterTasks = aggTasks.flatten.map { task =>
-              task.copy(forwardsRouter = false, reverseRouter = true)
-            }
+        .map { (aggTasks: Seq[Seq[RoutesCompilerTask]]) =>
+          // Aggregated tasks need to have forwards router compilation disabled and reverse router compilation enabled.
+          val reverseRouterTasks = aggTasks.flatten.map { task =>
+            task.copy(forwardsRouter = false, reverseRouter = true)
+          }
 
-            // Find the routes compile tasks for this project
-            val thisProjectTasks = sourcesInRoutes.map { file =>
-              RoutesCompilerTask(
-                file,
-                routesImportValue,
-                forwardsRouter = true,
-                reverseRouter = generateReverseRouterValue,
-                namespaceReverseRouter = namespaceReverseRouterValue
-              )
-            }
+          // Find the routes compile tasks for this project
+          val thisProjectTasks = sourcesInRoutes.map { file =>
+            RoutesCompilerTask(
+              file,
+              routesImportValue,
+              forwardsRouter = true,
+              reverseRouter = generateReverseRouterValue,
+              namespaceReverseRouter = namespaceReverseRouterValue
+            )
+          }
 
-            thisProjectTasks ++ reverseRouterTasks
+          thisProjectTasks ++ reverseRouterTasks
         }
     }.value,
     Defaults.ConfigGlobal / watchSources ++= (routes / sources).value,
     routes / target := crossTarget.value / "routes" / Defaults.nameForSrc(configuration.value.name),
-    routes := compileRoutesFiles.value,
+    routes          := compileRoutesFiles.value,
     sourceGenerators += Def.task(routes.value).taskValue,
     managedSourceDirectories += (routes / target).value
   )
 
   def defaultSettings = Seq(
-    routesImport := Nil,
+    routesImport           := Nil,
     aggregateReverseRoutes := Nil,
     // Generate reverse router defaults to true if this project is not aggregated by any of the projects it depends on
     // aggregateReverseRoutes projects.  Otherwise, it will be false, since another project will be generating the
@@ -134,7 +131,7 @@ object RoutesCompiler extends AutoPlugin {
         }
     }.value,
     namespaceReverseRouter := false,
-    routesGenerator := InjectedRoutesGenerator,
+    routesGenerator        := InjectedRoutesGenerator,
     sourcePositionMappers += routesPositionMapper
   )
 

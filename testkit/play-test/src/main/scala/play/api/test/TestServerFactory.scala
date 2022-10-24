@@ -4,14 +4,13 @@
 
 package play.api.test
 
-import java.util.concurrent.locks.Lock
-
-import akka.annotation.ApiMayChange
 import play.api.Application
 import play.api.Configuration
 import play.api.Mode
-import play.core.server._
 
+import akka.annotation.ApiMayChange
+import java.util.concurrent.locks.Lock
+import play.core.server._
 import scala.util.control.NonFatal
 
 /** Creates a server for an application. */

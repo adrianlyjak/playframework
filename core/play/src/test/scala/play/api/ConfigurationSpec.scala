@@ -4,6 +4,8 @@
 
 package play.api
 
+import com.typesafe.config.ConfigException
+import com.typesafe.config.ConfigFactory
 import java.io._
 import java.net.MalformedURLException
 import java.net.URI
@@ -16,12 +18,8 @@ import java.time.temporal.TemporalAmount
 import java.util.Collections
 import java.util.Objects
 import java.util.Properties
-
-import com.typesafe.config.ConfigException
-import com.typesafe.config.ConfigFactory
 import org.specs2.execute.FailureException
 import org.specs2.mutable.Specification
-
 import scala.concurrent.duration._
 import scala.util.control.NonFatal
 
@@ -218,7 +216,7 @@ class ConfigurationSpec extends Specification {
     "support getting prototyped maps" in {
       val map = config(
         "bars"           -> Map("foo" -> Map("a" -> "different a")),
-        "prototype.bars" -> Map("a"   -> "some a", "b" -> "some b")
+        "prototype.bars" -> Map("a" -> "some a", "b" -> "some b")
       ).getPrototypedMap("bars")
       map must haveSize(1)
       val foo = map("foo")

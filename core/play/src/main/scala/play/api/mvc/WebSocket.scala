@@ -4,18 +4,16 @@
 
 package play.api.mvc
 
-import akka.stream.scaladsl.Flow
-import akka.util.ByteString
 import play.api.http.websocket._
 import play.api.libs.json._
 import play.api.libs.streams.AkkaStreams
-import play.core.Execution.Implicits.trampoline
 
-import scala.concurrent.Future
-
-import akka.actor.Props
 import akka.actor.ActorRef
-
+import akka.actor.Props
+import akka.stream.scaladsl.Flow
+import akka.util.ByteString
+import play.core.Execution.Implicits.trampoline
+import scala.concurrent.Future
 import scala.util.control.NonFatal
 
 /**
@@ -158,11 +156,14 @@ object WebSocket {
         json =>
           Json
             .fromJson[In](json)
-            .fold({ errors =>
-              throw WebSocketCloseException(
-                CloseMessage(Some(CloseCodes.Unacceptable), Json.stringify(JsError.toJson(errors)))
-              )
-            }, identity),
+            .fold(
+              { errors =>
+                throw WebSocketCloseException(
+                  CloseMessage(Some(CloseCodes.Unacceptable), Json.stringify(JsError.toJson(errors)))
+                )
+              },
+              identity
+            ),
         out => Json.toJson(out)
       )
     }

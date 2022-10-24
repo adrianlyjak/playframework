@@ -4,23 +4,23 @@
 
 package play.core.server.common
 
-import akka.actor.ActorSystem
-import akka.stream.Materializer
-import akka.util.ByteString
-import org.specs2.mutable.Specification
-import play.api.http.Status._
 import play.api.http._
+import play.api.http.Status._
 import play.api.libs.crypto.CookieSignerProvider
 import play.api.libs.typedmap.TypedMap
-import play.api.mvc.Results._
 import play.api.mvc._
+import play.api.mvc.Results._
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RemoteConnection
 import play.api.mvc.request.RequestTarget
 
-import scala.concurrent.duration._
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import akka.util.ByteString
+import org.specs2.mutable.Specification
 import scala.concurrent.Await
 import scala.concurrent.Future
+import scala.concurrent.duration._
 import scala.util.Success
 import scala.util.Try
 

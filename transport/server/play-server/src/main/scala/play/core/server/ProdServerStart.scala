@@ -4,17 +4,15 @@
 
 package play.core.server
 
+import play.api._
+
+import akka.Done
+import akka.actor.CoordinatedShutdown
 import java.io._
 import java.nio.file.FileAlreadyExistsException
 import java.nio.file.Files
 import java.nio.file.StandardOpenOption
-
 import scala.concurrent.Future
-
-import akka.Done
-import akka.actor.CoordinatedShutdown
-
-import play.api._
 
 /**
  * Used to start servers in 'prod' mode, the mode that is

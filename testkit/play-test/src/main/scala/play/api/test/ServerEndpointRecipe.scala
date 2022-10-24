@@ -4,17 +4,17 @@
 
 package play.api.test
 
-import akka.annotation.ApiMayChange
-import com.typesafe.config.ConfigFactory
 import play.api.Application
 import play.api.Configuration
+
+import akka.annotation.ApiMayChange
+import com.typesafe.config.ConfigFactory
 import play.core.server.SelfSigned
 import play.core.server.SelfSignedSSLEngineProvider
 import play.core.server.ServerConfig
 import play.core.server.ServerEndpoint
 import play.core.server.ServerEndpoints
 import play.core.server.ServerProvider
-
 import scala.jdk.CollectionConverters._
 
 /**

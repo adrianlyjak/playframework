@@ -4,9 +4,8 @@
 
 package play.sbt
 
-import sbt._
-
 import play.dev.filewatch.FileWatchService
+import sbt._
 
 /**
  * Declares the default imports for Play plugins.

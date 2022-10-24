@@ -4,16 +4,14 @@
 
 package play.api.libs.concurrent
 
-import java.lang.reflect.ParameterizedType
-
-import scala.reflect.ClassTag
-import scala.reflect.classTag
-
 import akka.actor.typed.ActorRef
 import akka.actor.typed.Behavior
 import akka.annotation.ApiMayChange
 import com.google.inject.TypeLiteral
 import com.google.inject.util.Types
+import java.lang.reflect.ParameterizedType
+import scala.reflect.ClassTag
+import scala.reflect.classTag
 
 /** Utility methods related to using Akka's typed API. */
 @ApiMayChange

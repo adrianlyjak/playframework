@@ -4,18 +4,16 @@
 
 package play.api.internal.libs.concurrent
 
-import java.util.concurrent.TimeUnit
-
 import akka.Done
 import akka.actor.ActorSystem
 import akka.actor.CoordinatedShutdown
 import akka.annotation.InternalApi
+import java.util.concurrent.TimeUnit
 import org.slf4j.LoggerFactory
-
-import scala.concurrent.duration.Duration
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.TimeoutException
+import scala.concurrent.duration.Duration
 
 /**
  * INTERNAL API: provides ways to call Akka's CoordinatedShutdown.

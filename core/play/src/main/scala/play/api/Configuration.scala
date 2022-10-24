@@ -4,20 +4,18 @@
 
 package play.api
 
+import com.typesafe.config._
 import java.io.File
 import java.net.URI
 import java.net.URL
-import java.util.Properties
 import java.time.Period
 import java.time.temporal.TemporalAmount
-
-import com.typesafe.config._
+import java.util.Properties
 import play.twirl.api.utils.StringEscapeUtils
 import play.utils.PlayIO
-
-import scala.jdk.CollectionConverters._
 import scala.concurrent.duration.Duration
 import scala.concurrent.duration.FiniteDuration
+import scala.jdk.CollectionConverters._
 import scala.util.control.NonFatal
 
 /**
@@ -65,14 +63,13 @@ object Configuration {
         {
           setting("config.resource").map(resource => ConfigFactory.parseResources(classLoader, resource))
         }.orElse {
-            setting("config.file").map(fileName => ConfigFactory.parseFileAnySyntax(new File(fileName)))
-          }
-          .getOrElse {
-            val parseOptions = ConfigParseOptions.defaults
-              .setClassLoader(classLoader)
-              .setAllowMissing(allowMissingApplicationConf)
-            ConfigFactory.defaultApplication(parseOptions)
-          }
+          setting("config.file").map(fileName => ConfigFactory.parseFileAnySyntax(new File(fileName)))
+        }.getOrElse {
+          val parseOptions = ConfigParseOptions.defaults
+            .setClassLoader(classLoader)
+            .setAllowMissing(allowMissingApplicationConf)
+          ConfigFactory.defaultApplication(parseOptions)
+        }
       }
 
       // Resolve another .conf file so that we can override values in Akka's

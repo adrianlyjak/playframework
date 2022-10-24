@@ -4,20 +4,19 @@
 
 package play.filters.csp
 
-import java.util.Locale
-
-import akka.util.ByteString
-import play.api.mvc._
-import javax.inject._
 import play.api.http.HttpErrorHandler
 import play.api.http.HttpErrorInfo
 import play.api.http.Status
-import play.api.libs.json._
 import play.api.libs.functional.syntax._
+import play.api.libs.json._
 import play.api.libs.streams
 import play.api.libs.streams.Accumulator
 import play.api.mvc
+import play.api.mvc._
 
+import akka.util.ByteString
+import java.util.Locale
+import javax.inject._
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 
@@ -134,10 +133,10 @@ class DefaultCSPReportBodyParser @Inject() (parsers: PlayBodyParsers)(implicit e
       .as("application/problem+json")
   }
 
-  import play.mvc.Http
-  import play.mvc.Result
   import play.libs.F
   import play.libs.streams.Accumulator
+  import play.mvc.Http
+  import play.mvc.Result
 
   // Java API
   override def apply(request: Http.RequestHeader): Accumulator[ByteString, F.Either[Result, JavaCSPReport]] = {
@@ -221,7 +220,7 @@ object ScalaCSPReport {
       )
   }
 
-  implicit val reads: Reads[ScalaCSPReport] = (
+  implicit val reads: Reads[ScalaCSPReport] =
     (__ \ "document-uri")
       .read[String]
       .and((__ \ "violated-directive").read[String])
@@ -234,8 +233,7 @@ object ScalaCSPReport {
       .and((__ \ "status-code").readNullable[Int])
       .and((__ \ "source-file").readNullable[String])
       .and((__ \ "line-number").readNullable[Long](longOrStringToLongRead))
-      .and((__ \ "column-number").readNullable[Long](longOrStringToLongRead))
-    )(ScalaCSPReport.apply _)
+      .and((__ \ "column-number").readNullable[Long](longOrStringToLongRead))(ScalaCSPReport.apply _)
 }
 
 import java.util.Optional

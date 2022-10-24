@@ -4,9 +4,6 @@
 
 package play.api.mvc
 
-import java.util.Locale
-
-import org.specs2.mutable.Specification
 import play.api.http.HeaderNames._
 import play.api.http.HttpConfiguration
 import play.api.i18n.Lang
@@ -17,6 +14,9 @@ import play.api.libs.typedmap.TypedMap
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RemoteConnection
 import play.api.mvc.request.RequestTarget
+
+import java.util.Locale
+import org.specs2.mutable.Specification
 
 class RequestHeaderSpec extends Specification {
   "request header" should {

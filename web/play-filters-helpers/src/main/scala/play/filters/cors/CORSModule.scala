@@ -4,13 +4,13 @@
 
 package play.filters.cors
 
-import javax.inject.Inject
-import javax.inject.Provider
-
-import akka.stream.Materializer
 import play.api.Configuration
 import play.api.http.HttpErrorHandler
 import play.api.inject._
+
+import akka.stream.Materializer
+import javax.inject.Inject
+import javax.inject.Provider
 
 /**
  * Provider for CORSConfig.

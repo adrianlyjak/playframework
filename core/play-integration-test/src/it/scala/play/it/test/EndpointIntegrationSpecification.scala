@@ -4,16 +4,17 @@
 
 package play.it.test
 
+import play.api.http.HttpProtocol
+import play.api.test.ApplicationFactories
+import play.api.test.ApplicationFactory
+import play.api.test.ServerEndpointRecipe
+
 import org.specs2.execute.AsResult
 import org.specs2.execute.PendingUntilFixed
 import org.specs2.execute.Result
 import org.specs2.execute.ResultExecution
 import org.specs2.mutable.SpecLike
 import org.specs2.specification.core.Fragment
-import play.api.http.HttpProtocol
-import play.api.test.ApplicationFactories
-import play.api.test.ApplicationFactory
-import play.api.test.ServerEndpointRecipe
 import play.core.server.ServerEndpoint
 
 /**

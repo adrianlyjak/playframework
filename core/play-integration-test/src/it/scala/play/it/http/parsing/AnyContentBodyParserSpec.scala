@@ -4,11 +4,12 @@
 
 package play.it.http.parsing
 
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
 import play.api.Application
 import play.api.mvc._
 import play.api.test._
+
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
 
 class AnyContentBodyParserSpec extends PlaySpecification {
   "The anyContent body parser" should {

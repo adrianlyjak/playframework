@@ -4,19 +4,19 @@
 
 package play.api.libs
 
-import akka.actor.ActorSystem
-import akka.stream.scaladsl._
-import akka.stream.Materializer
-import akka.util.ByteString
-import akka.util.Timeout
-import org.specs2.mutable._
 import play.api.PlayCoreTestApplication
 import play.api.http.ContentTypes
 import play.api.libs.json.JsString
 import play.api.libs.json.JsValue
 import play.api.mvc._
-import play.core.test.FakeRequest
 
+import akka.actor.ActorSystem
+import akka.stream.Materializer
+import akka.stream.scaladsl._
+import akka.util.ByteString
+import akka.util.Timeout
+import org.specs2.mutable._
+import play.core.test.FakeRequest
 import scala.concurrent.Await
 import scala.concurrent.Future
 
@@ -25,21 +25,21 @@ class CometSpec extends Specification {
       extends ControllerHelpers {
     val Action = action
 
-    //#comet-string
+    // #comet-string
     def cometString = action {
       implicit val m                      = materializer
       def stringSource: Source[String, _] = Source(List("kiki", "foo", "bar"))
       Ok.chunked(stringSource.via(Comet.string("parent.cometMessage"))).as(ContentTypes.HTML)
     }
-    //#comet-string
+    // #comet-string
 
-    //#comet-json
+    // #comet-json
     def cometJson = action {
       implicit val m                       = materializer
       def stringSource: Source[JsValue, _] = Source(List(JsString("jsonString")))
       Ok.chunked(stringSource.via(Comet.json("parent.cometMessage"))).as(ContentTypes.HTML)
     }
-    //#comet-json
+    // #comet-json
   }
 
   def newTestApplication(): play.api.Application = new PlayCoreTestApplication() {
@@ -75,7 +75,7 @@ class CometSpec extends Specification {
     }
   }
 
-  //---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   // Can't use play.api.test.ResultsExtractor here as it is not imported
   // So, copy the methods necessary to extract string.
 

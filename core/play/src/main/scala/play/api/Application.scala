@@ -4,18 +4,11 @@
 
 package play.api
 
-import java.io._
-
-import akka.actor.ActorSystem
-import akka.actor.CoordinatedShutdown
-import akka.stream.Materializer
-import javax.inject.Inject
-import javax.inject.Singleton
 import play.api.ApplicationLoader.DevContext
 import play.api.http._
 import play.api.i18n.I18nComponents
-import play.api.inject.ApplicationLifecycle
 import play.api.inject._
+import play.api.inject.ApplicationLifecycle
 import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
 import play.api.libs.Files._
 import play.api.libs.concurrent.AkkaComponents
@@ -26,13 +19,19 @@ import play.api.mvc._
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RequestFactory
 import play.api.routing.Router
-import play.core.j.JavaContextComponents
-import play.core.j.JavaHelpers
+
+import akka.actor.ActorSystem
+import akka.actor.CoordinatedShutdown
+import akka.stream.Materializer
+import java.io._
+import javax.inject.Inject
+import javax.inject.Singleton
 import play.core.DefaultWebCommands
 import play.core.SourceMapper
 import play.core.WebCommands
+import play.core.j.JavaContextComponents
+import play.core.j.JavaHelpers
 import play.utils._
-
 import scala.annotation.implicitNotFound
 import scala.concurrent.Future
 import scala.reflect.ClassTag
@@ -49,10 +48,10 @@ import scala.reflect.ClassTag
  * }}}
  *
  * This will create an application using the current classloader.
- *
  */
 @implicitNotFound(
-  msg = "You do not have an implicit Application in scope. If you want to bring the current running Application into context, please use dependency injection."
+  msg =
+    "You do not have an implicit Application in scope. If you want to bring the current running Application into context, please use dependency injection."
 )
 trait Application {
 
@@ -76,9 +75,9 @@ trait Application {
    */
   def environment: Environment
 
-  private[play] def isDev  = (mode == Mode.Dev)
-  private[play] def isTest = (mode == Mode.Test)
-  private[play] def isProd = (mode == Mode.Prod)
+  private[play] def isDev  = mode == Mode.Dev
+  private[play] def isTest = mode == Mode.Test
+  private[play] def isProd = mode == Mode.Prod
 
   def configuration: Configuration
 

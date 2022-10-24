@@ -4,16 +4,14 @@
 
 package play.core.server.common
 
+import com.google.common.net.InetAddresses
 import java.net.Inet4Address
 import java.net.Inet6Address
 import java.net.InetAddress
-
-import com.google.common.net.InetAddresses
 import play.core.server.common.ForwardedHeaderHandler.ForwardedHeaderVersion
 import play.core.server.common.ForwardedHeaderHandler.Rfc7239
 import play.core.server.common.ForwardedHeaderHandler.Xforwarded
 import play.core.server.common.NodeIdentifierParser._
-
 import scala.util.Try
 import scala.util.parsing.combinator.RegexParsers
 

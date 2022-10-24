@@ -4,10 +4,11 @@
 
 package play.api.libs.openid
 
-import org.specs2.mock.Mockito
 import play.api.http.HeaderNames
-import play.api.libs.ws._
 import play.api.http.Status._
+import play.api.libs.ws._
+
+import org.specs2.mock.Mockito
 import scala.concurrent.Future
 
 class WSMock extends Mockito with WSClient {

@@ -4,12 +4,12 @@
 
 package play.routing
 
-import javax.inject.Inject
-import javax.inject.Provider
-
-import play.api.inject._
 import play.api.Configuration
 import play.api.Environment
+import play.api.inject._
+
+import javax.inject.Inject
+import javax.inject.Provider
 import play.core.j.JavaContextComponents
 import play.mvc.BodyParser.Default
 

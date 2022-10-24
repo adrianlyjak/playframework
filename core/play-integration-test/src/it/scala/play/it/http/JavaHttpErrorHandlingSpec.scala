@@ -4,20 +4,20 @@
 
 package play.it.http
 
+import play.api.{ Application => ScalaApplication }
+import play.api.OptionalSourceMapper
+import play.api.mvc.RequestHeader
+import play.api.test.ApplicationFactories
+import play.api.test.ApplicationFactory
+import play.api.test.PlaySpecification
+
 import java.io.File
 import java.lang.reflect.InvocationTargetException
 import java.util
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
-
 import javax.inject.Provider
 import play._
-import play.api.mvc.RequestHeader
-import play.api.test.ApplicationFactories
-import play.api.test.ApplicationFactory
-import play.api.test.PlaySpecification
-import play.api.OptionalSourceMapper
-import play.api.{ Application => ScalaApplication }
 import play.core.BuildLink
 import play.core.HandleWebCommandSupport
 import play.core.SourceMapper
@@ -66,7 +66,7 @@ class JavaHttpErrorHandlingSpec
 
         //  Config config, Environment environment, OptionalSourceMapper sourceMapper, Provider<Router> routes
         override def httpErrorHandler(): HttpErrorHandler = {
-          val mapper = (applicationContext.devContext()).map(_.sourceMapper).toScala
+          val mapper = applicationContext.devContext().map(_.sourceMapper).toScala
 
           val routesProvider: Provider[play.api.routing.Router] = new Provider[play.api.routing.Router] {
             override def get(): play.api.routing.Router = router().asScala()

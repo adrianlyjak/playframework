@@ -4,22 +4,22 @@
 
 package play.filters.headers
 
-import javax.inject.Inject
-
-import com.typesafe.config.ConfigFactory
 import play.api.Application
 import play.api.Configuration
 import play.api.http.HttpFilters
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Results._
 import play.api.mvc.DefaultActionBuilder
 import play.api.mvc.Result
+import play.api.mvc.Results._
 import play.api.routing.Router
 import play.api.routing.SimpleRouterImpl
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
 import play.api.test.WithApplication
+
+import com.typesafe.config.ConfigFactory
+import javax.inject.Inject
 
 class Filters @Inject() (securityHeadersFilter: SecurityHeadersFilter) extends HttpFilters {
   def filters = Seq(securityHeadersFilter)
@@ -97,9 +97,12 @@ class SecurityHeadersFilterSpec extends PlaySpecification {
         header(X_FRAME_OPTIONS_HEADER, result) must beSome("some frame option")
       }
 
-      "work with no frame options" in withApplication(Ok("hello"), """
-                                                                     |play.filters.headers.frameOptions=null
-        """.stripMargin) { app =>
+      "work with no frame options" in withApplication(
+        Ok("hello"),
+        """
+          |play.filters.headers.frameOptions=null
+        """.stripMargin
+      ) { app =>
         val result = route(app, FakeRequest()).get
 
         header(X_FRAME_OPTIONS_HEADER, result) must beNone
@@ -190,9 +193,12 @@ class SecurityHeadersFilterSpec extends PlaySpecification {
         header(CONTENT_SECURITY_POLICY_HEADER, result) must beSome("some content security policy")
       }
 
-      "work with none" in withApplication(Ok("hello"), """
-                                                         |play.filters.headers.contentSecurityPolicy=null
-        """.stripMargin) { app =>
+      "work with none" in withApplication(
+        Ok("hello"),
+        """
+          |play.filters.headers.contentSecurityPolicy=null
+        """.stripMargin
+      ) { app =>
         val result = route(app, FakeRequest()).get
 
         header(CONTENT_SECURITY_POLICY_HEADER, result) must beNone
@@ -211,9 +217,12 @@ class SecurityHeadersFilterSpec extends PlaySpecification {
         header(REFERRER_POLICY, result) must beSome("some referrer policy")
       }
 
-      "work with none" in withApplication(Ok("hello"), """
-                                                         |play.filters.headers.referrerPolicy=null
-        """.stripMargin) { app =>
+      "work with none" in withApplication(
+        Ok("hello"),
+        """
+          |play.filters.headers.referrerPolicy=null
+        """.stripMargin
+      ) { app =>
         val result = route(app, FakeRequest()).get
 
         header(REFERRER_POLICY, result) must beNone

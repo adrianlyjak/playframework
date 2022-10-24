@@ -4,19 +4,19 @@
 
 package play.it.http
 
+import play.api.Application
+import play.api.ApplicationLoader
+import play.api.BuiltInComponentsFromContext
+import play.api.Environment
 import play.api.http.HttpErrorHandler
 import play.api.mvc._
 import play.api.routing.Router
 import play.api.test.ApplicationFactories
 import play.api.test.ApplicationFactory
 import play.api.test.PlaySpecification
-import play.api.Application
-import play.api.ApplicationLoader
-import play.api.BuiltInComponentsFromContext
-import play.api.Environment
+
 import play.it.test.EndpointIntegrationSpecification
 import play.it.test.OkHttpEndpointSupport
-
 import scala.concurrent.Future
 
 class HttpFiltersSpec

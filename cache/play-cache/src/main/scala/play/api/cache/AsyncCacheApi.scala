@@ -5,7 +5,6 @@
 package play.api.cache
 
 import akka.Done
-
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.reflect.ClassTag

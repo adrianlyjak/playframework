@@ -4,9 +4,9 @@
 
 package play.core.test
 
-import play.api.inject.guice.GuiceInjectorBuilder
 import play.api.inject.Binding
 import play.api.inject.Injector
+import play.api.inject.guice.GuiceInjectorBuilder
 
 /**
  * Utilities to help with testing

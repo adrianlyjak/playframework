@@ -5,7 +5,6 @@
 package play.core.routing
 
 import java.net.URI
-
 import scala.util.control.Exception
 
 /**
@@ -51,11 +50,11 @@ case class PathPattern(parts: Seq[PathPart]) {
   private lazy val (regex, groups) = {
     Some(parts.foldLeft("", Map.empty[String, Matcher => Either[Throwable, String]], 0) { (s, e) =>
       e match {
-        case StaticPart(p) => ((s._1 + Pattern.quote(p)), s._2, s._3)
+        case StaticPart(p) => (s._1 + Pattern.quote(p), s._2, s._3)
         case DynamicPart(k, r, encodeable) => {
           (
-            (s._1 + "(" + r + ")"),
-            (s._2 + (k -> decodeIfEncoded(encodeable, s._3 + 1))),
+            s._1 + "(" + r + ")",
+            s._2 + (k -> decodeIfEncoded(encodeable, s._3 + 1)),
             s._3 + 1 + Pattern.compile(r).matcher("").groupCount
           )
         }

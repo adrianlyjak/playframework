@@ -11,6 +11,7 @@ import play.api.routing.Router
 import play.api.test.PlaySpecification
 import play.api.test.TestServer
 import play.api.test.WsTestClient
+
 import play.core.j.MappedJavaHandlerComponents
 import play.http.ActionCreator
 import play.http.DefaultActionCreator
@@ -19,10 +20,10 @@ import play.it.http.ActionCompositionOrderTest.ControllerAnnotation
 import play.it.http.ActionCompositionOrderTest.SingletonActionAnnotation
 import play.it.http.ActionCompositionOrderTest.WithUsername
 import play.mvc.EssentialFilter
+import play.mvc.Http._
 import play.mvc.Result
 import play.mvc.Results
 import play.mvc.Security
-import play.mvc.Http._
 import play.routing.{ Router => JRouter }
 
 class GuiceJavaActionCompositionSpec extends JavaActionCompositionSpec {
@@ -127,9 +128,12 @@ trait JavaActionCompositionSpec extends PlaySpecification with WsTestClient {
       response.body must beEqualTo("java.lang.Classcontrollerjava.lang.reflect.Methodaction")
     }
 
-    "execute controller composition when action is not annotated" in makeRequest(new ComposedController {
-      override def action(request: Request): Result = Results.ok()
-    }, Map("play.http.actionComposition.controllerAnnotationsFirst" -> "true")) { response =>
+    "execute controller composition when action is not annotated" in makeRequest(
+      new ComposedController {
+        override def action(request: Request): Result = Results.ok()
+      },
+      Map("play.http.actionComposition.controllerAnnotationsFirst" -> "true")
+    ) { response =>
       response.body must beEqualTo("java.lang.Classcontroller")
     }
   }
@@ -219,12 +223,13 @@ trait JavaActionCompositionSpec extends PlaySpecification with WsTestClient {
       )
     }
 
-    "run multiple @Repeatable annotations on a controller type" in makeRequest(new MultipleRepeatableOnTypeController()) {
-      response =>
-        response.body must beEqualTo("""java.lang.Classaction1
-                                       |java.lang.Classaction2
-                                       |java.lang.Classaction1
-                                       |java.lang.Classaction2""".stripMargin.replaceAll(System.lineSeparator, ""))
+    "run multiple @Repeatable annotations on a controller type" in makeRequest(
+      new MultipleRepeatableOnTypeController()
+    ) { response =>
+      response.body must beEqualTo("""java.lang.Classaction1
+                                     |java.lang.Classaction2
+                                     |java.lang.Classaction1
+                                     |java.lang.Classaction2""".stripMargin.replaceAll(System.lineSeparator, ""))
     }
 
     "run multiple @Repeatable annotations on a controller action" in makeRequest(

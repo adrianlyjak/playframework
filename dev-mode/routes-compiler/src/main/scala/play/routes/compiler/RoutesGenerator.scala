@@ -5,7 +5,6 @@
 package play.routes.compiler
 
 import java.io.File
-
 import play.routes.compiler.RoutesCompiler.RoutesCompilerTask
 
 trait RoutesGenerator {

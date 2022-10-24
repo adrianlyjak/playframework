@@ -4,11 +4,11 @@
 
 package play.utils
 
-import play.api.inject.Binding
-import play.api.inject.BindingKey
 import play.api.Configuration
 import play.api.Environment
 import play.api.PlayException
+import play.api.inject.Binding
+import play.api.inject.BindingKey
 
 import scala.reflect.ClassTag
 
@@ -51,8 +51,7 @@ object Reflect {
       JavaDelegate <: JavaInterface,
       Default <: ScalaTrait
   ](environment: Environment, config: Configuration, key: String, defaultClassName: String)(
-      implicit
-      scalaTrait: SubClassOf[ScalaTrait],
+      implicit scalaTrait: SubClassOf[ScalaTrait],
       javaInterface: SubClassOf[JavaInterface],
       javaAdapter: ClassTag[JavaAdapter],
       javaDelegate: ClassTag[JavaDelegate],
@@ -113,8 +112,7 @@ object Reflect {
       key: String,
       defaultClassName: String
   )(
-      implicit
-      scalaTrait: SubClassOf[ScalaTrait],
+      implicit scalaTrait: SubClassOf[ScalaTrait],
       javaInterface: SubClassOf[JavaInterface],
       default: ClassTag[Default]
   ): Option[Either[Class[_ <: ScalaTrait], Class[_ <: JavaInterface]]] = {

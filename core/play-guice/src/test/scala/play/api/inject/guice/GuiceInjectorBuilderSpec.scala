@@ -5,19 +5,19 @@
 package play.api.inject
 package guice
 
+import play.api.Configuration
+import play.api.Environment
+import play.api.Mode
+import play.api.inject._
+
+import com.google.inject.AbstractModule
+import com.typesafe.config.Config
 import java.io.File
 import java.net.URLClassLoader
 import java.util.Collections
 import java.util.function.Supplier
-
-import com.google.inject.AbstractModule
-import com.typesafe.config.Config
 import org.specs2.mutable.Specification
 import play.{ Environment => JavaEnvironment }
-import play.api.inject._
-import play.api.Configuration
-import play.api.Environment
-import play.api.Mode
 import play.inject.{ Module => JavaModule }
 
 class GuiceInjectorBuilderSpec extends Specification {

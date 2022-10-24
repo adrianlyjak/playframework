@@ -4,7 +4,6 @@
 
 package play.api.mvc
 
-import org.specs2.mutable.Specification
 import play.api.http.HttpConfiguration
 import play.api.libs.typedmap.TypedEntry
 import play.api.libs.typedmap.TypedKey
@@ -12,6 +11,8 @@ import play.api.libs.typedmap.TypedMap
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RemoteConnection
 import play.api.mvc.request.RequestTarget
+
+import org.specs2.mutable.Specification
 import play.mvc.Http.RequestBody
 
 class RequestSpec extends Specification {

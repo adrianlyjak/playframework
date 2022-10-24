@@ -4,13 +4,13 @@
 
 package play.api.db
 
-import com.typesafe.config.Config
-import play.api.inject.Injector
-import play.api.inject.NewInstanceInjector
 import play.api.Configuration
 import play.api.Environment
 import play.api.Logger
+import play.api.inject.Injector
+import play.api.inject.NewInstanceInjector
 
+import com.typesafe.config.Config
 import scala.util.control.NonFatal
 
 /**

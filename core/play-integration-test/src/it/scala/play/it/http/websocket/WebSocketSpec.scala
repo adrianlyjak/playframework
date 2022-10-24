@@ -4,18 +4,6 @@
 
 package play.it.http.websocket
 
-import java.net.URI
-import java.util.concurrent.atomic.AtomicReference
-
-import akka.actor.Actor
-import akka.actor.Props
-import akka.actor.Status
-import akka.stream.scaladsl._
-import akka.util.ByteString
-import org.specs2.execute.AsResult
-import org.specs2.execute.EventuallyResults
-import org.specs2.matcher.Matcher
-import org.specs2.specification.AroundEach
 import play.api.Application
 import play.api.http.websocket._
 import play.api.inject.guice.GuiceApplicationBuilder
@@ -26,16 +14,27 @@ import play.api.mvc.Results
 import play.api.mvc.WebSocket
 import play.api.routing.HandlerDef
 import play.api.test._
+
+import akka.actor.Actor
+import akka.actor.Props
+import akka.actor.Status
+import akka.stream.scaladsl._
+import akka.util.ByteString
+import java.net.URI
+import java.util.concurrent.atomic.AtomicReference
+import org.specs2.execute.AsResult
+import org.specs2.execute.EventuallyResults
+import org.specs2.matcher.Matcher
+import org.specs2.specification.AroundEach
 import play.it._
 import play.it.http.websocket.WebSocketClient.ContinuationMessage
 import play.it.http.websocket.WebSocketClient.ExtendedMessage
 import play.it.http.websocket.WebSocketClient.SimpleMessage
-
 import scala.collection.immutable
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.concurrent.duration._
 import scala.concurrent.Future
 import scala.concurrent.Promise
+import scala.concurrent.duration._
 import scala.reflect.ClassTag
 
 class NettyWebSocketSpec    extends WebSocketSpec with NettyIntegrationSpecification
@@ -218,9 +217,12 @@ trait WebSocketSpec
           }
         ) { app =>
           import app.materializer
-          val (_, headers) = runWebSocket({ flow =>
-            sendFrames(TextMessage("foo"), CloseMessage(1000)).via(flow).runWith(Sink.ignore)
-          }, Some("my_crazy_subprotocol"))
+          val (_, headers) = runWebSocket(
+            { flow =>
+              sendFrames(TextMessage("foo"), CloseMessage(1000)).via(flow).runWith(Sink.ignore)
+            },
+            Some("my_crazy_subprotocol")
+          )
           (headers
             .map { case (key, value) => (key.toLowerCase, value) }
             .collect { case ("sec-websocket-protocol", selectedProtocol) => selectedProtocol }
@@ -257,7 +259,7 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               var messages = List.empty[String]
               def receive = {
@@ -268,7 +270,7 @@ trait WebSocketSpec
                 consumed.success(messages.reverse)
               }
             })
-          })
+          }
         }
       }
 
@@ -276,7 +278,7 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               messages.foreach { msg =>
                 out ! msg
@@ -284,7 +286,7 @@ trait WebSocketSpec
               out ! Status.Success(())
               def receive = PartialFunction.empty
             })
-          })
+          }
         }
       }
 
@@ -292,12 +294,12 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               system.scheduler.scheduleOnce(10.millis, out, Status.Success(()))
               def receive = PartialFunction.empty
             })
-          })
+          }
         }
       }
 
@@ -305,13 +307,13 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               def receive = {
                 case _ => context.stop(self)
               }
             })
-          })
+          }
         }
       }
 
@@ -319,14 +321,14 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               def receive = PartialFunction.empty
               override def postStop() = {
                 cleanedUp.success(true)
               }
             })
-          })
+          }
         }
       }
 
@@ -446,7 +448,7 @@ trait WebSocketSpecMethods extends PlaySpecification with WsTestClient with Serv
     val consumed = Promise[List[String]]()
     withServer(app => webSocket(app)(consumed)) { app =>
       import app.materializer
-      val result = runWebSocket { (flow) =>
+      val result = runWebSocket { flow =>
         sendFrames(
           TextMessage("a"),
           TextMessage("b"),
@@ -461,7 +463,7 @@ trait WebSocketSpecMethods extends PlaySpecification with WsTestClient with Serv
   def allowSendingMessages(webSocket: Application => List[String] => Handler) = {
     withServer(app => webSocket(app)(List("a", "b"))) { app =>
       import app.materializer
-      val frames = runWebSocket { (flow) =>
+      val frames = runWebSocket { flow =>
         Source.maybe[ExtendedMessage].via(flow).runWith(consumeFrames)
       }
       frames must contain(

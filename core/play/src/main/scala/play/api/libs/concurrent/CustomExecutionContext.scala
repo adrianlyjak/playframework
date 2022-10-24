@@ -6,7 +6,6 @@ package play.api.libs.concurrent
 
 import akka.actor.ActorSystem
 import akka.dispatch.MessageDispatcher
-
 import scala.concurrent.ExecutionContextExecutor
 
 /**
