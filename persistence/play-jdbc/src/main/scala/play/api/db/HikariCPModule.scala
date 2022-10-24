@@ -4,17 +4,16 @@
 
 package play.api.db
 
-import javax.inject.Inject
-import javax.inject.Singleton
-import javax.sql.DataSource
-
-import com.typesafe.config.Config
-import com.zaxxer.hikari.HikariConfig
-import com.zaxxer.hikari.HikariDataSource
 import play.api._
 import play.api.inject._
 import play.api.libs.JNDI
 
+import com.typesafe.config.Config
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
+import javax.inject.Inject
+import javax.inject.Singleton
+import javax.sql.DataSource
 import scala.concurrent.duration.Duration
 import scala.concurrent.duration.FiniteDuration
 import scala.util.Failure

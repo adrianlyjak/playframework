@@ -4,15 +4,16 @@
 
 package play.api.libs
 
+import play.api.libs.json.Json
+import play.api.libs.json.JsValue
+
 import akka.NotUsed
 import akka.stream.scaladsl.Flow
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 import akka.util.ByteStringBuilder
-import play.twirl.api.utils.StringEscapeUtils
-import play.api.libs.json.JsValue
-import play.api.libs.json.Json
 import play.twirl.api._
+import play.twirl.api.utils.StringEscapeUtils
 
 /**
  * Helper function to produce a Comet using <a href="http://doc.akka.io/docs/akka/2.6/scala/stream/index.html">Akka Streams</a>.

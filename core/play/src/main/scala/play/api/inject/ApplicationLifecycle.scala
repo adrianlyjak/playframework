@@ -4,20 +4,19 @@
 
 package play.api.inject
 
-import java.util.concurrent.atomic.AtomicBoolean
+import play.api.Logger
+
+import akka.Done
 import java.util.concurrent.Callable
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.ConcurrentLinkedDeque
-
-import akka.Done
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 import javax.inject.Singleton
-import play.api.Logger
-
 import scala.annotation.tailrec
-import scala.jdk.FutureConverters._
 import scala.concurrent.Future
 import scala.concurrent.Promise
+import scala.jdk.FutureConverters._
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try

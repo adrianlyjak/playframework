@@ -4,15 +4,14 @@
 
 package play.api.test
 
-import java.util.concurrent.TimeUnit
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.json.Json
+import play.api.mvc._
+import play.api.mvc.Results._
 
 import akka.stream.Materializer
 import akka.util.ByteString
-import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.libs.json.Json
-import play.api.mvc.Results._
-import play.api.mvc._
-
+import java.util.concurrent.TimeUnit
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 

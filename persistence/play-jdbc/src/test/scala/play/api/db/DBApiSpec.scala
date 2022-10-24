@@ -4,14 +4,15 @@
 
 package play.api.db
 
-import javax.inject.Inject
-import org.specs2.mutable.Specification
-import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.Application
 import play.api.Environment
 import play.api.Mode
 import play.api.PlayException
+import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.WithApplication
+
+import javax.inject.Inject
+import org.specs2.mutable.Specification
 
 class TestDBApiSpec extends DBApiSpec(Mode.Test)
 class DevDBApiSpec  extends DBApiSpec(Mode.Dev)

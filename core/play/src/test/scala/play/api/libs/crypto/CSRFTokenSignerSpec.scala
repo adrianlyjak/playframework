@@ -4,12 +4,12 @@
 
 package play.api.libs.crypto
 
+import play.api.http.SecretConfiguration
+
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId
-
 import org.specs2.mutable._
-import play.api.http.SecretConfiguration
 
 class CSRFTokenSignerSpec extends Specification {
   val key                 = "0123456789abcdef"

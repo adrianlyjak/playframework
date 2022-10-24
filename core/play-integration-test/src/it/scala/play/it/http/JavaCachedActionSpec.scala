@@ -4,15 +4,6 @@
 
 package play.it.http
 
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.TimeUnit
-
-import javax.inject.Inject
-import javax.inject.Provider
-import akka.Done
-import com.github.benmanes.caffeine.cache.Cache
-import com.github.benmanes.caffeine.cache.Caffeine
-import com.google.common.primitives.Primitives
 import play.api.Application
 import play.api.cache.AsyncCacheApi
 import play.api.cache.caffeine.CaffeineCacheModule
@@ -20,12 +11,20 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.test.PlaySpecification
 import play.api.test.TestServer
 import play.api.test.WsTestClient
+
+import akka.Done
+import com.github.benmanes.caffeine.cache.Cache
+import com.github.benmanes.caffeine.cache.Caffeine
+import com.google.common.primitives.Primitives
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Provider
 import play.cache.Cached
 import play.cache.DefaultAsyncCacheApi
 import play.inject.ApplicationLifecycle
 import play.mvc.Http
 import play.mvc.Result
-
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 import scala.concurrent.duration._

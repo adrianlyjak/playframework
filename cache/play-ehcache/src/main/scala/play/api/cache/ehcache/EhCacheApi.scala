@@ -4,32 +4,31 @@
 
 package play.api.cache.ehcache
 
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
+import play.api.Configuration
+import play.api.Environment
+import play.api.cache._
+import play.api.inject._
 
 import akka.Done
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import com.google.common.primitives.Primitives
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 import net.sf.ehcache.CacheManager
 import net.sf.ehcache.Ehcache
 import net.sf.ehcache.Element
 import net.sf.ehcache.ObjectExistsException
-import play.api.cache._
-import play.api.inject._
-import play.api.Configuration
-import play.api.Environment
-import play.cache.NamedCacheImpl
-import play.cache.SyncCacheApiAdapter
 import play.cache.{ AsyncCacheApi => JavaAsyncCacheApi }
 import play.cache.{ DefaultAsyncCacheApi => JavaDefaultAsyncCacheApi }
 import play.cache.{ SyncCacheApi => JavaSyncCacheApi }
-
-import scala.concurrent.duration.Duration
-import scala.concurrent.duration.FiniteDuration
+import play.cache.NamedCacheImpl
+import play.cache.SyncCacheApiAdapter
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
+import scala.concurrent.duration.FiniteDuration
 import scala.reflect.ClassTag
 
 /**

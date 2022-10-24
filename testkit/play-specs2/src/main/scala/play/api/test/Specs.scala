@@ -4,6 +4,13 @@
 
 package play.api.test
 
+import play.api.Application
+import play.api.ApplicationLoader
+import play.api.Environment
+import play.api.Mode
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.inject.guice.GuiceApplicationLoader
+
 import akka.annotation.ApiMayChange
 import akka.stream.Materializer
 import org.openqa.selenium.WebDriver
@@ -12,12 +19,6 @@ import org.specs2.execute.Result
 import org.specs2.mutable.Around
 import org.specs2.specification.ForEach
 import org.specs2.specification.Scope
-import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.inject.guice.GuiceApplicationLoader
-import play.api.Application
-import play.api.ApplicationLoader
-import play.api.Environment
-import play.api.Mode
 import play.core.server.ServerProvider
 
 // NOTE: Do *not* put any initialisation code in the below classes, otherwise delayedInit() gets invoked twice

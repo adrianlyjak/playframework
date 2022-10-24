@@ -4,20 +4,20 @@
 
 package play.it.http
 
-import java.io.ByteArrayInputStream
-import java.util
-import java.util.Locale
-import java.util.Optional
+import play.api.Application
+import play.api.http.ContentTypes
+import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.ws.WSResponse
+import play.api.test._
 
 import akka.NotUsed
 import akka.stream.javadsl.Source
 import akka.util.ByteString
 import com.fasterxml.jackson.databind.JsonNode
-import play.api.Application
-import play.api.http.ContentTypes
-import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.test._
-import play.api.libs.ws.WSResponse
+import java.io.ByteArrayInputStream
+import java.util
+import java.util.Locale
+import java.util.Optional
 import play.http.HttpEntity
 import play.i18n.Lang
 import play.i18n.MessagesApi
@@ -25,11 +25,10 @@ import play.it._
 import play.libs.Comet
 import play.libs.EventSource
 import play.libs.Json
+import play.mvc._
 import play.mvc.Http.Cookie
 import play.mvc.Http.Flash
 import play.mvc.Http.Session
-import play.mvc._
-
 import scala.jdk.CollectionConverters._
 
 class NettyJavaResultsHandlingSpec    extends JavaResultsHandlingSpec with NettyIntegrationSpecification

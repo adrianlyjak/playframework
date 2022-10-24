@@ -5,19 +5,16 @@
 package play.api.mvc
 
 import controllers.Assets.Asset
-
 import java.net.URLEncoder
 import java.util.Optional
 import java.util.OptionalDouble
 import java.util.OptionalInt
 import java.util.OptionalLong
 import java.util.UUID
+import reflect.ClassTag
 import scala.annotation._
-
 import scala.jdk.CollectionConverters._
 import scala.jdk.OptionConverters._
-
-import reflect.ClassTag
 
 /**
  * Binder for query string parameters.
@@ -298,6 +295,7 @@ object JavascriptLiteral {
  */
 object QueryStringBindable {
   import play.api.mvc.macros.BinderMacros
+
   import scala.language.experimental.macros
 
   /**
@@ -655,6 +653,7 @@ object QueryStringBindable {
  */
 object PathBindable {
   import play.api.mvc.macros.BinderMacros
+
   import scala.language.experimental.macros
 
   /**

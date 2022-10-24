@@ -4,12 +4,12 @@
 
 package play.api.test
 
-import akka.annotation.ApiMayChange
-
 import play.api._
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.mvc._
 import play.api.routing.Router
+
+import akka.annotation.ApiMayChange
 
 /**
  * Creates an [[Application]]. Usually created by a helper in [[ApplicationFactories]].

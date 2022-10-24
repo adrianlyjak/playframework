@@ -4,11 +4,11 @@
 
 package play.api.http
 
-import akka.util.ByteString
-import play.api.mvc._
 import play.api.libs.json._
-import play.twirl.api._
+import play.api.mvc._
 
+import akka.util.ByteString
+import play.twirl.api._
 import scala.annotation._
 
 /**

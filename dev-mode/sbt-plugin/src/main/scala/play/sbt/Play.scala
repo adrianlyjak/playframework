@@ -4,14 +4,14 @@
 
 package play.sbt
 
+import com.typesafe.sbt.jse.SbtJsTask
+import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
+import play.core.PlayVersion
+import play.sbt.PlayImport.PlayKeys
+import play.sbt.routes.RoutesCompiler
+import play.twirl.sbt.SbtTwirl
 import sbt._
 import sbt.Keys._
-import com.typesafe.sbt.packager.archetypes.JavaServerAppPackaging
-import com.typesafe.sbt.jse.SbtJsTask
-import play.core.PlayVersion
-import play.sbt.routes.RoutesCompiler
-import play.sbt.PlayImport.PlayKeys
-import play.twirl.sbt.SbtTwirl
 
 /**
  * Base plugin for all Play services (web apps or micro-services).

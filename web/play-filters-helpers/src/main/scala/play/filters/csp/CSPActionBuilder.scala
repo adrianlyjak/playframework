@@ -4,14 +4,14 @@
 
 package play.filters.csp
 
-import akka.stream.Materializer
-import akka.util.ByteString
-import javax.inject.Inject
-import javax.inject.Singleton
 import play.api.Configuration
 import play.api.libs.streams.Accumulator
 import play.api.mvc._
 
+import akka.stream.Materializer
+import akka.util.ByteString
+import javax.inject.Inject
+import javax.inject.Singleton
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
 import scala.reflect.ClassTag

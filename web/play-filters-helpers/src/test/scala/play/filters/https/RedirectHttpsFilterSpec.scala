@@ -4,20 +4,20 @@
 
 package play.filters.https
 
-import javax.inject.Inject
-
-import com.typesafe.config.ConfigFactory
+import play.api._
 import play.api.Configuration
 import play.api.Environment
-import play.api._
 import play.api.http.HttpFilters
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Results._
 import play.api.mvc._
+import play.api.mvc.Results._
 import play.api.mvc.request.RemoteConnection
-import play.api.test.WithApplication
 import play.api.test._
+import play.api.test.WithApplication
+
+import com.typesafe.config.ConfigFactory
+import javax.inject.Inject
 
 private[https] class TestFilters @Inject() (redirectPlainFilter: RedirectHttpsFilter) extends HttpFilters {
   override def filters: Seq[EssentialFilter] = Seq(redirectPlainFilter)

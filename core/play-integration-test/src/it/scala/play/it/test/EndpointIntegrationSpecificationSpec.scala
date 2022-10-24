@@ -4,11 +4,12 @@
 
 package play.it.test
 
-import okhttp3.Protocol
-import okhttp3.Response
 import play.api.mvc._
 import play.api.mvc.request.RequestAttrKey
 import play.api.test.PlaySpecification
+
+import okhttp3.Protocol
+import okhttp3.Response
 
 /**
  * Tests that the [[EndpointIntegrationSpecification]] works properly.

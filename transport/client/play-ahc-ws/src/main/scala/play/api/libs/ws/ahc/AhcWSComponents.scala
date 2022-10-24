@@ -4,11 +4,11 @@
 
 package play.api.libs.ws.ahc
 
-import akka.stream.Materializer
 import play.api._
 import play.api.inject.ApplicationLifecycle
 import play.api.libs.ws.WSClient
 
+import akka.stream.Materializer
 import scala.concurrent.ExecutionContext
 
 /**

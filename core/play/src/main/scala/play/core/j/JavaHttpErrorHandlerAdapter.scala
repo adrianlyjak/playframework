@@ -4,13 +4,12 @@
 
 package play.core.j
 
-import javax.inject.Inject
-
 import play.api.http.HttpErrorHandler
 import play.api.mvc.RequestHeader
+
+import javax.inject.Inject
 import play.core.Execution
 import play.http.{ HttpErrorHandler => JHttpErrorHandler }
-
 import scala.jdk.FutureConverters._
 
 /**

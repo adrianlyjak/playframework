@@ -4,11 +4,11 @@
 
 package play.it.http
 
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.CompletionStage
-
 import play.api._
 import play.api.mvc.EssentialAction
+
+import java.util.concurrent.CompletableFuture
+import java.util.concurrent.CompletionStage
 import play.core.j.JavaAction
 import play.core.j.JavaActionAnnotations
 import play.core.j.JavaHandlerComponents

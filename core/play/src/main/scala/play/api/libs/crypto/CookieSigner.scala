@@ -4,15 +4,15 @@
 
 package play.api.libs.crypto
 
+import play.api.http.SecretConfiguration
+import play.api.libs.Codecs
+
 import java.nio.charset.StandardCharsets
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
-
-import play.api.http.SecretConfiguration
-import play.api.libs.Codecs
 import play.libs.crypto
 
 /**

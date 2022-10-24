@@ -4,22 +4,21 @@
 
 package play.api.cache.ehcache
 
-import java.util.concurrent.Executors
-import javax.inject.Inject
-import javax.inject.Provider
-
-import net.sf.ehcache.CacheManager
 import play.api.cache.AsyncCacheApi
 import play.api.cache.SyncCacheApi
 import play.api.inject._
 import play.api.test.PlaySpecification
 import play.api.test.WithApplication
-import play.cache.NamedCache
 
-import scala.concurrent.duration._
+import java.util.concurrent.Executors
+import javax.inject.Inject
+import javax.inject.Provider
+import net.sf.ehcache.CacheManager
+import play.cache.NamedCache
 import scala.concurrent.Await
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration._
 
 class EhCacheApiSpec extends PlaySpecification {
   sequential

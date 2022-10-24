@@ -4,9 +4,9 @@
 
 package controllers
 
-import javax.inject.Inject
-
 import play.api.mvc._
+
+import javax.inject.Inject
 
 /**
  * Default actions ready to use as is from your routes file.

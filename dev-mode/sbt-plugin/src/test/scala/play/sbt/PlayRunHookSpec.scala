@@ -5,7 +5,6 @@
 package play.sbt
 
 import org.specs2.mutable._
-
 import scala.collection.mutable.HashMap
 
 class PlayRunHookSpec extends Specification {

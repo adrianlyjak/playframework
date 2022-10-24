@@ -4,8 +4,9 @@
 
 package play.core.routing
 
-import org.specs2.mutable.Specification
 import play.api.routing.Router
+
+import org.specs2.mutable.Specification
 import play.core.test.FakeRequest
 
 class RouterSpec extends Specification {

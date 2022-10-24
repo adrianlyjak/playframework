@@ -4,13 +4,11 @@
 
 package play.core.server.ssl
 
-import play.core.server.ServerConfig
-import play.server.api.{ SSLEngineProvider => ScalaSSLEngineProvider }
-import play.server.{ SSLEngineProvider => JavaSSLEngineProvider }
 import java.lang.reflect.Constructor
-
 import play.core.ApplicationProvider
-
+import play.core.server.ServerConfig
+import play.server.{ SSLEngineProvider => JavaSSLEngineProvider }
+import play.server.api.{ SSLEngineProvider => ScalaSSLEngineProvider }
 import scala.util.Failure
 import scala.util.Success
 

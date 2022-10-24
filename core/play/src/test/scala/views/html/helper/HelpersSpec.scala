@@ -4,16 +4,16 @@
 
 package views.html.helper
 
-import org.specs2.mutable.Specification
 import play.api.Configuration
 import play.api.Environment
-import play.api.data.Forms._
 import play.api.data._
+import play.api.data.Forms._
 import play.api.http.HttpConfiguration
 import play.api.i18n._
-import play.twirl.api.Html
 
 import java.util.Optional
+import org.specs2.mutable.Specification
+import play.twirl.api.Html
 
 class HelpersSpec extends Specification {
   import FieldConstructor.defaultField

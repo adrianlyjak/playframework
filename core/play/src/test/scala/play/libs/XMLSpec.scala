@@ -5,7 +5,6 @@
 package play.libs
 
 import java.io.File
-
 import org.specs2.mutable.Specification
 import org.xml.sax.SAXException
 

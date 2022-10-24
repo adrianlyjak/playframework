@@ -4,9 +4,6 @@
 
 package play.it.http.parsing
 
-import akka.stream.Materializer
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
 import play.api.Application
 import play.api.data.Form
 import play.api.data.Forms.mapping
@@ -22,8 +19,11 @@ import play.api.test.Injecting
 import play.api.test.PlaySpecification
 import play.api.test.WithApplication
 
-import scala.jdk.CollectionConverters._
+import akka.stream.Materializer
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
 import scala.concurrent.Future
+import scala.jdk.CollectionConverters._
 
 class FormBodyParserSpec extends PlaySpecification {
   sequential

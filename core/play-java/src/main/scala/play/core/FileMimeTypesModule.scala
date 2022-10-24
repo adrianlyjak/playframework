@@ -9,7 +9,6 @@ import play.api.inject._
 import javax.inject._
 import play.mvc.FileMimeTypes
 import play.mvc.StaticFileMimeTypes
-
 import scala.concurrent.Future
 
 /**

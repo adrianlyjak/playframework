@@ -4,12 +4,13 @@
 
 package play.api.routing
 
-import play.api.libs.typedmap.TypedKey
 import play.api.Configuration
 import play.api.Environment
+import play.api.libs.typedmap.TypedKey
 import play.api.mvc.Handler
 import play.api.mvc.RequestHeader
 import play.api.routing.Router.Routes
+
 import play.core.j.JavaRouterAdapter
 import play.utils.Reflect
 

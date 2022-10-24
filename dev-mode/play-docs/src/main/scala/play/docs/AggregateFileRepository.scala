@@ -5,7 +5,6 @@
 package play.docs
 
 import java.io.InputStream
-
 import play.doc.FileHandle
 import play.doc.FileRepository
 

@@ -4,13 +4,8 @@
 
 package play.core.server
 
-import java.util.function.{ Function => JFunction }
-import akka.actor.CoordinatedShutdown
-import akka.annotation.ApiMayChange
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigFactory
-import play.api.ApplicationLoader.Context
 import play.api._
+import play.api.ApplicationLoader.Context
 import play.api.http.DevHttpErrorHandler
 import play.api.http.HttpErrorHandler
 import play.api.http.Port
@@ -19,12 +14,17 @@ import play.api.inject.DefaultApplicationLifecycle
 import play.api.libs.streams.Accumulator
 import play.api.mvc._
 import play.api.routing.Router
-import play.core._
-import play.routing.{ Router => JRouter }
+
+import akka.actor.CoordinatedShutdown
+import akka.annotation.ApiMayChange
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
+import java.util.function.{ Function => JFunction }
 import play.{ ApplicationLoader => JApplicationLoader }
 import play.{ BuiltInComponents => JBuiltInComponents }
 import play.{ BuiltInComponentsFromContext => JBuiltInComponentsFromContext }
-
+import play.core._
+import play.routing.{ Router => JRouter }
 import scala.concurrent.Future
 import scala.language.postfixOps
 import scala.util.Try

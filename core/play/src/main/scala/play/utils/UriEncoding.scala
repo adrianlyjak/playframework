@@ -6,7 +6,6 @@ package play.utils
 
 import java.io.ByteArrayOutputStream
 import java.nio.charset.Charset
-
 import play.core.utils.AsciiBitSet
 import play.core.utils.AsciiSet
 

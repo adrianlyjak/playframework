@@ -4,17 +4,16 @@
 
 package com.typesafe.play.docs.sbtplugin
 
-import java.io.Closeable
-import java.util.concurrent.Callable
-
-import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.ValidationConfig
 import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.CodeSamplesReport
 import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.MarkdownRefReport
+import com.typesafe.play.docs.sbtplugin.PlayDocsValidation.ValidationConfig
+import java.io.Closeable
+import java.util.concurrent.Callable
+import play.TemplateImports
 import play.core.BuildDocHandler
 import play.core.PlayVersion
 import play.core.server.ReloadableServer
 import play.routes.compiler.RoutesCompiler.RoutesCompilerTask
-import play.TemplateImports
 import play.sbt.Colors
 import play.sbt.routes.RoutesCompiler
 import play.sbt.routes.RoutesKeys._

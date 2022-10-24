@@ -4,6 +4,8 @@
 
 package play.utils
 
+import play.api.PlayCoreTestApplication
+
 import java.io.BufferedInputStream
 import java.io.File
 import java.net.URL
@@ -12,8 +14,6 @@ import java.net.URLStreamHandler
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import org.specs2.mutable.Specification
-
-import play.api.PlayCoreTestApplication
 
 /**
  * Tests for Resources object

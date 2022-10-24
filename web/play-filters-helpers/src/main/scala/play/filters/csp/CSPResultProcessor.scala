@@ -4,13 +4,14 @@
 
 package play.filters.csp
 
-import akka.util.ByteString
-import javax.inject.Inject
 import play.api.libs.streams.Accumulator
-import play.api.mvc.request.RequestAttrKey
 import play.api.mvc.EssentialAction
 import play.api.mvc.RequestHeader
 import play.api.mvc.Result
+import play.api.mvc.request.RequestAttrKey
+
+import akka.util.ByteString
+import javax.inject.Inject
 
 /**
  * A result processor that applies a CSPResult to a play request pipeline -- either an ActionBuilder or a Filter.

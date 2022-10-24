@@ -4,20 +4,19 @@
 
 package play.api.db.evolutions
 
-import java.io.InputStream
+import play.api.Environment
+import play.api.Logger
+import play.api.PlayException
+import play.api.db.Database
+import play.api.db.DBApi
+
 import java.io.File
+import java.io.InputStream
 import java.net.URI
 import java.sql._
 import javax.inject.Inject
 import javax.inject.Singleton
-
-import play.api.db.DBApi
-import play.api.db.Database
-import play.api.Environment
-import play.api.Logger
-import play.api.PlayException
 import play.utils.PlayIO
-
 import scala.annotation.tailrec
 import scala.io.Codec
 import scala.util.control.NonFatal

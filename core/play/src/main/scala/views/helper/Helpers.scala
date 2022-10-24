@@ -4,8 +4,8 @@
 
 import play.api.data.FormError
 import play.api.templates.PlayMagic.translate
-import play.twirl.api._
 
+import play.twirl.api._
 import scala.jdk.CollectionConverters._
 import scala.language.implicitConversions
 

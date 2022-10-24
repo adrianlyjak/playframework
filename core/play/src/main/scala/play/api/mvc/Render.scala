@@ -4,11 +4,12 @@
 
 package play.api.mvc
 
+import play.api.http.HeaderNames._
 import play.api.http.MediaRange
 import play.api.mvc.Results._
-import play.api.http.HeaderNames._
-import scala.concurrent.Future
+
 import play.core.Execution.Implicits.trampoline
+import scala.concurrent.Future
 
 trait Rendering {
   object render {

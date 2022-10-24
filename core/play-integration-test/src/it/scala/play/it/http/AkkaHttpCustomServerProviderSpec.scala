@@ -4,12 +4,6 @@
 
 package play.it.http
 
-import akka.http.scaladsl.model.HttpMethod
-import akka.http.scaladsl.settings.ParserSettings
-import okhttp3.RequestBody
-import okio.ByteString
-import org.specs2.execute.AsResult
-import org.specs2.specification.core.Fragment
 import play.api.mvc.RequestHeader
 import play.api.mvc.Results
 import play.api.routing.Router
@@ -17,6 +11,13 @@ import play.api.test.ApplicationFactories
 import play.api.test.ApplicationFactory
 import play.api.test.PlaySpecification
 import play.api.test.ServerEndpointRecipe
+
+import akka.http.scaladsl.model.HttpMethod
+import akka.http.scaladsl.settings.ParserSettings
+import okhttp3.RequestBody
+import okio.ByteString
+import org.specs2.execute.AsResult
+import org.specs2.specification.core.Fragment
 import play.core.server.AkkaHttpServer
 import play.core.server.ServerProvider
 import play.it.test._

@@ -4,10 +4,11 @@
 
 package play.core.server.akkahttp
 
+import play.api.http.HeaderNames
+
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.model.headers.RawHeader
 import org.specs2.mutable.Specification
-import play.api.http.HeaderNames
 
 class AkkaHeadersWrapperTest extends Specification {
   val emptyRequest: HttpRequest = HttpRequest()

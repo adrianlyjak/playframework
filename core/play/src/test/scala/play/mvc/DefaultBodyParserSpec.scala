@@ -4,23 +4,22 @@
 
 package play.mvc
 
-import java.util.Optional
-import java.util.concurrent.CompletionStage
+import play.api.http.HttpConfiguration
+import play.api.http.ParserConfiguration
+import play.api.mvc.PlayBodyParsers
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.javadsl.Source
 import akka.util.ByteString
+import java.util.Optional
+import java.util.concurrent.CompletionStage
 import org.specs2.matcher.MustMatchers
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
-import play.api.http.HttpConfiguration
-import play.api.http.ParserConfiguration
-import play.api.mvc.PlayBodyParsers
 import play.http.HttpErrorHandler
 import play.libs.F
 import play.mvc.Http.RequestBody
-
 import scala.jdk.OptionConverters._
 
 class DefaultBodyParserSpec extends Specification with AfterAll with MustMatchers {

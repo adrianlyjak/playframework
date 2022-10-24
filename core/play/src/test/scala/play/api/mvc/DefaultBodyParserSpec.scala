@@ -11,7 +11,6 @@ import akka.util.ByteString
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
 import play.core.test.FakeRequest
-
 import scala.concurrent.Await
 import scala.concurrent.duration._
 

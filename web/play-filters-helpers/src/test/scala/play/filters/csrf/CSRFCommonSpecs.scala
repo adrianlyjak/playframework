@@ -4,8 +4,6 @@
 
 package play.filters.csrf
 
-import org.specs2.matcher.MatchResult
-import org.specs2.mutable.Specification
 import play.api.Application
 import play.api.http.ContentTypeOf
 import play.api.http.ContentTypes
@@ -20,9 +18,11 @@ import play.api.mvc.Handler
 import play.api.mvc.SessionCookieBaker
 import play.api.test.PlaySpecification
 import play.api.test.TestServer
+
+import org.specs2.matcher.MatchResult
+import org.specs2.mutable.Specification
 import play.filters.csrf.CSRF.SignedTokenProvider
 import play.filters.csrf.CSRF.UnsignedTokenProvider
-
 import scala.concurrent.Future
 import scala.reflect.ClassTag
 

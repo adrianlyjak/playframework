@@ -5,7 +5,6 @@
 package play.routes.compiler
 
 import java.io.File
-
 import org.specs2.execute.Result
 import org.specs2.mutable.Specification
 

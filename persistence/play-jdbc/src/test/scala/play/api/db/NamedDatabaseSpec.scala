@@ -4,8 +4,9 @@
 
 package play.api.db
 
-import javax.inject.Inject
 import play.api.test._
+
+import javax.inject.Inject
 
 class NamedDatabaseSpec extends PlaySpecification {
   "DBModule" should {

@@ -4,19 +4,18 @@
 
 package play.api.cache
 
-import java.util.concurrent.CompletableFuture
-import java.util.Optional
-
-import akka.util.Timeout
-import org.specs2.concurrent.ExecutionEnv
-import org.specs2.execute.AsResult
 import play.api.test.PlaySpecification
 import play.api.test.WithApplication
+
+import akka.util.Timeout
+import java.util.Optional
+import java.util.concurrent.CompletableFuture
+import org.specs2.concurrent.ExecutionEnv
+import org.specs2.execute.AsResult
 import play.cache.{ AsyncCacheApi => JavaAsyncCacheApi }
 import play.cache.{ SyncCacheApi => JavaSyncCacheApi }
-
-import scala.jdk.FutureConverters._
 import scala.concurrent.duration._
+import scala.jdk.FutureConverters._
 
 class JavaCacheApiSpec(implicit ee: ExecutionEnv) extends PlaySpecification {
   private def after2sec[T: AsResult](result: => T): T = eventually(2, 2.seconds)(result)

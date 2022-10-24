@@ -4,9 +4,10 @@
 
 package play.sbt
 
+import play.api._
+
 import sbt._
 import xsbti.Problem
-import play.api._
 
 object PlayExceptions {
   private def filterAnnoyingErrorMessages(message: String): String = {

@@ -4,12 +4,7 @@
 
 package play.it.mvc
 
-import java.util.concurrent.CompletionStage
-import java.util.function.{ Function => JFunction }
-
-import akka.stream.Materializer
-import akka.util.ByteString
-import org.specs2.mutable.Specification
+import play.api._
 import play.api.http.DefaultHttpErrorHandler
 import play.api.http.HttpErrorHandler
 import play.api.libs.streams.Accumulator
@@ -17,14 +12,18 @@ import play.api.libs.ws.WSClient
 import play.api.mvc._
 import play.api.routing.Router
 import play.api.test._
-import play.api._
-import play.core.server.Server
-import play.it._
-import play.filters.HttpFiltersComponents
-import play.libs.streams
 
-import scala.concurrent.ExecutionContext.{ global => ec }
+import akka.stream.Materializer
+import akka.util.ByteString
+import java.util.concurrent.CompletionStage
+import java.util.function.{ Function => JFunction }
+import org.specs2.mutable.Specification
+import play.core.server.Server
+import play.filters.HttpFiltersComponents
+import play.it._
+import play.libs.streams
 import scala.concurrent._
+import scala.concurrent.ExecutionContext.{ global => ec }
 import scala.concurrent.duration.Duration
 
 class NettyDefaultFiltersSpec    extends DefaultFiltersSpec with NettyIntegrationSpecification

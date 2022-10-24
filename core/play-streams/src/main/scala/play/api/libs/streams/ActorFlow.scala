@@ -7,10 +7,10 @@ package play.api.libs.streams
 import akka.actor._
 import akka.stream.Materializer
 import akka.stream.OverflowStrategy
-import akka.stream.scaladsl.Sink
-import akka.stream.scaladsl.Keep
-import akka.stream.scaladsl.Source
 import akka.stream.scaladsl.Flow
+import akka.stream.scaladsl.Keep
+import akka.stream.scaladsl.Sink
+import akka.stream.scaladsl.Source
 
 /**
  * Provides a flow that is handled by an actor.

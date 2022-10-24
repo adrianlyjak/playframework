@@ -4,30 +4,29 @@
 
 package play.core.server
 
-import java.io.File
-import java.net.InetAddress
-
-import akka.Done
-import akka.annotation.InternalApi
-import akka.actor.ActorSystem
-import akka.actor.CoordinatedShutdown
-import akka.stream.Materializer
 import play.api._
 import play.api.http.HttpErrorHandlerExceptions
 import play.api.inject.DefaultApplicationLifecycle
+
+import akka.Done
+import akka.actor.ActorSystem
+import akka.actor.CoordinatedShutdown
+import akka.annotation.InternalApi
+import akka.stream.Materializer
+import java.io.File
+import java.net.InetAddress
+import java.util.concurrent.atomic.AtomicBoolean
 import play.core.ApplicationProvider
 import play.core.BuildLink
 import play.core.SourceMapper
 import play.utils.PlayIO
 import play.utils.Threads
-
-import java.util.concurrent.atomic.AtomicBoolean
-import scala.jdk.CollectionConverters._
 import scala.concurrent.Future
-import scala.util.control.NonFatal
+import scala.jdk.CollectionConverters._
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try
+import scala.util.control.NonFatal
 
 /**
  * Used to start servers in 'dev' mode, a mode where the application

@@ -4,16 +4,15 @@
 
 package play.api.cache
 
+import play.api.Application
+import play.api.cache.ehcache.EhCacheApi
+import play.api.http
+import play.api.mvc._
+import play.api.test._
+
 import java.time.Instant
 import java.util.concurrent.atomic.AtomicInteger
 import javax.inject._
-
-import play.api.cache.ehcache.EhCacheApi
-import play.api.mvc._
-import play.api.test._
-import play.api.Application
-import play.api.http
-
 import scala.concurrent.duration._
 import scala.util.Random
 

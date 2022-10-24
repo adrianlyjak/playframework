@@ -4,22 +4,6 @@
 
 package play.it.libs
 
-import java.io.File
-import java.nio.ByteBuffer
-import java.nio.charset.Charset
-import java.nio.charset.StandardCharsets
-import java.util
-import java.util.concurrent.CompletionStage
-import java.util.concurrent.TimeUnit
-
-import akka.NotUsed
-import akka.stream.javadsl
-import akka.stream.scaladsl.FileIO
-import akka.stream.scaladsl.Sink
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
-import org.specs2.concurrent.ExecutionEnv
-import org.specs2.concurrent.FutureAwait
 import play.api.http.Port
 import play.api.libs.oauth.ConsumerKey
 import play.api.libs.oauth.RequestToken
@@ -29,17 +13,32 @@ import play.api.mvc.Result
 import play.api.mvc.Results
 import play.api.mvc.Results.Ok
 import play.api.test.PlaySpecification
+
+import akka.NotUsed
+import akka.stream.javadsl
+import akka.stream.scaladsl.FileIO
+import akka.stream.scaladsl.Sink
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
+import java.io.File
+import java.nio.ByteBuffer
+import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
+import java.util
+import java.util.concurrent.CompletionStage
+import java.util.concurrent.TimeUnit
+import org.specs2.concurrent.ExecutionEnv
+import org.specs2.concurrent.FutureAwait
 import play.core.server.Server
-import play.it.tools.HttpBinApplication
 import play.it.AkkaHttpIntegrationSpecification
 import play.it.NettyIntegrationSpecification
 import play.it.ServerIntegrationSpecification
+import play.it.tools.HttpBinApplication
 import play.libs.ws.WSBodyReadables
 import play.libs.ws.WSBodyWritables
 import play.libs.ws.WSRequest
 import play.libs.ws.WSResponse
 import play.mvc.Http
-
 import scala.concurrent.Future
 
 class NettyJavaWSSpec(val ee: ExecutionEnv) extends JavaWSSpec with NettyIntegrationSpecification

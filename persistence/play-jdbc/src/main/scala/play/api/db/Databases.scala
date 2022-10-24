@@ -4,17 +4,16 @@
 
 package play.api.db
 
+import play.api.Configuration
+import play.api.Environment
+
+import com.typesafe.config.Config
 import java.sql.Connection
 import java.sql.Driver
 import java.sql.DriverManager
-
-import com.typesafe.config.Config
 import javax.sql.DataSource
-import play.api.Configuration
-import play.api.Environment
 import play.utils.ProxyDriver
 import play.utils.Reflect
-
 import scala.util.control.ControlThrowable
 import scala.util.control.NonFatal
 

@@ -26,9 +26,7 @@ case class CSPConfig(
     directives: Seq[CSPDirective] = Seq.empty
 ) {
   import java.{ util => ju }
-
   import play.mvc.Http.{ RequestHeader => JRequestHeader }
-
   import scala.jdk.FunctionConverters._
 
   /** Java Constructor */

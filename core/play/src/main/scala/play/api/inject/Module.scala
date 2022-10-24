@@ -4,12 +4,11 @@
 
 package play.api.inject
 
-import java.lang.reflect.Constructor
-
-import play.{ Environment => JavaEnvironment }
 import play.api._
-import play.libs.reflect.ConstructorUtils
 
+import java.lang.reflect.Constructor
+import play.{ Environment => JavaEnvironment }
+import play.libs.reflect.ConstructorUtils
 import scala.annotation.varargs
 import scala.reflect.ClassTag
 

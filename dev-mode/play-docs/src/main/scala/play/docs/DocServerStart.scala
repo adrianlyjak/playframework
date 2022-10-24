@@ -4,16 +4,15 @@
 
 package play.docs
 
-import java.io.File
-import java.util.concurrent.Callable
-
 import play.api._
 import play.api.mvc._
 import play.api.routing.Router
 import play.api.routing.sird._
+
+import java.io.File
+import java.util.concurrent.Callable
 import play.core._
 import play.core.server._
-
 import scala.concurrent.Future
 
 /**

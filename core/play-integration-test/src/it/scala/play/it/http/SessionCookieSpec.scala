@@ -4,18 +4,19 @@
 
 package play.it.http
 
-import com.typesafe.config.ConfigFactory
 import play.api.BuiltInComponentsFromContext
 import play.api.Configuration
 import play.api.NoHttpFiltersComponents
 import play.api.http.SecretConfiguration
 import play.api.http.SessionConfiguration
 import play.api.libs.crypto.CookieSignerProvider
-import play.api.test._
+import play.api.libs.ws.WSClient
 import play.api.mvc._
 import play.api.mvc.Results._
-import play.api.libs.ws.WSClient
 import play.api.routing.Router
+import play.api.test._
+
+import com.typesafe.config.ConfigFactory
 import play.core.server.Server
 import play.it._
 
@@ -29,6 +30,7 @@ trait SessionCookieSpec extends PlaySpecification with ServerIntegrationSpecific
     Server.withApplicationFromContext() { context =>
       new BuiltInComponentsFromContext(context) with NoHttpFiltersComponents {
         import play.api.routing.sird.{ GET => SirdGet, _ }
+
         import scala.jdk.CollectionConverters._
 
         override def configuration: Configuration =

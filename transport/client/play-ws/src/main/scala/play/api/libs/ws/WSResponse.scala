@@ -4,10 +4,10 @@
 
 package play.api.libs.ws
 
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
 import play.api.libs.json.JsValue
 
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
 import scala.xml.Elem
 
 /**

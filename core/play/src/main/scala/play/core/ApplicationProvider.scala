@@ -4,12 +4,12 @@
 
 package play.core
 
-import java.io._
-import scala.util.Try
-import scala.util.Success
-
 import play.api._
 import play.api.mvc._
+
+import java.io._
+import scala.util.Success
+import scala.util.Try
 
 /**
  * Provides source code to be displayed on error pages

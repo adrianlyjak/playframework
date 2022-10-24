@@ -4,14 +4,13 @@
 
 package play.utils
 
-import java.io._
+import play.api.Logger
 
-import scala.io.Codec
+import java.io._
 import java.net.URL
 import java.nio.file.Files
 import java.nio.file.Path
-
-import play.api.Logger
+import scala.io.Codec
 
 /**
  * IO utilities for internal use by Play projects.

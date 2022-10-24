@@ -7,7 +7,6 @@ package controllers
 import java.time._
 import java.time.format.DateTimeFormatter
 import java.util.Date
-
 import org.specs2.mutable.Specification
 
 class AssetsDateParsingSpec extends Specification {

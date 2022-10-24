@@ -5,7 +5,6 @@
 package play.api.cache.caffeine
 
 import akka.annotation.InternalApi
-
 import scala.concurrent.duration.Duration
 
 @InternalApi

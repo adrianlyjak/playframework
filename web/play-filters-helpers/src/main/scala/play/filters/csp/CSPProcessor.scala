@@ -4,13 +4,13 @@
 
 package play.filters.csp
 
+import play.api.mvc.RequestHeader
+import play.api.mvc.request.RequestAttrKey
+
 import java.util.Base64
 import java.util.regex.Matcher
 import java.util.regex.Pattern
-
 import javax.inject.Inject
-import play.api.mvc.RequestHeader
-import play.api.mvc.request.RequestAttrKey
 
 /**
  * This trait processes a request header for CSP related logic.

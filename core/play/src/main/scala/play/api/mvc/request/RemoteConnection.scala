@@ -4,10 +4,9 @@
 
 package play.api.mvc.request
 
+import com.google.common.net.InetAddresses
 import java.net.InetAddress
 import java.security.cert.X509Certificate
-
-import com.google.common.net.InetAddresses
 
 /**
  * Contains information about the connection from the remote client to the server.

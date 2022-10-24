@@ -4,14 +4,12 @@
 
 package play.api.libs.concurrent
 
-import javax.inject.Inject
-
 import akka.Done
 import akka.actor.ActorSystem
-
-import scala.concurrent.duration.FiniteDuration
+import javax.inject.Inject
 import scala.concurrent.Future
 import scala.concurrent.TimeoutException
+import scala.concurrent.duration.FiniteDuration
 import scala.language.implicitConversions
 
 /**

@@ -5,7 +5,6 @@
 package play.core.routing
 
 import java.net.URI
-
 import scala.util.control.Exception
 
 /**

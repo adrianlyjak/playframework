@@ -4,17 +4,16 @@
 
 package play.api.mvc
 
-import java.io.IOException
+import play.api.http.ParserConfiguration
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
+import java.io.IOException
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
 import play.core.test.FakeRequest
-import play.api.http.ParserConfiguration
-
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration

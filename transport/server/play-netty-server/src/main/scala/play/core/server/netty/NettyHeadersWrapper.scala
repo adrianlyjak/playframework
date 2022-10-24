@@ -4,8 +4,9 @@
 
 package play.core.server.netty
 
-import io.netty.handler.codec.http._
 import play.api.mvc._
+
+import io.netty.handler.codec.http._
 import scala.jdk.CollectionConverters._
 
 /**

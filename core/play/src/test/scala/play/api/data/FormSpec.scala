@@ -7,14 +7,15 @@ package play.api.data
 import play.api.Configuration
 import play.api.Environment
 import play.api.data.Forms._
-import play.api.data.validation.Constraints._
 import play.api.data.format.Formats._
-import play.api.i18n._
-import play.api.libs.json.Json
-import org.specs2.mutable.Specification
+import play.api.data.validation.Constraints._
 import play.api.http.HttpConfiguration
+import play.api.i18n._
 import play.api.libs.Files.TemporaryFile
+import play.api.libs.json.Json
 import play.api.mvc.MultipartFormData
+
+import org.specs2.mutable.Specification
 import play.core.test.FakeRequest
 
 class FormSpec extends Specification {

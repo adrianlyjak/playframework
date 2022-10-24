@@ -4,14 +4,13 @@
 
 package play.api.data.format
 
+import play.api.data._
+
+import annotation.implicitNotFound
 import java.sql.Timestamp
 import java.time._
 import java.time.format.DateTimeFormatter
 import java.util.UUID
-
-import play.api.data._
-
-import annotation.implicitNotFound
 
 /**
  * Handles field binding and unbinding.

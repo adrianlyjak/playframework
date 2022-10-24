@@ -4,19 +4,18 @@
 
 package play.api.libs.concurrent
 
-import javax.inject.Singleton
+import play.api.libs.concurrent.TypedAkka._
 
-import scala.reflect.ClassTag
-
+import akka.actor.ActorSystem
 import akka.actor.typed.ActorRef
 import akka.actor.typed.scaladsl.adapter._
-import akka.actor.ActorSystem
 import akka.annotation.ApiMayChange
 import com.google.inject.Inject
 import com.google.inject.Injector
 import com.google.inject.Key
 import com.google.inject.Provider
-import play.api.libs.concurrent.TypedAkka._
+import javax.inject.Singleton
+import scala.reflect.ClassTag
 
 /**
  * A singleton [[Provider]] of the typed `ActorRef[T]` resulting from spawning an actor with the

@@ -4,9 +4,9 @@
 
 package play.api.test
 
-import akka.annotation.ApiMayChange
-
 import play.api.Application
+
+import akka.annotation.ApiMayChange
 import play.core.server.ServerEndpoints
 
 /**

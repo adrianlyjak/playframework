@@ -4,16 +4,15 @@
 
 package play.it.http
 
-import org.specs2.mock.Mockito
-import java.util.Optional
+import play.api.mvc._
+import play.api.test._
 
 import akka.util.ByteString
-import play.api.test._
-import play.api.mvc._
+import java.util.Optional
+import org.specs2.mock.Mockito
 import play.mvc.Http
 import play.mvc.Http.RequestBody
 import play.mvc.Http.RequestImpl
-
 import scala.jdk.CollectionConverters._
 
 class JavaRequestsSpec extends PlaySpecification with Mockito {

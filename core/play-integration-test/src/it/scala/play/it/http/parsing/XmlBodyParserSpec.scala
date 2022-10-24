@@ -4,19 +4,18 @@
 
 package play.it.http.parsing
 
+import play.api.Application
+import play.api.mvc.BodyParser
+import play.api.mvc.PlayBodyParsers
+import play.api.test._
+
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.test._
-import play.api.mvc.BodyParser
-import play.api.mvc.PlayBodyParsers
-
-import scala.xml.NodeSeq
 import java.io.File
 import java.nio.charset.StandardCharsets
-
-import play.api.Application
 import java.nio.file.Files
+import scala.xml.NodeSeq
 
 class XmlBodyParserSpec extends PlaySpecification {
   "The XML body parser" should {

@@ -4,17 +4,16 @@
 
 package play.api.i18n
 
+import play.api.Configuration
+import play.api.Logger
+
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
-
-import play.api.Configuration
-import play.api.Logger
-
+import scala.jdk.CollectionConverters._
 import scala.util.Try
 import scala.util.control.NonFatal
-import scala.jdk.CollectionConverters._
 
 /**
  * A Lang supported by the application.

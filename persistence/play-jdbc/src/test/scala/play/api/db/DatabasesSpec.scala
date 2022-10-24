@@ -5,7 +5,6 @@
 package play.api.db
 
 import java.sql.SQLException
-
 import org.jdbcdslog.ConnectionPoolDataSourceProxy
 import org.specs2.mutable.After
 import org.specs2.mutable.Specification

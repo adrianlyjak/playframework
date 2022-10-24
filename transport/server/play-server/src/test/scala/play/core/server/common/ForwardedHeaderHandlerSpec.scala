@@ -4,14 +4,14 @@
 
 package play.core.server.common
 
-import java.net.InetAddress
-
-import com.google.common.net.InetAddresses
-import org.specs2.mutable.Specification
-import play.api.mvc.Headers
-import play.api.mvc.request.RemoteConnection
 import play.api.Configuration
 import play.api.PlayException
+import play.api.mvc.Headers
+import play.api.mvc.request.RemoteConnection
+
+import com.google.common.net.InetAddresses
+import java.net.InetAddress
+import org.specs2.mutable.Specification
 import play.core.server.common.ForwardedHeaderHandler._
 
 class ForwardedHeaderHandlerSpec extends Specification {

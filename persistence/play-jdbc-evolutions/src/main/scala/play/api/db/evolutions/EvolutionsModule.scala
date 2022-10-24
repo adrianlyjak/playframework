@@ -4,12 +4,12 @@
 
 package play.api.db.evolutions
 
-import javax.inject._
-
-import play.api.db.DBApi
-import play.api.inject._
 import play.api.Configuration
 import play.api.Environment
+import play.api.db.DBApi
+import play.api.inject._
+
+import javax.inject._
 import play.core.WebCommands
 
 /**

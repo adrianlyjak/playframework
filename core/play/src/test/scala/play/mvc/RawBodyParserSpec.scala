@@ -4,20 +4,19 @@
 
 package play.mvc
 
-import java.io.IOException
+import play.api.http.ParserConfiguration
+import play.api.mvc.PlayBodyParsers
+import play.api.mvc.RawBuffer
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.javadsl.Source
 import akka.util.ByteString
+import java.io.IOException
 import org.specs2.mutable.Specification
 import org.specs2.specification.AfterAll
-import play.api.http.ParserConfiguration
-import play.api.mvc.PlayBodyParsers
-import play.api.mvc.RawBuffer
 import play.core.j.JavaParsers
 import play.core.test.FakeRequest
-
 import scala.concurrent.Future
 
 class RawBodyParserSpec extends Specification with AfterAll {

@@ -4,23 +4,23 @@
 
 package play.api.http
 
-import javax.inject.Inject
-import javax.inject.Provider
-
 import play.api.ApplicationLoader.DevContext
+import play.api.Configuration
+import play.api.Environment
+import play.api.OptionalDevContext
 import play.api.http.Status._
 import play.api.inject.Binding
 import play.api.inject.BindingKey
 import play.api.libs.streams.Accumulator
 import play.api.mvc._
 import play.api.routing.Router
-import play.api.Configuration
-import play.api.Environment
-import play.api.OptionalDevContext
+
+import javax.inject.Inject
+import javax.inject.Provider
+import play.core.WebCommands
 import play.core.j.JavaHandler
 import play.core.j.JavaHandlerComponents
 import play.core.j.JavaHttpRequestHandlerDelegate
-import play.core.WebCommands
 import play.utils.Reflect
 
 /**

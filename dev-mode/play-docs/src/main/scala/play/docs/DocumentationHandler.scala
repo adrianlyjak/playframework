@@ -4,11 +4,11 @@
 
 package play.docs
 
-import java.io.Closeable
-
-import akka.stream.scaladsl.StreamConverters
 import play.api.http._
 import play.api.mvc._
+
+import akka.stream.scaladsl.StreamConverters
+import java.io.Closeable
 import play.core.BuildDocHandler
 import play.core.PlayVersion
 import play.doc._

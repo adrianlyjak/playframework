@@ -4,11 +4,12 @@
 
 package play.it.http.parsing
 
+import play.api.mvc.BodyParsers
+import play.api.test._
+
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.test._
-import play.api.mvc.BodyParsers
 
 class IgnoreBodyParserSpec extends PlaySpecification {
   "The ignore body parser" should {

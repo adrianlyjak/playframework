@@ -4,13 +4,12 @@
 
 package play.api.libs.streams
 
-import java.util.zip.Deflater
-
+import akka.stream._
 import akka.stream.scaladsl.Compression
 import akka.stream.scaladsl.Flow
 import akka.stream.stage._
-import akka.stream._
 import akka.util.ByteString
+import java.util.zip.Deflater
 
 /**
  * A simple Gzip Flow

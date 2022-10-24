@@ -4,9 +4,10 @@
 
 package play.api.libs.ws
 
+import play.api.mvc.MultipartFormData
+
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.mvc.MultipartFormData
 import play.core.formatters.Multipart
 
 /**

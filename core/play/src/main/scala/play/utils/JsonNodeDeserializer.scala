@@ -4,19 +4,18 @@
 
 package play.utils
 
+import com.fasterxml.jackson.core.JsonParser
+import com.fasterxml.jackson.core.JsonTokenId
+import com.fasterxml.jackson.databind._
+import com.fasterxml.jackson.databind.DeserializationFeature.USE_BIG_INTEGER_FOR_INTS
+import com.fasterxml.jackson.databind.DeserializationFeature.USE_LONG_FOR_INTS
+import com.fasterxml.jackson.databind.module.SimpleModule
+import com.fasterxml.jackson.databind.node._
 import scala.annotation.switch
 import scala.annotation.tailrec
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.ListBuffer
-
-import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.core.JsonTokenId
-import com.fasterxml.jackson.databind.DeserializationFeature.USE_BIG_INTEGER_FOR_INTS
-import com.fasterxml.jackson.databind.DeserializationFeature.USE_LONG_FOR_INTS
-import com.fasterxml.jackson.databind._
-import com.fasterxml.jackson.databind.module.SimpleModule
-import com.fasterxml.jackson.databind.node._
 
 private sealed trait DeserializerContext {
   def addValue(value: JsonNode): DeserializerContext

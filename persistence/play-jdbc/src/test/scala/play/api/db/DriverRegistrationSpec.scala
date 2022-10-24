@@ -4,11 +4,12 @@
 
 package play.api.db
 
+import play.api.Configuration
+
+import com.typesafe.config.ConfigFactory
 import java.sql.DriverManager
 import java.sql.SQLException
-import com.typesafe.config.ConfigFactory
 import org.specs2.mutable.Specification
-import play.api.Configuration
 import scala.util.Try
 
 class DriverRegistrationSpec extends Specification {

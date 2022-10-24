@@ -4,6 +4,9 @@
 
 package play.runsupport
 
+import play.api.PlayException
+
+import better.files.{ File => _, _ }
 import java.io.Closeable
 import java.io.File
 import java.net.URL
@@ -11,18 +14,14 @@ import java.net.URLClassLoader
 import java.security.AccessController
 import java.security.PrivilegedAction
 import java.time.Instant
-import java.util.concurrent.atomic.AtomicReference
 import java.util.Timer
-
-import better.files.{ File => _, _ }
-import play.api.PlayException
+import java.util.concurrent.atomic.AtomicReference
 import play.core.Build
 import play.core.BuildLink
 import play.core.server.ReloadableServer
 import play.dev.filewatch.FileWatchService
 import play.runsupport.classloader.ApplicationClassLoaderProvider
 import play.runsupport.classloader.DelegatingClassLoader
-
 import scala.annotation.tailrec
 import scala.collection.JavaConverters._
 

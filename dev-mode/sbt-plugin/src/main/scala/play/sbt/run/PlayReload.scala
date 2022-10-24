@@ -4,17 +4,11 @@
 
 package play.sbt.run
 
-import java.util.Optional
-
-import scala.util.control.NonFatal
-
-import sbt._
-import sbt.Keys._
-import sbt.internal.Output
-import sbt.internal.inc.Analysis
-import sbt.util.InterfaceUtil.o2jo
-
 import play.api.PlayException
+
+import java.net.URI
+import java.nio.file.Paths
+import java.util.Optional
 import play.runsupport.Reloader.CompileFailure
 import play.runsupport.Reloader.CompileResult
 import play.runsupport.Reloader.CompileSuccess
@@ -22,14 +16,16 @@ import play.runsupport.Reloader.Source
 import play.sbt.PlayExceptions.CompilationException
 import play.sbt.PlayExceptions.UnexpectedException
 import play.twirl.compiler.MaybeGeneratedSource
-
+import sbt._
+import sbt.Keys._
+import sbt.internal.Output
+import sbt.internal.inc.Analysis
+import sbt.util.InterfaceUtil.o2jo
+import scala.util.control.NonFatal
 import xsbti.CompileFailed
 import xsbti.Position
 import xsbti.Problem
 import xsbti.Severity
-
-import java.net.URI
-import java.nio.file.Paths
 
 object PlayReload {
   def taskFailureHandler(

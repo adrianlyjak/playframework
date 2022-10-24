@@ -4,15 +4,14 @@
 
 package play.api.http
 
-import akka.util.ByteString
 import play.api.libs.Files.TemporaryFile
-import play.api.mvc._
 import play.api.libs.json._
+import play.api.mvc._
 import play.api.mvc.MultipartFormData.FilePart
 
-import scala.annotation._
-
+import akka.util.ByteString
 import java.nio.file.{ Files => JFiles }
+import scala.annotation._
 
 /**
  * Transform a value of type A to a Byte Array.

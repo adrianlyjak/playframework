@@ -4,7 +4,10 @@
 
 package play.core.server
 
-import java.net.InetSocketAddress
+import play.api._
+import play.api.http.HttpProtocol
+import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
+import play.api.routing.Router
 
 import akka.Done
 import akka.actor.ActorSystem
@@ -27,24 +30,20 @@ import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import io.netty.channel.unix.UnixChannelOption
 import io.netty.handler.codec.http._
-import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
+import io.netty.handler.logging.LogLevel
 import io.netty.handler.ssl.SslHandler
 import io.netty.handler.timeout.IdleStateHandler
-import play.api._
-import play.api.http.HttpProtocol
-import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
-import play.api.routing.Router
+import java.net.InetSocketAddress
 import play.core._
 import play.core.server.Server.ServerStoppedReason
 import play.core.server.netty._
 import play.core.server.ssl.ServerSSLEngine
 import play.server.SSLEngineProvider
-
-import scala.jdk.CollectionConverters._
-import scala.concurrent.duration.Duration
 import scala.concurrent.ExecutionContext
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
+import scala.jdk.CollectionConverters._
 import scala.util.control.NonFatal
 
 sealed trait NettyTransport

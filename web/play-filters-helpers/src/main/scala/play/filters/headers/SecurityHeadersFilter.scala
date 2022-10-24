@@ -4,13 +4,14 @@
 
 package play.filters.headers
 
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
 import play.api.Configuration
 import play.api.http.HeaderNames
 import play.api.inject._
 import play.api.mvc._
+
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * This class sets a number of common security headers on the HTTP request.
@@ -89,7 +90,6 @@ case class SecurityHeadersConfig(
   }
 
   import java.{ util => ju }
-
   import scala.jdk.OptionConverters._
 
   def withFrameOptions(frameOptions: ju.Optional[String]): SecurityHeadersConfig =

@@ -4,18 +4,11 @@
 
 package play.api
 
-import java.io._
-
-import akka.actor.ActorSystem
-import akka.actor.CoordinatedShutdown
-import akka.stream.Materializer
-import javax.inject.Inject
-import javax.inject.Singleton
 import play.api.ApplicationLoader.DevContext
 import play.api.http._
 import play.api.i18n.I18nComponents
-import play.api.inject.ApplicationLifecycle
 import play.api.inject._
+import play.api.inject.ApplicationLifecycle
 import play.api.internal.libs.concurrent.CoordinatedShutdownSupport
 import play.api.libs.Files._
 import play.api.libs.concurrent.AkkaComponents
@@ -26,13 +19,19 @@ import play.api.mvc._
 import play.api.mvc.request.DefaultRequestFactory
 import play.api.mvc.request.RequestFactory
 import play.api.routing.Router
-import play.core.j.JavaContextComponents
-import play.core.j.JavaHelpers
+
+import akka.actor.ActorSystem
+import akka.actor.CoordinatedShutdown
+import akka.stream.Materializer
+import java.io._
+import javax.inject.Inject
+import javax.inject.Singleton
 import play.core.DefaultWebCommands
 import play.core.SourceMapper
 import play.core.WebCommands
+import play.core.j.JavaContextComponents
+import play.core.j.JavaHelpers
 import play.utils._
-
 import scala.annotation.implicitNotFound
 import scala.concurrent.Future
 import scala.reflect.ClassTag

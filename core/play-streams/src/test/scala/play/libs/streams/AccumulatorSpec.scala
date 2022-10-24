@@ -4,23 +4,21 @@
 
 package play.libs.streams
 
+import akka.NotUsed
+import akka.actor.ActorSystem
+import akka.japi.function.{ Function => JFn }
+import akka.stream.Materializer
+import akka.stream.javadsl.Sink
+import akka.stream.javadsl.Source
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
-
-import akka.NotUsed
-
+import org.reactivestreams.Subscription
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration._
 import scala.jdk.FutureConverters._
-import akka.actor.ActorSystem
-import akka.stream.javadsl.Source
-import akka.stream.javadsl.Sink
-import akka.stream.Materializer
-import akka.japi.function.{ Function => JFn }
-import org.reactivestreams.Subscription
 
 class AccumulatorSpec extends org.specs2.mutable.Specification {
   import scala.jdk.CollectionConverters._

@@ -4,10 +4,11 @@
 
 package play.api.libs
 
-import akka.stream.scaladsl._
-import org.specs2.mutable.Specification
 import play.api.http.ContentTypes
 import play.api.mvc.Results
+
+import akka.stream.scaladsl._
+import org.specs2.mutable.Specification
 
 class EventSourceSpec extends Specification {
   import EventSource.Event

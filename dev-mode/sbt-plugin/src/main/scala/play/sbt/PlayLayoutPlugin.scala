@@ -4,11 +4,11 @@
 
 package play.sbt
 
+import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport._
+import com.typesafe.sbt.web.SbtWeb.autoImport._
+import play.twirl.sbt.Import.TwirlKeys
 import sbt._
 import sbt.Keys._
-import play.twirl.sbt.Import.TwirlKeys
-import com.typesafe.sbt.web.SbtWeb.autoImport._
-import com.typesafe.sbt.packager.universal.UniversalPlugin.autoImport._
 
 /**
  * Play layout plugin to switch to the traditional Play web app layout instead of the standard Maven layout.

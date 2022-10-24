@@ -5,8 +5,8 @@
 package play.it
 
 import play.api.inject.guice.GuiceApplicationBuilder
-import play.api.mvc.Results._
 import play.api.mvc._
+import play.api.mvc.Results._
 import play.api.mvc.request.RequestAttrKey
 import play.api.test._
 

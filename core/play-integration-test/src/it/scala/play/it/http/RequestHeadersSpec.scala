@@ -4,12 +4,13 @@
 
 package play.it.http
 
-import org.specs2.matcher.MatchResult
+import play.api.Configuration
+import play.api.Mode
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.mvc._
 import play.api.test._
-import play.api.Configuration
-import play.api.Mode
+
+import org.specs2.matcher.MatchResult
 import play.core.server.ServerConfig
 import play.it._
 

@@ -4,9 +4,8 @@
 
 package play.it.server
 
-import akka.stream.Materializer
-import javax.inject.Inject
-import javax.inject.Provider
+import play.api.Application
+import play.api.Configuration
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.concurrent.ActorSystemProvider
@@ -18,16 +17,17 @@ import play.api.routing.Router
 import play.api.routing.sird._
 import play.api.test.PlaySpecification
 import play.api.test.WsTestClient
-import play.api.Application
-import play.api.Configuration
+
+import akka.stream.Materializer
+import javax.inject.Inject
+import javax.inject.Provider
 import play.core.ApplicationProvider
-import play.core.server.common.ServerDebugInfo
 import play.core.server.ServerConfig
 import play.core.server.ServerProvider
+import play.core.server.common.ServerDebugInfo
 import play.it.AkkaHttpIntegrationSpecification
 import play.it.NettyIntegrationSpecification
 import play.it.ServerIntegrationSpecification
-
 import scala.concurrent.Future
 import scala.util.Failure
 import scala.util.Success

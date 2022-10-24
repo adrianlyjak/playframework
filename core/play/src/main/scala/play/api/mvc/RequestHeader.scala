@@ -4,9 +4,6 @@
 
 package play.api.mvc
 
-import java.security.cert.X509Certificate
-import java.util.Locale
-
 import play.api.http.HeaderNames
 import play.api.http.MediaRange
 import play.api.http.MediaType
@@ -17,6 +14,8 @@ import play.api.libs.typedmap.TypedKey
 import play.api.libs.typedmap.TypedMap
 import play.api.mvc.request._
 
+import java.security.cert.X509Certificate
+import java.util.Locale
 import scala.annotation.implicitNotFound
 
 /**

@@ -4,14 +4,13 @@
 
 package play.api.libs.ws.ahc
 
-import java.io.File
-import java.net.URI
-
-import akka.stream.scaladsl.Source
-import akka.util.ByteString
 import play.api.libs.ws._
 import play.api.mvc.MultipartFormData
 
+import akka.stream.scaladsl.Source
+import akka.util.ByteString
+import java.io.File
+import java.net.URI
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
 

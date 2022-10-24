@@ -4,17 +4,16 @@
 
 package play.core.server.common
 
-import java.net.InetAddress
-import java.security.cert.X509Certificate
-
 import play.api.Configuration
 import play.api.Logger
 import play.api.mvc.Headers
-import play.core.server.common.NodeIdentifierParser.Ip
-
-import scala.annotation.tailrec
-import ForwardedHeaderHandler._
 import play.api.mvc.request.RemoteConnection
+
+import ForwardedHeaderHandler._
+import java.net.InetAddress
+import java.security.cert.X509Certificate
+import play.core.server.common.NodeIdentifierParser.Ip
+import scala.annotation.tailrec
 
 /**
  * The ForwardedHeaderHandler class works out the remote address and protocol

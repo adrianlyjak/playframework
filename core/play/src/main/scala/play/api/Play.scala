@@ -4,25 +4,23 @@
 
 package play.api
 
-import java.util.concurrent.atomic.AtomicReference
+import play.api.i18n.MessagesApi
 
 import akka.Done
 import akka.actor.CoordinatedShutdown
 import akka.stream.Materializer
-import play.api.i18n.MessagesApi
+import java.util.concurrent.atomic.AtomicReference
+import javax.xml.XMLConstants
+import javax.xml.parsers.SAXParserFactory
+import play.libs.XML.Constants
 import play.utils.Threads
-
 import scala.concurrent.Await
 import scala.concurrent.Future
 import scala.concurrent.duration.Duration
-import scala.util.control.NonFatal
-import javax.xml.parsers.SAXParserFactory
-import play.libs.XML.Constants
-import javax.xml.XMLConstants
-
 import scala.util.Failure
 import scala.util.Success
 import scala.util.Try
+import scala.util.control.NonFatal
 
 /**
  * High-level API to access Play global features.

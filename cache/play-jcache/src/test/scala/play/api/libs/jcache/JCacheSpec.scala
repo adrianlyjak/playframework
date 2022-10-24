@@ -4,9 +4,9 @@
 
 package play.api.libs.jcache
 
-import javax.cache.CacheManager
-
 import play.api.test._
+
+import javax.cache.CacheManager
 
 /**
  */

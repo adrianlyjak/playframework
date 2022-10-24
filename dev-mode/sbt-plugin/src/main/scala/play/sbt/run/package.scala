@@ -4,8 +4,8 @@
 
 package play.sbt
 
-import sbt._
 import play.dev.filewatch.LoggerProxy
+import sbt._
 
 package object run {
   import scala.language.implicitConversions

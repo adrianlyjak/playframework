@@ -4,14 +4,13 @@
 
 package play.api.libs.ws
 
-import java.io.File
+import play.api.mvc.MultipartFormData
 
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.mvc.MultipartFormData
-
-import scala.concurrent.duration.Duration
+import java.io.File
 import scala.concurrent.Future
+import scala.concurrent.duration.Duration
 
 /**
  * A WS Request builder.

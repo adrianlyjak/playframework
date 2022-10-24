@@ -5,9 +5,7 @@
 package play.core.j
 
 import java.util.Optional
-
 import play.mvc.Http
-
 import scala.annotation.implicitNotFound
 import scala.collection.convert.ToJavaImplicits
 import scala.collection.convert.ToScalaImplicits

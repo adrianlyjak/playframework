@@ -5,7 +5,6 @@
 package play.routes.compiler
 
 import java.io.File
-
 import scala.util.parsing.input.Positional
 
 /**

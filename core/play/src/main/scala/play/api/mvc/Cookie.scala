@@ -4,31 +4,29 @@
 
 package play.api.mvc
 
-import com.fasterxml.jackson.databind.ObjectMapper
-
-import java.net.URLDecoder
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
-import java.util.Date
-import java.util.Locale
-import javax.inject.Inject
-
-import io.jsonwebtoken.Jwts
-import io.jsonwebtoken.jackson.io.JacksonDeserializer
-import io.jsonwebtoken.jackson.io.JacksonSerializer
-import play.api.MarkerContexts.SecurityMarkerContext
 import play.api._
+import play.api.MarkerContexts.SecurityMarkerContext
 import play.api.http._
 import play.api.inject.SimpleModule
 import play.api.inject.bind
 import play.api.libs.crypto.CookieSigner
 import play.api.libs.crypto.CookieSignerProvider
 import play.api.mvc.Cookie.SameSite
-import play.libs.Scala
-import play.mvc.Http.{ Cookie => JCookie }
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.jackson.io.JacksonDeserializer
+import io.jsonwebtoken.jackson.io.JacksonSerializer
+import java.net.URLDecoder
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
+import java.util.Date
+import java.util.Locale
 import javax.crypto.SecretKey
 import javax.crypto.spec.SecretKeySpec
+import javax.inject.Inject
+import play.libs.Scala
+import play.mvc.Http.{ Cookie => JCookie }
 import scala.collection.immutable.ListMap
 import scala.util.Try
 import scala.util.control.NonFatal

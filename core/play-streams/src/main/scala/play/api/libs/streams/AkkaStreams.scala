@@ -4,11 +4,10 @@
 
 package play.api.libs.streams
 
+import akka.Done
+import akka.stream._
 import akka.stream.scaladsl._
 import akka.stream.stage._
-import akka.stream._
-import akka.Done
-
 import scala.concurrent.Future
 
 /**

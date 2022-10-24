@@ -4,18 +4,18 @@
 
 package play.api.test
 
+import play.api.mvc._
+import play.api.mvc.Results._
+import play.api.test.Helpers._
+
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 import org.specs2.mutable._
-import play.api.mvc.Results._
-import play.api.mvc._
-import play.api.test.Helpers._
 import play.twirl.api.Content
-
-import scala.concurrent.Future
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 import scala.language.reflectiveCalls
 
 class HelpersSpec extends Specification {

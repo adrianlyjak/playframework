@@ -4,13 +4,14 @@
 
 package play.core.server.netty
 
-import io.netty.channel.Channel
-import io.netty.handler.codec.http.HttpRequest
-import org.openjdk.jmh.annotations.TearDown
-import org.openjdk.jmh.annotations._
 import play.api.http.HttpConfiguration
 import play.api.mvc.RequestHeader
 import play.api.mvc.request.DefaultRequestFactory
+
+import io.netty.channel.Channel
+import io.netty.handler.codec.http.HttpRequest
+import org.openjdk.jmh.annotations._
+import org.openjdk.jmh.annotations.TearDown
 
 @State(Scope.Benchmark)
 class NettyModelConversion_02_ConvertNormalRequest {

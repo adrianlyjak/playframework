@@ -4,23 +4,23 @@
 
 package play.filters.csp
 
-import com.typesafe.config.ConfigFactory
-import com.typesafe.config.ConfigRenderOptions
-import javax.inject.Inject
+import play.api.Application
+import play.api.Configuration
+import play.api.Environment
 import play.api.http.HttpFilters
 import play.api.inject.bind
 import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.mvc._
 import play.api.mvc.Handler.Stage
 import play.api.mvc.Results._
-import play.api.mvc._
 import play.api.mvc.request.RequestAttrKey
 import play.api.routing.HandlerDef
 import play.api.routing.Router
 import play.api.test._
-import play.api.Application
-import play.api.Configuration
-import play.api.Environment
 
+import com.typesafe.config.ConfigFactory
+import com.typesafe.config.ConfigRenderOptions
+import javax.inject.Inject
 import scala.reflect.ClassTag
 
 class Filters @Inject() (cspFilter: CSPFilter) extends HttpFilters {

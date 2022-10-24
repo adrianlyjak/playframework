@@ -4,12 +4,12 @@
 
 package play.api.mvc
 
-import javax.inject.Inject
-
 import play.api.http.SecretConfiguration
 import play.api.http.SessionConfiguration
 import play.api.libs.crypto.CookieSigner
 import play.api.libs.crypto.CookieSignerProvider
+
+import javax.inject.Inject
 import play.mvc.Http
 
 /**

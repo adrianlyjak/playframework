@@ -4,16 +4,15 @@
 
 package play.api.libs.crypto
 
+import play.api.libs.Codecs
+
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
 import java.security.SecureRandom
 import java.time.Clock
-
 import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
-
-import play.api.libs.Codecs
 
 /**
  * Cryptographic utilities for generating and validating CSRF tokens.

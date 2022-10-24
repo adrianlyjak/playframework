@@ -4,11 +4,12 @@
 
 package play.api.http
 
-import org.specs2.mutable.Specification
 import play.api.Configuration
 import play.api.Environment
 import play.api.Mode
 import play.api.PlayException
+
+import org.specs2.mutable.Specification
 
 class SecretConfigurationParserSpec extends Specification {
   def secretKey: String            = "play.http.secret.key"

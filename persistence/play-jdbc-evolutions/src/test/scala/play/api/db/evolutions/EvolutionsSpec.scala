@@ -4,13 +4,13 @@
 
 package play.api.db.evolutions
 
-import java.sql.ResultSet
-import java.sql.SQLException
-
-import org.specs2.mutable.After
-import org.specs2.mutable.Specification
 import play.api.db.Database
 import play.api.db.Databases
+
+import java.sql.ResultSet
+import java.sql.SQLException
+import org.specs2.mutable.After
+import org.specs2.mutable.Specification
 
 // TODO: functional test with InvalidDatabaseRevision exception
 

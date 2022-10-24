@@ -4,8 +4,9 @@
 
 package play.api.db.evolutions
 
-import org.specs2.mutable.Specification
 import play.api.Configuration
+
+import org.specs2.mutable.Specification
 
 class DefaultEvolutionsConfigParserSpec extends Specification {
   def parse(config: (String, Any)*): EvolutionsConfig = {

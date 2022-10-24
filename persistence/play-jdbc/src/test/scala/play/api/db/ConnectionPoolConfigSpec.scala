@@ -4,9 +4,10 @@
 
 package play.api.db
 
-import javax.inject._
 import play.api.Environment
 import play.api.test._
+
+import javax.inject._
 
 class ConnectionPoolConfigSpec extends PlaySpecification {
   "DBModule bindings" should {

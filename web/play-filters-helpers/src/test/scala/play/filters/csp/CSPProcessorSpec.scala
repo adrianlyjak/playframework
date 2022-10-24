@@ -7,14 +7,13 @@ package play.filters.csp
 import play.api.mvc.RequestHeader
 import play.api.test.FakeRequest
 import play.api.test.PlaySpecification
+
 import com.shapesecurity.salvation._
 import com.shapesecurity.salvation.data._
-import java.util
-
-import com.shapesecurity.salvation.directiveValues.HashSource.HashAlgorithm
 import com.shapesecurity.salvation.directives.DirectiveValue
 import com.shapesecurity.salvation.directives.UpgradeInsecureRequestsDirective
-
+import com.shapesecurity.salvation.directiveValues.HashSource.HashAlgorithm
+import java.util
 import scala.jdk.CollectionConverters._
 
 class CSPProcessorSpec extends PlaySpecification {

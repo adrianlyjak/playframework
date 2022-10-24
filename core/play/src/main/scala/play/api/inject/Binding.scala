@@ -4,15 +4,14 @@
 
 package play.api.inject
 
-import java.lang.annotation.Annotation
-import java.lang.reflect.Modifier
-
-import javax.inject.Provider
 import play.api.PlayException
 
+import java.lang.annotation.Annotation
+import java.lang.reflect.Modifier
+import javax.inject.Provider
+import play.inject.SourceProvider
 import scala.language.existentials
 import scala.reflect.ClassTag
-import play.inject.SourceProvider
 
 /**
  * A binding.

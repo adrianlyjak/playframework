@@ -4,14 +4,15 @@
 
 package play.api.http
 
-import org.specs2.mutable.Specification
+import play.api.Configuration
+import play.api.Environment
+import play.api.PlayException
 import play.api.inject.Injector
 import play.api.inject.NewInstanceInjector
 import play.api.mvc.EssentialAction
 import play.api.mvc.EssentialFilter
-import play.api.Configuration
-import play.api.Environment
-import play.api.PlayException
+
+import org.specs2.mutable.Specification
 
 /**
  * Unit tests for default filter spec functionality

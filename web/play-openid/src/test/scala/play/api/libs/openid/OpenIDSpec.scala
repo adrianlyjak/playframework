@@ -4,24 +4,21 @@
 
 package play.api.libs.openid
 
-import org.specs2.mutable.Specification
-
-import scala.Predef._
-import org.specs2.mock.Mockito
-import org.mockito._
-import play.api.mvc.Request
 import play.api.http._
 import play.api.http.Status._
 import play.api.libs.openid.Errors.AUTH_ERROR
 import play.api.libs.openid.Errors.BAD_RESPONSE
-
-import scala.concurrent.Await
-import scala.concurrent.duration.Duration
-import java.util.concurrent.TimeUnit
-
 import play.api.libs.ws.BodyWritable
+import play.api.mvc.Request
 
+import java.util.concurrent.TimeUnit
+import org.mockito._
+import org.specs2.mock.Mockito
+import org.specs2.mutable.Specification
+import scala.Predef._
+import scala.concurrent.Await
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration.Duration
 
 class OpenIDSpec extends Specification with Mockito {
   val claimedId     = "http://example.com/openid?id=C123"

@@ -8,6 +8,7 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.mvc._
 import play.api.test.PlaySpecification
 import play.api.test.Port
+
 import play.it.AkkaHttpIntegrationSpecification
 import play.it.LogTester
 

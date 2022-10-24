@@ -9,15 +9,14 @@
  */
 package play.it.http.websocket
 
-import java.net.URI
-import java.util.concurrent.atomic.AtomicBoolean
+import play.api.http.websocket._
 
-import akka.stream.scaladsl._
-import akka.stream.stage._
 import akka.stream.Attributes
 import akka.stream.FlowShape
 import akka.stream.Inlet
 import akka.stream.Outlet
+import akka.stream.scaladsl._
+import akka.stream.stage._
 import akka.util.ByteString
 import com.typesafe.netty.HandlerPublisher
 import com.typesafe.netty.HandlerSubscriber
@@ -31,9 +30,9 @@ import io.netty.channel.socket.nio.NioSocketChannel
 import io.netty.handler.codec.http._
 import io.netty.handler.codec.http.websocketx._
 import io.netty.util.ReferenceCountUtil
-import play.api.http.websocket._
+import java.net.URI
+import java.util.concurrent.atomic.AtomicBoolean
 import play.it.http.websocket.WebSocketClient.ExtendedMessage
-
 import scala.collection.immutable
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future

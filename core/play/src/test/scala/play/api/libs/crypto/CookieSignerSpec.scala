@@ -4,8 +4,9 @@
 
 package play.api.libs.crypto
 
-import org.specs2.mutable.Specification
 import play.api.http.SecretConfiguration
+
+import org.specs2.mutable.Specification
 
 class CookieSignerSpec extends Specification {
   "signer.sign" should {

@@ -4,10 +4,10 @@
 
 package play.api.libs.concurrent
 
+import play.api._
+import play.api.inject._
+
 import akka.Done
-import akka.actor.setup.ActorSystemSetup
-import akka.actor.setup.Setup
-import akka.actor.typed.Scheduler
 import akka.actor.Actor
 import akka.actor.ActorContext
 import akka.actor.ActorRef
@@ -16,6 +16,9 @@ import akka.actor.BootstrapSetup
 import akka.actor.ClassicActorSystemProvider
 import akka.actor.CoordinatedShutdown
 import akka.actor.Props
+import akka.actor.setup.ActorSystemSetup
+import akka.actor.setup.Setup
+import akka.actor.typed.Scheduler
 import akka.stream.Materializer
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigValueFactory
@@ -23,9 +26,6 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 import org.slf4j.LoggerFactory
-import play.api._
-import play.api.inject._
-
 import scala.concurrent._
 import scala.concurrent.duration.Duration
 import scala.reflect.ClassTag

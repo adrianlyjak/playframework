@@ -4,11 +4,12 @@
 
 package play.api.test
 
-import org.specs2.mutable.SpecificationLike
 import play.api.http.HeaderNames
 import play.api.http.HttpProtocol
 import play.api.http.HttpVerbs
 import play.api.http.Status
+
+import org.specs2.mutable.SpecificationLike
 
 /**
  * Play specs2 specification.

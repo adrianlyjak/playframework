@@ -4,20 +4,19 @@
 
 package play.api.mvc
 
-import java.io.File
-import java.io.InputStream
-import java.nio.file.Files
-import java.nio.file.Path
+import play.api.http.HttpEntity
 
 import akka.actor.ActorSystem
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
-import play.api.http.HttpEntity
-
+import java.io.File
+import java.io.InputStream
+import java.nio.file.Files
+import java.nio.file.Path
+import org.specs2.mutable.Specification
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-import org.specs2.mutable.Specification
 
 class ByteRangeSpec extends Specification {
   "Distance" in {

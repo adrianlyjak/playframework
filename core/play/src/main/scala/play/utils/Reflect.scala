@@ -4,11 +4,11 @@
 
 package play.utils
 
-import play.api.inject.Binding
-import play.api.inject.BindingKey
 import play.api.Configuration
 import play.api.Environment
 import play.api.PlayException
+import play.api.inject.Binding
+import play.api.inject.BindingKey
 
 import scala.reflect.ClassTag
 

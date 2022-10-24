@@ -4,18 +4,18 @@
 
 package play.it.http.parsing
 
-import java.util.concurrent.TimeUnit
+import play.api.Application
+import play.api.Configuration
+import play.api.test._
 
 import akka.stream.Materializer
 import akka.stream.scaladsl.Source
 import akka.util.ByteString
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
+import java.util.concurrent.TimeUnit
 import org.specs2.execute.Failure
 import org.specs2.matcher.Matchers
-import play.api.Application
-import play.api.Configuration
-import play.api.test._
 import play.libs.F
 import play.mvc.BodyParser
 import play.mvc.Http

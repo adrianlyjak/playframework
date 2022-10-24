@@ -4,23 +4,22 @@
 
 package play.it.http
 
-import java.io.IOException
-import java.net.SocketException
-
-import akka.stream.scaladsl.Sink
 import play.api.BuiltInComponents
+import play.api.libs.streams.Accumulator
 import play.api.mvc.EssentialAction
 import play.api.mvc.Results
-import play.api.test._
-import play.api.libs.streams.Accumulator
 import play.api.routing.Router
+import play.api.test._
+
+import akka.stream.scaladsl.Sink
+import java.io.IOException
+import java.net.SocketException
 import play.core.server._
 import play.it.test.AkkaHttpServerEndpointRecipes
 import play.it.test.EndpointIntegrationSpecification
 import play.it.test.NettyServerEndpointRecipes
-
-import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits._
+import scala.concurrent.duration._
 import scala.util.Random
 
 class IdleTimeoutSpec extends PlaySpecification with EndpointIntegrationSpecification with ApplicationFactories {

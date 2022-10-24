@@ -4,10 +4,10 @@
 
 package play.api.libs.jcache
 
+import play.api.Environment
+
 import javax.cache.CacheManager
 import javax.cache.Caching
-
-import play.api.Environment
 
 /**
  * Components for JCache CacheManager

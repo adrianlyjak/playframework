@@ -4,15 +4,15 @@
 
 package play.it.test
 
-import java.util.concurrent.TimeUnit
+import play.api.test.ApplicationFactory
+import play.api.test.ServerEndpointRecipe
 
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
 import org.specs2.execute.AsResult
 import org.specs2.specification.core.Fragment
-import play.api.test.ApplicationFactory
-import play.api.test.ServerEndpointRecipe
 import play.core.server.LoggingTrustManager
 import play.core.server.ServerEndpoint
 

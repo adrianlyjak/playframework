@@ -4,25 +4,26 @@
 
 package play.api.libs.ws.ahc
 
-import java.net.URI
-import javax.cache.configuration.FactoryBuilder.SingletonFactory
-import javax.cache.configuration.MutableConfiguration
-import javax.cache.expiry.EternalExpiryPolicy
-import javax.cache.CacheManager
-import javax.cache.Caching
-import javax.cache.{ Cache => JCache }
-import javax.inject.Inject
-import javax.inject.Provider
-import javax.inject.Singleton
-import akka.stream.Materializer
+import play.api.Configuration
+import play.api.Environment
+import play.api.Logger
 import play.api.inject.ApplicationLifecycle
 import play.api.inject.SimpleModule
 import play.api.inject.bind
 import play.api.libs.ws._
 import play.api.libs.ws.ahc.cache._
-import play.api.Configuration
-import play.api.Environment
-import play.api.Logger
+
+import akka.stream.Materializer
+import java.net.URI
+import javax.cache.{ Cache => JCache }
+import javax.cache.CacheManager
+import javax.cache.Caching
+import javax.cache.configuration.FactoryBuilder.SingletonFactory
+import javax.cache.configuration.MutableConfiguration
+import javax.cache.expiry.EternalExpiryPolicy
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 import play.shaded.ahc.org.asynchttpclient.AsyncHttpClient
 import play.shaded.ahc.org.asynchttpclient.DefaultAsyncHttpClient
 import scala.concurrent.ExecutionContext

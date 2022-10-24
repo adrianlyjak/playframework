@@ -4,25 +4,24 @@
 
 package play.it.action
 
-import akka.stream.scaladsl.Source
-import play.shaded.ahc.io.netty.handler.codec.http.HttpHeaders
-import org.specs2.mutable.Specification
 import play.api.http.HeaderNames._
 import play.api.http.Status._
+import play.api.libs.typedmap.TypedKey
 import play.api.libs.ws.WSClient
 import play.api.libs.ws.WSResponse
 import play.api.mvc._
 import play.api.routing.Router.Routes
 import play.api.routing.sird._
 import play.api.test._
+
+import akka.stream.scaladsl.Source
+import org.specs2.mutable.Specification
 import play.core.server.Server
 import play.it._
 import play.it.tools.HttpBinApplication._
-
-import scala.concurrent.ExecutionContext.Implicits.global
+import play.shaded.ahc.io.netty.handler.codec.http.HttpHeaders
 import play.shaded.ahc.org.asynchttpclient.netty.NettyResponse
-import play.api.libs.typedmap.TypedKey
-
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 class NettyHeadActionSpec    extends HeadActionSpec with NettyIntegrationSpecification

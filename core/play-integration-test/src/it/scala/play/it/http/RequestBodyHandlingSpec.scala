@@ -4,11 +4,6 @@
 
 package play.it.http
 
-import java.util.zip.Deflater
-
-import akka.stream.scaladsl.Flow
-import akka.stream.scaladsl.Sink
-import akka.util.ByteString
 import play.api.Configuration
 import play.api.Mode
 import play.api.http.HttpErrorHandler
@@ -16,9 +11,13 @@ import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.streams.Accumulator
 import play.api.mvc._
 import play.api.test._
+
+import akka.stream.scaladsl.Flow
+import akka.stream.scaladsl.Sink
+import akka.util.ByteString
+import java.util.zip.Deflater
 import play.core.server.ServerConfig
 import play.it._
-
 import scala.concurrent.ExecutionContext.Implicits._
 import scala.concurrent.Future
 import scala.util.Random

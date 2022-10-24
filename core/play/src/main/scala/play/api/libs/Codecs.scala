@@ -4,10 +4,9 @@
 
 package play.api.libs
 
+import com.google.common.io.BaseEncoding
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
-
-import com.google.common.io.BaseEncoding
 
 /**
  * Utilities for Codecs operations.

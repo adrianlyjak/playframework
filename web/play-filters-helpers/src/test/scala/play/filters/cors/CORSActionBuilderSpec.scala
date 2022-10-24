@@ -4,11 +4,12 @@
 
 package play.filters.cors
 
-import akka.actor.ActorSystem
-import akka.stream.Materializer
-import play.api.mvc.Results
 import play.api.Application
 import play.api.Configuration
+import play.api.mvc.Results
+
+import akka.actor.ActorSystem
+import akka.stream.Materializer
 import scala.concurrent.ExecutionContext
 
 class CORSActionBuilderSpec extends CORSCommonSpec {

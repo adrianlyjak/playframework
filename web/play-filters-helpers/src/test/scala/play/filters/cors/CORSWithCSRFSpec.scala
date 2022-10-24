@@ -4,23 +4,23 @@
 
 package play.filters.cors
 
-import java.time.Clock
-import java.time.Instant
-import java.time.ZoneId
-import javax.inject.Inject
-
 import play.api.Application
 import play.api.http.ContentTypes
 import play.api.http.HttpFilters
 import play.api.http.SecretConfiguration
 import play.api.http.SessionConfiguration
 import play.api.inject.bind
-import play.api.libs.crypto.DefaultCSRFTokenSigner
 import play.api.libs.crypto.DefaultCookieSigner
+import play.api.libs.crypto.DefaultCSRFTokenSigner
 import play.api.mvc.DefaultActionBuilder
 import play.api.mvc.Results
 import play.api.routing.Router
 import play.api.routing.sird._
+
+import java.time.Clock
+import java.time.Instant
+import java.time.ZoneId
+import javax.inject.Inject
 import play.filters.cors.CORSWithCSRFSpec.CORSWithCSRFRouter
 import play.filters.csrf._
 
