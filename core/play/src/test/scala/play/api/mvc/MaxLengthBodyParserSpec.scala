@@ -57,13 +57,16 @@ class MaxLengthBodyParserSpec extends Specification with AfterAll {
       Sink
         .seq[ByteString]
         .mapMaterializedValue(future =>
-          future.transform({ bytes =>
-            bodyParsed.success(())
-            Right(bytes.fold(ByteString.empty)(_ ++ _))
-          }, { t =>
-            bodyParsed.failure(t)
-            t
-          })
+          future.transform(
+            { bytes =>
+              bodyParsed.success(())
+              Right(bytes.fold(ByteString.empty)(_ ++ _))
+            },
+            { t =>
+              bodyParsed.failure(t)
+              t
+            }
+          )
         )
     )
     (parser, bodyParsed.future)
@@ -74,10 +77,13 @@ class MaxLengthBodyParserSpec extends Specification with AfterAll {
       food: ByteString = Body15,
       ai: AtomicInteger = new AtomicInteger
   ): A = {
-    Await.result(accumulator.run(Source.fromIterator(() => {
-      ai.incrementAndGet()
-      food.grouped(3)
-    })), 5.seconds)
+    Await.result(
+      accumulator.run(Source.fromIterator(() => {
+        ai.incrementAndGet()
+        food.grouped(3)
+      })),
+      5.seconds
+    )
   }
 
   def assertDidNotParse(parsed: Future[Unit]) = {

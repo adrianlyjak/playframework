@@ -218,9 +218,12 @@ trait WebSocketSpec
           }
         ) { app =>
           import app.materializer
-          val (_, headers) = runWebSocket({ flow =>
-            sendFrames(TextMessage("foo"), CloseMessage(1000)).via(flow).runWith(Sink.ignore)
-          }, Some("my_crazy_subprotocol"))
+          val (_, headers) = runWebSocket(
+            { flow =>
+              sendFrames(TextMessage("foo"), CloseMessage(1000)).via(flow).runWith(Sink.ignore)
+            },
+            Some("my_crazy_subprotocol")
+          )
           (headers
             .map { case (key, value) => (key.toLowerCase, value) }
             .collect { case ("sec-websocket-protocol", selectedProtocol) => selectedProtocol }

@@ -162,7 +162,9 @@ class MultipartFormDataParserSpec extends PlaySpecification with WsTestClient {
         }
         parts.file("file3") must beSome.like {
           case filePart => {
-            PlayIO.readFileAsString(filePart.ref) must_== "the third file (with 'Content-Disposition: file' instead of 'form-data' as used in webhook callbacks of some scanners, see issue #8527)\r\n"
+            PlayIO.readFileAsString(
+              filePart.ref
+            ) must_== "the third file (with 'Content-Disposition: file' instead of 'form-data' as used in webhook callbacks of some scanners, see issue #8527)\r\n"
             filePart.fileSize must_== 137
           }
         }
@@ -245,7 +247,9 @@ class MultipartFormDataParserSpec extends PlaySpecification with WsTestClient {
         }
         parts.file("file3") must beSome.like {
           case filePart => {
-            PlayIO.readFileAsString(filePart.ref) must_== "the third file (with 'Content-Disposition: file' instead of 'form-data' as used in webhook callbacks of some scanners, see issue #8527)\r\n"
+            PlayIO.readFileAsString(
+              filePart.ref
+            ) must_== "the third file (with 'Content-Disposition: file' instead of 'form-data' as used in webhook callbacks of some scanners, see issue #8527)\r\n"
             filePart.fileSize must_== 137
           }
         }

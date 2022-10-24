@@ -155,9 +155,9 @@ case class AhcWSRequest(underlying: StandaloneAhcWSRequest) extends WSRequest wi
 
   override def withUrl(url: String): WSRequest = toWSRequest(underlying.withUrl(url))
 
-  //-------------------------------------------------
+  // -------------------------------------------------
   // PATCH
-  //-------------------------------------------------
+  // -------------------------------------------------
 
   /**
    * Perform a PATCH on the request asynchronously.
@@ -167,7 +167,6 @@ case class AhcWSRequest(underlying: StandaloneAhcWSRequest) extends WSRequest wi
   /**
    * Perform a PATCH on the request asynchronously.
    * Request body won't be chunked
-   *
    *
    * @deprecated Import WSBodyWritables and use the typeclass in preference to this method, since 2.6.0
    */
@@ -186,9 +185,9 @@ case class AhcWSRequest(underlying: StandaloneAhcWSRequest) extends WSRequest wi
     patch[Source[MultipartFormData.Part[Source[ByteString, _]], _]](body)
   }
 
-  //-------------------------------------------------
+  // -------------------------------------------------
   // POST
-  //-------------------------------------------------
+  // -------------------------------------------------
 
   /**
    * Perform a POST on the request asynchronously.
@@ -215,9 +214,9 @@ case class AhcWSRequest(underlying: StandaloneAhcWSRequest) extends WSRequest wi
     post[Source[MultipartFormData.Part[Source[ByteString, _]], _]](body)
   }
 
-  //-------------------------------------------------
+  // -------------------------------------------------
   // PUT
-  //-------------------------------------------------
+  // -------------------------------------------------
 
   /**
    * Perform a PUT on the request asynchronously.

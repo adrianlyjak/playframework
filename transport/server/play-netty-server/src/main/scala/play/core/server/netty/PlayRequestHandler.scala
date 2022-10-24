@@ -118,10 +118,12 @@ private[play] class PlayRequestHandler(
       case Failure(exception: TooLongFrameException) => clientError(Status.REQUEST_URI_TOO_LONG, exception.getMessage)
       case Failure(exception)                        => clientError(Status.BAD_REQUEST, exception.getMessage)
       case Success(untagged) =>
-        if (untagged.headers
-              .get(HeaderNames.CONTENT_LENGTH)
-              .flatMap(clh => catching(classOf[NumberFormatException]).opt(clh.toLong))
-              .exists(_ > maxContentLength)) {
+        if (
+          untagged.headers
+            .get(HeaderNames.CONTENT_LENGTH)
+            .flatMap(clh => catching(classOf[NumberFormatException]).opt(clh.toLong))
+            .exists(_ > maxContentLength)
+        ) {
           clientError(Status.REQUEST_ENTITY_TOO_LARGE, "Request Entity Too Large")
         } else {
           val debugHeader: RequestHeader = attachDebugInfo(untagged)
@@ -130,7 +132,7 @@ private[play] class PlayRequestHandler(
     }
 
     handler match {
-      //execute normal action
+      // execute normal action
       case action: EssentialAction =>
         handleAction(action, requestHeader, request, tryApp)
 
@@ -167,7 +169,7 @@ private[play] class PlayRequestHandler(
               }
           }
 
-      //handle bad websocket request
+      // handle bad websocket request
       case ws: WebSocket =>
         logger.trace(s"Bad websocket request: $request")
         val action = EssentialAction(_ =>
@@ -190,7 +192,7 @@ private[play] class PlayRequestHandler(
     }
   }
 
-  //----------------------------------------------------------------
+  // ----------------------------------------------------------------
   // Netty overrides
 
   override def channelRead(ctx: ChannelHandlerContext, msg: Object): Unit = {
@@ -278,7 +280,7 @@ private[play] class PlayRequestHandler(
     }
   }
 
-  //----------------------------------------------------------------
+  // ----------------------------------------------------------------
   // Private methods
 
   /**

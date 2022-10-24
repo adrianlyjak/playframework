@@ -201,8 +201,10 @@ private[cors] trait AbstractCORSPolicy {
              * values in list of methods do not set any additional
              * headers and terminate this set of steps.
              */
-            if (!SupportedHttpMethods.contains(accessControlRequestMethod) ||
-                !methodPredicate(accessControlRequestMethod)) {
+            if (
+              !SupportedHttpMethods.contains(accessControlRequestMethod) ||
+              !methodPredicate(accessControlRequestMethod)
+            ) {
               handleInvalidCORSRequest(request)
             } else {
               /* http://www.w3.org/TR/cors/#resource-preflight-requests
@@ -289,8 +291,8 @@ private[cors] trait AbstractCORSPolicy {
 
   private def handleInvalidCORSRequest(request: RequestHeader): Accumulator[ByteString, Result] = {
     logger.warn(s"""Invalid CORS request;Origin=${request.headers
-      .get(HeaderNames.ORIGIN)};Method=${request.method};${HeaderNames.ACCESS_CONTROL_REQUEST_HEADERS}=${request.headers
-      .get(HeaderNames.ACCESS_CONTROL_REQUEST_HEADERS)}""")(SecurityMarkerContext)
+        .get(HeaderNames.ORIGIN)};Method=${request.method};${HeaderNames.ACCESS_CONTROL_REQUEST_HEADERS}=${request.headers
+        .get(HeaderNames.ACCESS_CONTROL_REQUEST_HEADERS)}""")(SecurityMarkerContext)
     Accumulator.done(Future.successful(Results.Forbidden))
   }
 

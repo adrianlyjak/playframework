@@ -148,7 +148,10 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
   }
 
   private def verifiedId(queryString: Map[String, Seq[String]]): Future[UserInfo] = {
-    (queryString.get("openid.mode").flatMap(_.headOption), queryString.get("openid.claimed_id").flatMap(_.headOption)) match { // The Claimed Identifier. "openid.claimed_id" and "openid.identity" SHALL be either both present or both absent.
+    (
+      queryString.get("openid.mode").flatMap(_.headOption),
+      queryString.get("openid.claimed_id").flatMap(_.headOption)
+    ) match { // The Claimed Identifier. "openid.claimed_id" and "openid.identity" SHALL be either both present or both absent.
       case (Some("id_res"), Some(id)) => {
         // MUST perform discovery on the claimedId to resolve the op_endpoint.
         val server: Future[OpenIDServer] = discovery.discoverServer(id)
@@ -192,7 +195,10 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
 
       val definitions = (axRequired ++ axOptional).map(attribute => ("openid.ax.type." + attribute._1 -> attribute._2))
 
-      Seq("openid.ns.ax" -> "http://openid.net/srv/ax/1.0", "openid.ax.mode" -> "fetch_request") ++ axRequiredParams ++ axOptionalParams ++ definitions
+      Seq(
+        "openid.ns.ax"   -> "http://openid.net/srv/ax/1.0",
+        "openid.ax.mode" -> "fetch_request"
+      ) ++ axRequiredParams ++ axOptionalParams ++ definitions
     }
   }
 }
@@ -312,7 +318,7 @@ private[openid] object Discovery {
           .findFirstIn(response.body)
           .orElse(delegateRegex.findFirstIn(response.body))
           .flatMap(extractHref(_))
-        OpenIDServer("http://specs.openid.net/auth/2.0/signon", url, delegate) //protocol version due to http://openid.net/specs/openid-authentication-2_0.html#html_disco
+        OpenIDServer("http://specs.openid.net/auth/2.0/signon", url, delegate) // protocol version due to http://openid.net/specs/openid-authentication-2_0.html#html_disco
       })
     }
 

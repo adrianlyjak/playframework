@@ -74,16 +74,21 @@ case class RouteParams(path: Map[String, Either[Throwable, String]], queryString
 
   def fromQuery[T](key: String, default: Option[T] = None)(implicit binder: QueryStringBindable[T]): Param[T] = {
     val bindResult = binder.bind(key, queryString)
-    if (bindResult == Some(Right(None)) || bindResult == Some(Right(Optional.empty))
-        || bindResult == Some(Right(OptionalInt.empty)) || bindResult == Some(Right(OptionalLong.empty))
-        || bindResult == Some(Right(OptionalDouble.empty))
-        || bindResult == Some(Right(Nil)) || bindResult == Some(Right(Nil.asJava))
-        || bindResult == Some(Right(Some(Nil))) || bindResult == Some(Right(Optional.of(Nil.asJava)))) {
+    if (
+      bindResult == Some(Right(None)) || bindResult == Some(Right(Optional.empty))
+      || bindResult == Some(Right(OptionalInt.empty)) || bindResult == Some(Right(OptionalLong.empty))
+      || bindResult == Some(Right(OptionalDouble.empty))
+      || bindResult == Some(Right(Nil)) || bindResult == Some(Right(Nil.asJava))
+      || bindResult == Some(Right(Some(Nil))) || bindResult == Some(Right(Optional.of(Nil.asJava)))
+    ) {
       Param(key, default.map(d => Right(d)).getOrElse(bindResult.get))
     } else {
-      Param(key, bindResult.getOrElse {
-        default.map(d => Right(d)).getOrElse(Left("Missing parameter: " + key))
-      })
+      Param(
+        key,
+        bindResult.getOrElse {
+          default.map(d => Right(d)).getOrElse(Left("Missing parameter: " + key))
+        }
+      )
     }
   }
 }
@@ -106,7 +111,7 @@ abstract class GeneratedRouter extends Router {
     pa.value.fold(badRequest, generator)
   }
 
-  //Keep the old versions for avoiding compiler failures while building for Scala 2.10,
+  // Keep the old versions for avoiding compiler failures while building for Scala 2.10,
   // and for avoiding warnings when building for newer Scala versions
   // format: off
   def call[A1, A2](pa1: Param[A1], pa2: Param[A2])(generator: Function2[A1, A2, Handler]): Handler = {

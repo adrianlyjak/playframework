@@ -70,7 +70,11 @@ class XmlBodyParserSpec extends PlaySpecification {
         .like {
           case xml => xml.text must_== "bär"
         }
-      parse("""<?xml version="1.0" encoding="iso-8859-1"?><foo>bär</foo>""", Some("application/xml"), "iso-8859-1") must beRight
+      parse(
+        """<?xml version="1.0" encoding="iso-8859-1"?><foo>bär</foo>""",
+        Some("application/xml"),
+        "iso-8859-1"
+      ) must beRight
         .like {
           case xml => xml.text must_== "bär"
         }
@@ -144,7 +148,7 @@ class XmlBodyParserSpec extends PlaySpecification {
 
     "gracefully fail when there are too many nested entities" in new WithApplication() {
       val nested = for (x <- 1 to 30) yield "<!ENTITY laugh" + x + " \"&laugh" + (x - 1) + ";&laugh" + (x - 1) + ";\">"
-      val xml    = s"""<?xml version="1.0"?>
+      val xml = s"""<?xml version="1.0"?>
                    | <!DOCTYPE billion [
                    | <!ELEMENT billion (#PCDATA)>
                    | <!ENTITY laugh0 "ha">
@@ -158,7 +162,7 @@ class XmlBodyParserSpec extends PlaySpecification {
     "gracefully fail when an entity expands to be very large" in new WithApplication() {
       val as       = "a" * 50000
       val entities = "&a;" * 50000
-      val xml      = s"""<?xml version="1.0"?>
+      val xml = s"""<?xml version="1.0"?>
                    | <!DOCTYPE kaboom [
                    | <!ENTITY a "$as">
                    | ]>

@@ -100,6 +100,6 @@ class UriHandlingSpec
         response.body.string must_=== """/pat"""
       }
     }
-   */
+     */
   }
 }

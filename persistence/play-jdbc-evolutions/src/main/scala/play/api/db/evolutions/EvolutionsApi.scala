@@ -418,8 +418,10 @@ class DatabaseEvolutions(
           val humanScript = "-- Rev:" + lastScript.evolution.revision + "," + (if (lastScript.isInstanceOf[UpScript])
                                                                                  "Ups"
                                                                                else
-                                                                                 "Downs") + " - " + lastScript.evolution.hash + "\n\n" + (if (lastScript
-                                                                                                                                                .isInstanceOf[UpScript])
+                                                                                 "Downs") + " - " + lastScript.evolution.hash + "\n\n" + (if (
+                                                                                                                                            lastScript
+                                                                                                                                              .isInstanceOf[UpScript]
+                                                                                                                                          )
                                                                                                                                             lastScript.evolution.sql_up
                                                                                                                                           else
                                                                                                                                             lastScript.evolution.sql_down)
@@ -489,7 +491,8 @@ class DatabaseEvolutions(
 
           logger.error(error)
 
-          val humanScript = "-- Rev:" + revision + "," + (if (state == "applying_up") "Ups" else "Downs") + " - " + hash + "\n\n" + script
+          val humanScript = "-- Rev:" + revision + "," + (if (state == "applying_up") "Ups"
+                                                          else "Downs") + " - " + hash + "\n\n" + script
 
           throw InconsistentDatabase(database.name, humanScript, error, revision, autocommit)
         }
@@ -840,7 +843,9 @@ case class InconsistentDatabase(db: String, script: String, error: String, rev: 
   private val buttonLabel = if (autocommit) """Mark it resolved""" else """Try again"""
 
   def htmlDescription: String = {
-    <span>An evolution has not been applied properly. Please check the problem and resolve it manually{sentenceEnd} -</span>
+    <span>An evolution has not been applied properly. Please check the problem and resolve it manually{
+      sentenceEnd
+    } -</span>
     <input name="evolution-button" type="button" value={buttonLabel} onclick={redirectJavascript}/>
   }.mkString
 }

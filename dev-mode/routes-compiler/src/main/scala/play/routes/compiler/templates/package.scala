@@ -47,9 +47,12 @@ package object templates {
     if (seq.isEmpty) {
       Nil
     } else {
-      Seq(f(seq.head), seq.tail.map { t =>
-        Seq(sep, f(t))
-      })
+      Seq(
+        f(seq.head),
+        seq.tail.map { t =>
+          Seq(sep, f(t))
+        }
+      )
     }
   }
 
@@ -92,7 +95,8 @@ package object templates {
               """Param[""" + p.typeName + """]("""" + paramName + """", Right(""" + v + """))"""
             }
             .getOrElse {
-              """params.""" + (if (route.path.has(paramName)) "fromPath" else "fromQuery") + """[""" + p.typeName + """]("""" + paramName + """", """ + p.default
+              """params.""" + (if (route.path.has(paramName)) "fromPath"
+                               else "fromQuery") + """[""" + p.typeName + """]("""" + paramName + """", """ + p.default
                 .map("Some(" + _ + ")")
                 .getOrElse("None") + """)"""
             }
@@ -360,7 +364,9 @@ package object templates {
           }
           .map {
             case (u, Parameter(name, typeName, None, Some(default))) =>
-              """if(""" + safeKeyword(localNames.getOrElse(name, name)) + """ == """ + default + """) None else Some(""" + u + """)"""
+              """if(""" + safeKeyword(
+                localNames.getOrElse(name, name)
+              ) + """ == """ + default + """) None else Some(""" + u + """)"""
             case (u, Parameter(name, typeName, None, None)) => "Some(" + u + ")"
           }
           .mkString(", ")
@@ -383,7 +389,9 @@ package object templates {
           localNames.contains(p.name) && p.fixed.isDefined
         }
         .map { p =>
-          localNames(p.name) + " == \"\"\" + implicitly[play.api.mvc.JavascriptLiteral[" + p.typeName + "]].to(" + p.fixed.get + ") + \"\"\""
+          localNames(
+            p.name
+          ) + " == \"\"\" + implicitly[play.api.mvc.JavascriptLiteral[" + p.typeName + "]].to(" + p.fixed.get + ") + \"\"\""
         }
     ).filterNot(_.isEmpty).map(_.mkString(" && "))
   }
@@ -418,7 +426,9 @@ package object templates {
    * Generate the Javascript call
    */
   def javascriptCall(route: Route, localNames: Map[String, String] = Map()): String = {
-    val path = "\"\"\"\" + _prefix + " + { if (route.path.parts.isEmpty) "" else "{ _defaultPrefix } + " } + "\"\"\"\"" + route.path.parts.map {
+    val path = "\"\"\"\" + _prefix + " + {
+      if (route.path.parts.isEmpty) "" else "{ _defaultPrefix } + "
+    } + "\"\"\"\"" + route.path.parts.map {
       case StaticPart(part) => " + \"" + part + "\""
       case DynamicPart(name, _, encode) =>
         route.call.parameters
