@@ -39,9 +39,9 @@ class AkkaRequestTimeoutSpec extends PlaySpecification with AkkaHttpIntegrationS
         play.api.test.TestServer(
           config = serverConfig,
           application = new GuiceApplicationBuilder()
-            .routes({
+            .routes {
               case _ => action
-            })
+            }
             .build(),
           serverProvider = Some(integrationServerProvider)
         )

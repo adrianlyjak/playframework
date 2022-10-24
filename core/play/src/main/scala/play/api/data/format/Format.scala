@@ -153,13 +153,13 @@ object Formats {
           .either {
             val bd = BigDecimal(s)
             precision
-              .map({
+              .map {
                 case (p, s) =>
                   if (bd.precision - bd.scale > p - s) {
                     throw new java.lang.ArithmeticException("Invalid precision")
                   }
                   bd.setScale(s)
-              })
+              }
               .getOrElse(bd)
           }
           .left
@@ -177,9 +177,9 @@ object Formats {
     def unbind(key: String, value: BigDecimal) =
       Map(
         key -> precision
-          .map({ p =>
+          .map { p =>
             value.setScale(p._2)
-          })
+          }
           .getOrElse(value)
           .toString
       )

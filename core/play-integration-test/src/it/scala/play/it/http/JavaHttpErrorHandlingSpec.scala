@@ -66,7 +66,7 @@ class JavaHttpErrorHandlingSpec
 
         //  Config config, Environment environment, OptionalSourceMapper sourceMapper, Provider<Router> routes
         override def httpErrorHandler(): HttpErrorHandler = {
-          val mapper = (applicationContext.devContext()).map(_.sourceMapper).toScala
+          val mapper = applicationContext.devContext().map(_.sourceMapper).toScala
 
           val routesProvider: Provider[play.api.routing.Router] = new Provider[play.api.routing.Router] {
             override def get(): play.api.routing.Router = router().asScala()

@@ -624,7 +624,7 @@ case class CSRFCheck @Inject() (
             csrfActionHelper
               .getHeaderToken(request)
               // Or from body if not found
-              .orElse({
+              .orElse {
                 val form = request.body match {
                   case body: play.api.mvc.AnyContent if body.asFormUrlEncoded.isDefined => body.asFormUrlEncoded.get
                   case body: play.api.mvc.AnyContent if body.asMultipartFormData.isDefined =>
@@ -634,7 +634,7 @@ case class CSRFCheck @Inject() (
                   case _                                       => Map.empty[String, Seq[String]]
                 }
                 form.get(config.tokenName).flatMap(_.headOption)
-              })
+              }
               // Execute if it matches
               .collect {
                 case queryToken if tokenProvider.compareTokens(queryToken, headerToken) => wrapped(request)

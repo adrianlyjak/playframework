@@ -92,9 +92,9 @@ trait DefaultWriteables extends LowPriorityWriteables {
     Writeable(formData =>
       codec.encode(
         formData
-          .flatMap({ item =>
+          .flatMap { item =>
             item._2.map(c => URLEncoder.encode(item._1, "UTF-8") + "=" + URLEncoder.encode(c, "UTF-8"))
-          })
+          }
           .mkString("&")
       )
     )

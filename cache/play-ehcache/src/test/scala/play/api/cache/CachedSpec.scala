@@ -99,7 +99,7 @@ class CachedSpec extends PlaySpecification {
     "cache values using Application's Cached" in new WithApplication() {
       val invoked = new AtomicInteger()
       val action = cached(app)(_ => "foo") {
-        (Action(Results.Ok("" + invoked.incrementAndGet())))
+        Action(Results.Ok("" + invoked.incrementAndGet()))
       }
       val result1 = action(FakeRequest()).run()
       contentAsString(result1) must_== "1"
@@ -250,8 +250,8 @@ class CachedSpec extends PlaySpecification {
         Duration(target - now, MILLISECONDS)
       }
 
-      res0.map(toDuration) must beSome(beBetween((duration - 10.seconds), duration))
-      res1.map(toDuration) must beSome(beBetween((duration - 10.seconds), duration))
+      res0.map(toDuration) must beSome(beBetween(duration - 10.seconds, duration))
+      res1.map(toDuration) must beSome(beBetween(duration - 10.seconds, duration))
     }
 
     "cache 200 OK results for a given duration" in new WithApplication {
@@ -270,7 +270,7 @@ class CachedSpec extends PlaySpecification {
         Duration(target - now, MILLISECONDS)
       }
 
-      res0.map(toDuration) must beSome(beBetween((duration - 10.seconds), duration))
+      res0.map(toDuration) must beSome(beBetween(duration - 10.seconds, duration))
       res1.map(toDuration) must beNone
     }
   }

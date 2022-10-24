@@ -110,7 +110,7 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
     val claimedIdCandidate = discovery.normalizeIdentifier(openID)
     discovery
       .discoverServer(openID)
-      .map({ server =>
+      .map { server =>
         val (claimedId, identity) =
           if (server.protocolVersion != "http://specs.openid.net/auth/2.0/server")
             (claimedIdCandidate, server.delegate.getOrElse(claimedIdCandidate))
@@ -125,12 +125,12 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
         ) ++ axParameters(axRequired, axOptional) ++ realm.map("openid.realm" -> _).toList
         val separator = if (server.url.contains("?")) "&" else "?"
         server.url + separator + parameters
-          .map({
+          .map {
             case (k, v) =>
               URLEncoder.encode(k, "UTF-8") + "=" + URLEncoder.encode(v, "UTF-8")
-          })
+          }
           .mkString("&")
-      })
+      }
   }
 
   /**
@@ -165,9 +165,9 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
    * Perform direct verification (see 11.4.2. Verifying Directly with the OpenID Provider)
    */
   private def directVerification(queryString: Map[String, Seq[String]])(server: OpenIDServer) = {
-    val fields: Map[String, Seq[String]] = (queryString - "openid.mode" + ("openid.mode" -> Seq(
+    val fields: Map[String, Seq[String]] = queryString - "openid.mode" + ("openid.mode" -> Seq(
       "check_authentication"
-    )))
+    ))
     ws.url(server.url)
       .post(fields)
       .map(response => {
@@ -192,7 +192,7 @@ class WsOpenIdClient @Inject() (ws: WSClient, discovery: Discovery)(implicit ec:
         if (axOptional.isEmpty) Nil
         else Seq("openid.ax.if_available" -> axOptional.map(_._1).mkString(","))
 
-      val definitions = (axRequired ++ axOptional).map(attribute => ("openid.ax.type." + attribute._1 -> attribute._2))
+      val definitions = (axRequired ++ axOptional).map(attribute => "openid.ax.type." + attribute._1 -> attribute._2)
 
       Seq(
         "openid.ns.ax"   -> "http://openid.net/srv/ax/1.0",

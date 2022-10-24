@@ -259,7 +259,7 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               var messages = List.empty[String]
               def receive = {
@@ -270,7 +270,7 @@ trait WebSocketSpec
                 consumed.success(messages.reverse)
               }
             })
-          })
+          }
         }
       }
 
@@ -278,7 +278,7 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               messages.foreach { msg =>
                 out ! msg
@@ -286,7 +286,7 @@ trait WebSocketSpec
               out ! Status.Success(())
               def receive = PartialFunction.empty
             })
-          })
+          }
         }
       }
 
@@ -294,12 +294,12 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               system.scheduler.scheduleOnce(10.millis, out, Status.Success(()))
               def receive = PartialFunction.empty
             })
-          })
+          }
         }
       }
 
@@ -307,13 +307,13 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               def receive = {
                 case _ => context.stop(self)
               }
             })
-          })
+          }
         }
       }
 
@@ -321,14 +321,14 @@ trait WebSocketSpec
         import app.materializer
         implicit val system = app.actorSystem
         WebSocket.accept[String, String] { req =>
-          ActorFlow.actorRef({ out =>
+          ActorFlow.actorRef { out =>
             Props(new Actor() {
               def receive = PartialFunction.empty
               override def postStop() = {
                 cleanedUp.success(true)
               }
             })
-          })
+          }
         }
       }
 
@@ -448,7 +448,7 @@ trait WebSocketSpecMethods extends PlaySpecification with WsTestClient with Serv
     val consumed = Promise[List[String]]()
     withServer(app => webSocket(app)(consumed)) { app =>
       import app.materializer
-      val result = runWebSocket { (flow) =>
+      val result = runWebSocket { flow =>
         sendFrames(
           TextMessage("a"),
           TextMessage("b"),
@@ -463,7 +463,7 @@ trait WebSocketSpecMethods extends PlaySpecification with WsTestClient with Serv
   def allowSendingMessages(webSocket: Application => List[String] => Handler) = {
     withServer(app => webSocket(app)(List("a", "b"))) { app =>
       import app.materializer
-      val frames = runWebSocket { (flow) =>
+      val frames = runWebSocket { flow =>
         Source.maybe[ExtendedMessage].via(flow).runWith(consumeFrames)
       }
       frames must contain(

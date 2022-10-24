@@ -165,10 +165,10 @@ private[server] object ForwardedHeaderHandler {
      */
     def forwardedHeaders(headers: Headers): Seq[ForwardedEntry] = version match {
       case Rfc7239 => {
-        val params = (for {
+        val params = for {
           fhs <- headers.getAll("Forwarded")
           fh  <- fhs.split(",\\s*")
-        } yield (fh
+        } yield fh
           .split(";")
           .iterator
           .flatMap {
@@ -184,7 +184,7 @@ private[server] object ForwardedHeaderHandler {
               }
             }
           }
-          .toMap))
+          .toMap
 
         params.map { (paramMap: Map[String, String]) =>
           ForwardedEntry(paramMap.get("for"), paramMap.get("proto"))
